@@ -1,6 +1,6 @@
 # teaching
 
-Here you can find teaching material I've written. My publications are here and my home page is here.
+Here you can find teaching material I've written. My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ) and my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant).
 
 ## Basic maths, with public health and epidemiology examples:
 * the [quiz](basic_maths/InductionQuiz.pdf) testing all of the material covered, and the [answers](basic_maths/QuizAnswers.pdf)
