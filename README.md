@@ -30,6 +30,6 @@ Inference:
 
 Climate change:
 
-Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [https://www.bdi.ox.ac.uk/Team/christophe-fraser](Christophe Fraser).
+Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
 Something I wrote while not funded by those grants: an [explanation](other_topics/The_5-1_explained.pdf) of the "5-1" system of service receive for volleyball
