@@ -4,7 +4,7 @@ Here you can find teaching material I've written. My publications are here and m
 
 ## basic maths
 While at Imperial I lectured Core Mathematics for masters courses in public health and epidemiology:
-* the [quiz](../basic_maths/InductionQuiz.pdf) testing all of the material covered, and the [answers](QuizAnswers.pdf)
+* the [quiz](basic_maths/InductionQuiz.pdf) testing all of the material covered, and the [answers](QuizAnswers.pdf)
 * basic manipulation of numbers - the [slides](../Lecture1.pdf) for 2015 and prose-style [notes](Lecture1_2014.pdf) from 2014
 * inequalities, functions and units - [slides](Lecture2.pdf) for 2015, [solutions](Lecture2_solutions.pdf) to the problems, and prose-style [notes](Lecture2_2014.pdf) from 2014
 * probability parts [one](Lecture7_part1.pdf) and [two](Lecture7_part2.pdf)
