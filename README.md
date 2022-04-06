@@ -8,7 +8,7 @@ Here you can find teaching material I've written. My publications are here and m
 * inequalities, functions and units - [slides](basic_maths/Lecture2.pdf) for 2015, [solutions](basic_maths/Lecture2_solutions.pdf) to the problems, and prose-style [notes](basic_maths/Lecture2_2014.pdf) from 2014
 * probability parts [one](basic_maths/Lecture7_part1.pdf) and [two](basic_maths/Lecture7_part2.pdf)
 * [calculus](basic_maths/PostXmas_Calculus.pdf) in more detail
-* a bit of supplementary material about [trigonometric, exponential and logarithmic functions](basic_maths/Lecture3_SupplementaryNotes_2014.pdf), and [matrices](basic_maths/PostXmas_matrices.pdf)
+* a bit of supplementary material about [trigonometric, exponential and logarithmic functions](basic_maths/Lecture3_SupplementaryNotes_2014.pdf), and [matrices](basic_maths/PostXmas_matrices.pdf)  
 I wrote these teaching materials (for a Bachelors course, a masters course and 'the short course' for professionals) while employed by Imperial College London, who have a claim on copyright. Do not re-use this material.
 
 
@@ -22,10 +22,11 @@ Pathogen sequence analysis:
 * An accesible summary of our discovery of the VB variant is [here](https://www.beehive.ox.ac.uk/hiv-lineage)
 
 Inference:
-* Inferring things from quantitative data 
-* The need for hierarchical models to infer things from naturally grouped data:
-** slides
-** Example R and Stan code
+* [Inferring things from quantitative data](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
+* The need for hierarchical models to infer things from naturally grouped data:   
+** [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf)
+** Example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
+* A trivial example of Stan code illustrating three generally useful tricks
 
 Climate change:
 
