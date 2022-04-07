@@ -1,6 +1,6 @@
 # teaching
 
-Here you can find teaching material I've written. My publications are here and my home page is here.
+Here you can find teaching material I've written. My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ) and my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant).
 
 ## Basic maths, with public health and epidemiology examples:
 * the [quiz](basic_maths/InductionQuiz.pdf) testing all of the material covered, and the [answers](basic_maths/QuizAnswers.pdf)
@@ -8,7 +8,7 @@ Here you can find teaching material I've written. My publications are here and m
 * inequalities, functions and units - [slides](basic_maths/Lecture2.pdf) for 2015, [solutions](basic_maths/Lecture2_solutions.pdf) to the problems, and prose-style [notes](basic_maths/Lecture2_2014.pdf) from 2014
 * probability parts [one](basic_maths/Lecture7_part1.pdf) and [two](basic_maths/Lecture7_part2.pdf)
 * [calculus](basic_maths/PostXmas_Calculus.pdf) in more detail
-* a bit of supplementary material about [trigonometric, exponential and logarithmic functions](basic_maths/Lecture3_SupplementaryNotes_2014.pdf), and [matrices](basic_maths/PostXmas_matrices.pdf)
+* a bit of supplementary material about [trigonometric, exponential and logarithmic functions](basic_maths/Lecture3_SupplementaryNotes_2014.pdf), and [matrices](basic_maths/PostXmas_matrices.pdf)  
 I wrote these teaching materials (for a Bachelors course, a masters course and 'the short course' for professionals) while employed by Imperial College London, who have a claim on copyright. Do not re-use this material.
 
 
@@ -22,13 +22,14 @@ Pathogen sequence analysis:
 * An accesible summary of our discovery of the VB variant is [here](https://www.beehive.ox.ac.uk/hiv-lineage)
 
 Inference:
-* Inferring things from quantitative data 
-* The need for hierarchical models to infer things from naturally grouped data:
-** slides
-** Example R and Stan code
+* [Inferring things from quantitative data](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
+* The need for hierarchical models to infer things from naturally grouped data:   
+** [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf)
+** Example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
+* A trivial example of Stan code illustrating three generally useful tricks
 
 Climate change:
 
-Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [https://www.bdi.ox.ac.uk/Team/christophe-fraser](Christophe Fraser).
+Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
 Something I wrote while not funded by those grants: an [explanation](other_topics/The_5-1_explained.pdf) of the "5-1" system of service receive for volleyball
