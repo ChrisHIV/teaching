@@ -16,14 +16,14 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 ### Other topics
 
 Pathogen sequence analysis:
-* [Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver](other_topics/Wymant_Lecture1_shiver.pdf)
-* [Estimating who infected whom with phyloscanner](other_topics/Wymant_Lecture2_phyloscanner.pdf)
+* Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver [here](other_topics/Wymant_Lecture1_shiver.pdf)
+* Estimating who infected whom with phyloscanner [here](other_topics/Wymant_Lecture2_phyloscanner.pdf)
 * A [webinar](https://www.youtube.com/watch?v=TR2a46vBwGY) in which I talk through a subset of the slides from the above two lectures
 * A computational practical showing how to use phyloscanner is [here](https://drive.google.com/drive/folders/0BwygWUC73hnxbGtHSFpWdzYzVkk?resourcekey=0-Zjt4kVHja6Djo7qKsN3r5Q&usp=sharing). Being taught this practical was [apparently](https://www.krisp.org.za/blogs.php?id=48) "like receiving piano lessons from Beethoven;" YMMV
 * An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM)
 
 Inference:
-* [Inferring things from quantitative data](other_topics/2021-09-29_Chris_InferenceOnly.pdf), or why it's better to stop thinking about _doing things to data_
+* Inferring things from quantitative data, or why it's better to stop thinking about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
 
 A [blog post](https://www.coronavirus-fraser-group.org/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
@@ -44,14 +44,14 @@ Some explanations of things on twitter:
 * Lockdown pros and cons [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
 * Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
 * Early calling of the pandemic by expert round-up [here](https://twitter.com/ChrisWymant/status/1231635888595197952)
-* A round-up of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945); doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561); happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
-* Some of the best people to follow on climate, for when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
 * Why science is easier than politics [here](https://twitter.com/ChrisWymant/status/1154710730526117889)
 * A pet hate: scientists leveraging/harnessing things left, right and centre instead of using them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
 * Really funny linux jokes [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
 
 Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
-Two things I wrote while not funded by those grants:
-* Climate change, and how we're fucking up the planet and nature generally: [slides](other_topics/GroupMeeting_ClimateStuff_BoxesWithinBoxes.pdf)
-* An [explanation](other_topics/The_5-1_explained.pdf) of the "5-1" system of service receive for volleyball
+Things I wrote while not funded by those grants:
+* A talk on climate change and how we're fucking up the planet and nature generally [here](other_topics/GroupMeeting_ClimateStuff_BoxesWithinBoxes.pdf)
+* A summary of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945). Here's me doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561), and happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
+* Suggestions for good twitter accounts to follow on climate, from when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
+* An explanation of the "5-1" system of service receive for volleyball [here](other_topics/The_5-1_explained.pdf)
