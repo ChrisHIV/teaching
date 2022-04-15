@@ -28,21 +28,27 @@ Inference:
 
 A [blog post](https://www.coronavirus-fraser-group.org/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
 
-A few twitter highlights:
-* On the harmful oversimplification present in statements like 'the link between severe covid outcomes and infection has been broken' or "covid's infection fatality rate is now like flu so we should treat it like flu', [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
-* The effect of lockdowns [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
-* Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
-* Calling the pandemic by taking the temperature of experts [here](https://twitter.com/ChrisWymant/status/1231635888595197952)
-* Some of the best people to follow on climate, for when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
-* A round-up of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945)
-* A pet hate: scientists leveraging/harnessing things left, right and centre instead of using them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
-
 For experts I've also written summaries of some conferences:
-* [Epidemics8](https://twitter.com/ChrisWymant/status/1465775301972185088) (2001) 
-* [COVID-19: Advances and Remaining Challenges] (https://twitter.com/ChrisWymant/status/1443248100143927296) (2021)
-* [Virus Genomics and Evolution](https://twitter.com/ChrisWymant/status/1438178907438653441) (2021)
+* Epidemics8 in 2021 [here](https://twitter.com/ChrisWymant/status/1465775301972185088) 
+* COVID-19: Advances and Remaining Challenges in 2021 [here](https://twitter.com/ChrisWymant/status/1443248100143927296)
+* Virus Genomics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1438178907438653441)
 * Human Virus Dynamics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1390733002754379784)
 * Net Zero 2019 [here](https://twitter.com/ChrisWymant/status/1171361818847121408) 
+* Oberwolfach (the maths of infectious diseases) 2019 [here](https://twitter.com/ChrisWymant/status/969205940623994881)
+* Epidemics7 in 2017 [here](https://www.dropbox.com/s/y4iuz2tdwdrq7io/Epidemics2017.txt?dl=0)
+* IAS 2017 [here](https://www.dropbox.com/s/w0uffmzcir8141s/IAS.txt?dl=0)
+* Mathematical and Computational Evolutionary Biology 2016 [here](https://twitter.com/ChrisWymant/status/743852693047881728) 
+
+Some explanations of things on twitter:
+* On the harmful oversimplification of focussing only on the _fraction_ of SARS-CoV-2 infections that become severe, [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
+* Lockdown pros and cons [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
+* Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
+* Early calling of the pandemic by expert round-up [here](https://twitter.com/ChrisWymant/status/1231635888595197952)
+* A round-up of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945); doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561); happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
+* Some of the best people to follow on climate, for when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
+* Why science is easier than politics [here](https://twitter.com/ChrisWymant/status/1154710730526117889)
+* A pet hate: scientists leveraging/harnessing things left, right and centre instead of using them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
+* Really funny linux jokes [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
 
 Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
