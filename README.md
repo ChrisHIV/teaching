@@ -28,6 +28,8 @@ Inference:
 
 A [blog post](https://www.coronavirus-fraser-group.org/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
 
+Here are some [bash commands](https://www.dropbox.com/s/65eyimir8aukxe6/CommonBashCommands.sh?dl=0)</a> (i.e. working with the terminal / command line) that I find helpful.
+
 For experts I've also written summaries of some conferences:
 * Epidemics8 in 2021 [here](https://twitter.com/ChrisWymant/status/1465775301972185088) 
 * COVID-19: Advances and Remaining Challenges in 2021 [here](https://twitter.com/ChrisWymant/status/1443248100143927296)
@@ -55,3 +57,11 @@ Things I wrote while not funded by those grants:
 * Suggestions for good twitter accounts to follow on climate, from when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
 * An explanation of the "5-1" system of service receive for volleyball [here](other_topics/The_5-1_explained.pdf)
 * Really you made it this far? Maybe you'll like my lovingly curated [playlists](https://tinyurl.com/SpotifyChrisW) or vegan recipe [meta-analyses](https://docs.google.com/spreadsheets/d/1f3MYycHjTvrQagO-raRTsJtIC8fnsa1SVfEqTxF1HGk/edit?usp=sharing)
+
+Finally some explanatory things other people wrote that I recommend:
+* Read [this](http://www.amazon.co.uk/The-Elements-Style-William-Strunk/dp/020530902X) if you write in English. Read [this](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point.
+* Read [this](http://www.damtp.cam.ac.uk/user/tong/talks/talk.pdf) if you give talks.
+* Read [this](https://doi.org/10.1371/journal.pcbi.1005510) if you're a scientist using a computer.
+* Other people recommended these resources for learning to interact with your computer through the command line (a.k.a. the terminal a.k.a. the shell), which is very helpful for being able to use other people's computational scientific methods: [here](http://rik.smith-unna.com/command_line_bootcamp) [here](http://www.ee.surrey.ac.uk/Teaching/Unix) and [here](http://swcarpentry.github.io/shell-novice/)
+* Other people recommended [this](http://happygitwithr.com/) for learning version control with Git (aimed at users of R but with more general applicability), which is invaluable for writing your own scientific methods.
+* [This](http://detexify.kirelabs.org/classify.html) helps one remember obscure latex symbols.
