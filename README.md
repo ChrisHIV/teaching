@@ -23,7 +23,7 @@ Pathogen sequence analysis:
 * An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM)
 
 Inference:
-* Inferring things from quantitative data, or why it's better to stop thinking about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
+* Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
 
 A [blog post](https://www.coronavirus-fraser-group.org/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
