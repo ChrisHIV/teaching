@@ -43,9 +43,8 @@ Some explanations of things on twitter:
 * On the harmful oversimplification of focussing only on the _fraction_ of SARS-CoV-2 infections that become severe, [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
 * Lockdown pros and cons [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
 * Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
-* Early calling of the pandemic by expert round-up [here](https://twitter.com/ChrisWymant/status/1231635888595197952)
 * Why science is easier than politics [here](https://twitter.com/ChrisWymant/status/1154710730526117889)
-* A pet hate: scientists leveraging/harnessing things left, right and centre instead of using them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
+* A pet hate: academics leveraging/harnessing things left, right and centre instead of _using_ them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
 * Really funny linux jokes [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
 
 Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
@@ -55,3 +54,4 @@ Things I wrote while not funded by those grants:
 * A summary of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945). Here's me doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561), and happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
 * Suggestions for good twitter accounts to follow on climate, from when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
 * An explanation of the "5-1" system of service receive for volleyball [here](other_topics/The_5-1_explained.pdf)
+* Really you made it this far? Maybe you'll like my lovingly curated [playlists](https://tinyurl.com/SpotifyChrisW)
