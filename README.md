@@ -51,17 +51,17 @@ Some explanations of things on twitter:
 
 Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
-Things I wrote while not funded by those grants:
-* A talk on climate change and how we're fucking up the planet and nature generally [here](other_topics/GroupMeeting_ClimateStuff_BoxesWithinBoxes.pdf)
-* A summary of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945). Here's me doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561), and happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
-* Suggestions for good twitter accounts to follow on climate, from when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
-* An explanation of the "5-1" system of service receive for volleyball [here](other_topics/The_5-1_explained.pdf)
-* Really you made it this far? Maybe you'll like my lovingly curated [playlists](https://tinyurl.com/SpotifyChrisW) or vegan recipe [meta-analyses](https://docs.google.com/spreadsheets/d/1f3MYycHjTvrQagO-raRTsJtIC8fnsa1SVfEqTxF1HGk/edit?usp=sharing)
-
-Finally some explanatory things other people wrote that I recommend:
+Some explanatory things other people wrote that I recommend:
 * Read [this](http://www.amazon.co.uk/The-Elements-Style-William-Strunk/dp/020530902X) if you write in English. Read [this](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point.
 * Read [this](http://www.damtp.cam.ac.uk/user/tong/talks/talk.pdf) if you give talks.
 * Read [this](https://doi.org/10.1371/journal.pcbi.1005510) if you're a scientist using a computer.
 * Other people recommended these resources for learning to interact with your computer through the command line (a.k.a. the terminal a.k.a. the shell), which is very helpful for being able to use other people's computational scientific methods: [here](http://rik.smith-unna.com/command_line_bootcamp) [here](http://www.ee.surrey.ac.uk/Teaching/Unix) and [here](http://swcarpentry.github.io/shell-novice/)
 * Other people recommended [this](http://happygitwithr.com/) for learning version control with Git (aimed at users of R but with more general applicability), which is invaluable for writing your own scientific methods.
 * [This](http://detexify.kirelabs.org/classify.html) helps one remember obscure latex symbols.
+
+Finally some things I wrote while not funded by the grants mentioned above:
+* A talk on climate change and how we're fucking up the planet and nature generally [here](other_topics/GroupMeeting_ClimateStuff_BoxesWithinBoxes.pdf)
+* A summary of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945). Here's me doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561), and happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
+* Suggestions for good twitter accounts to follow on climate, from when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
+* An explanation of the "5-1" system of service receive for volleyball [here](other_topics/The_5-1_explained.pdf)
+* Really you made it this far? Maybe you'll like my lovingly curated [playlists](https://tinyurl.com/SpotifyChrisW) or vegan recipe [meta-analyses](https://docs.google.com/spreadsheets/d/1f3MYycHjTvrQagO-raRTsJtIC8fnsa1SVfEqTxF1HGk/edit?usp=sharing)
