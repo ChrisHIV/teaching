@@ -26,6 +26,8 @@ Inference:
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
 
+Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
+
 A [blog post](https://www.coronavirus-fraser-group.org/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
 
 Here are some [bash commands](https://www.dropbox.com/s/65eyimir8aukxe6/CommonBashCommands.sh?dl=0)</a> (i.e. working with the terminal / command line) that I find helpful.
