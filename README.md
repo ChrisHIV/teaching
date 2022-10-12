@@ -20,7 +20,7 @@ Pathogen sequence analysis:
 * Estimating who infected whom with phyloscanner [here](other_topics/Wymant_Lecture2_phyloscanner.pdf)
 * A [webinar](https://www.youtube.com/watch?v=TR2a46vBwGY) in which I talk through a subset of the slides from the above two lectures
 * A computational practical showing how to use phyloscanner is [here](https://drive.google.com/drive/folders/0BwygWUC73hnxbGtHSFpWdzYzVkk?resourcekey=0-Zjt4kVHja6Djo7qKsN3r5Q&usp=sharing). Being taught this practical was [apparently](https://www.krisp.org.za/blogs.php?id=48) "like receiving piano lessons from Beethoven;" YMMV
-* An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM)
+* An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM). Virtually the same webinar but with an introduction in French is [here](https://www.youtube.com/watch?v=kpgNaiXCxfA).
 
 Inference:
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
