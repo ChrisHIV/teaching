@@ -1,0 +1,130 @@
+﻿term,aka,explanation,source
+,,,
+CHI,,"chronic HIV infection. Comprises an asymptomatic period following EHI, characterized by a stable viral load (10^{4,5} copies/ml) and relatively low transmissibility, as well as late infection/AIDS, when viral load and transmissibility are elevated again.",DOI: 10.1371/journal.pmed.1001232
+EHI,,early HIV infection. The first 3–6 months after infection. Includes acute HIV infection (AHI).,DOI: 10.1371/journal.pmed.1001232
+HIV set point,,"the viral load of a person infected with HIV, which stabilizes after a period of acute HIV infection. The set point is reached after the immune system has developed specific Cytotoxic T cells and begins to attempt to fight the virus. The higher the viral load of the set point, the faster the virus will progress to AIDS; the lower the viral load of the set point, the longer the patient will remain in clinical latency. The only effective way to lower the set point is through highly active antiretroviral therapy. The set point is not completely fixed and constant, but can be quite dynamic with significant fluctuations.",wikipedia
+Serology,,"the scientific study of plasma serum and other bodily fluids. In practice, the term usually refers to the diagnostic identification of antibodies in the serum.",wikipedia
+Seropositive,,showing positive results on serological examination; showing a high level of antibody.,http://medical-dictionary.thefreedictionary.com
+Viremia,,the presence of a virus in the blood.,http://dictionary.reference.com
+Virion,,one virus particle.,wikipedia
+AHI,,"acute HIV infection the period before the development of antibodies to HIV, when the concentration of virus in the plasma spikes (10^7 copies/ml or more) and then falls to the set-point viral load.",DOI: 10.1371/journal.pmed.1001232
+Antigen,,"a substance foreign or toxic to the body (for example, a bacterium) which, once in the body, attracts and is bound to a respective and specific antibody. That is to say, an antigen is molecule that induces an immune response in the body. The term antigen originally came from ANTIbody GENerator.",wikipedia
+Antigen-presenting cell,"APC, accessory cell","a cell that displays foreign antigens complexed with major histocompatibility complexes (MHC's) on their surfaces; this process is known as antigen presentation. T-cells may recognize these complexes using their T-cell receptors (TCRs). T cells cannot recognize, and therefore cannot respond to, 'free' antigen. T cells can only 'see' an antigen that has been processed and presented by cells via carrier molecules like MHC and CD1 molecules.",wikipedia
+Apoptosis,PCD,programmed cell death,wikipedia
+Cytokines,,"a broad and loose category of small proteins (~5–20 kDa) that are important in cell signaling - they are released by cells and affect the behavior of other cells, and sometimes the releasing cell itself. They act through receptors, and are especially important in the immune system.",wikipedia
+Cytokine storm,cytokine cascade,"a positive feedback loop between cytokines and immune cells. When the immune system is fighting pathogens, cytokines signal immune cells such as T-cells and macrophages to travel to the site of infection. In addition, cytokines activate those cells, stimulating them to produce more cytokines. Normally, this feedback loop is kept in check by the body. However, in some instances, the reaction becomes uncontrolled, and too many immune cells are activated in a single place. The precise reason for this is not entirely understood but may be caused by an exaggerated response when the immune system encounters a new and highly pathogenic invader. Cytokine storms have potential to do significant damage to body tissues and organs.",wikipedia
+Histology,,"the study of the microscopic anatomy of cells and tissues of plants and animals. It is commonly performed by examining cells and tissues by sectioning and staining, followed by examination under a light microscope or electron microscope.",wikipedia
+Major histocompatibility complex,MHC,"a set of cell surface molecules which mediate interactions of leukocytes with other leukocytes or body cells. MHC determines compatibility of donors for organ transplant as well as one's susceptibility to an autoimmune disease via crossreacting immunization. In humans, MHC is also called human leukocyte antigen (HLA).",wikipedia
+Ramp-up viremia,,a period of sharply increasing viremia.,DOI: 10.1056/NEJMra1011874
+Percutaneous,,"effected, occurring, or performed through the skin",merriam-webster.com
+T cell,T lymphocyte,"a type of lymphocyte (itself a type of white blood cell) that play a central role in cell-mediated immunity. They are called T cells because they mature in the thymus. Can be distinguished from other lymphocytes, such as B cells and natural killer cells (NK cells), by the presence of a T-cell receptor (TCR) on the cell surface.",wikipedia
+HAART,,highly active antiretroviral therapy: the use of multiple drugs that act on different viral targets.,wikipedia
+Dendritic cells,,"Antigen-presenting cells that are present in those tissues that are in contact with the external environment, such as the skin and the inner lining of the nose, lungs, stomach and intestines. They can also be found in an immature state in the blood. Once activated, they migrate to the lymph nodes where they interact with T cells and B cells to initiate and shape the adaptive immune response.",wikipedia
+Langerhans cell,,a specialized dendritic cell in the skin,wikipedia
+Cytotoxicity,,the quality of being toxic to cells,wikipedia
+Natural Killer cells,NK cells,"a type of cytotoxic lymphocyte to recognize streable ssed cells in the absence of antibodies and MHC, allowing for a much faster immune reaction.",wikipedia
+In vitro,,(Latin: in glass) Describes studies that are conducted using components of an organism that have been isolated from their usual biological surroundings in order to permit a more detailed or more convenient analysis than can be done with whole organisms.,wikipedia
+in vivo,,(Latin: within the living) Describes studies that are conducted with living organisms in their normal intact state.,wikipedia
+ex vivo,,(Latin: out of the living) Describes studies that are done on tissue/organs extracted from an organism with the minimum alteration of natural conditions,wikipedia
+viral escape,,avoidance of the immune system by a virus,shmoop.com
+mucosa,,mucous membrane,wikipedia
+epitope,,The part of an antigen that is recognized by the immune system. a.ka. Antigenic determinant. The part of an antibody that recognizes the epitope is called a paratope.,wikipedia
+Seroconversion,,"the development of detectable specific antibodies to microorganisms in the blood serum as a result of infection or immunization. Before the seroconversion point, the antigen is prevalent and the corresponding antibody is not detectable in sera. After seroconversion, the antibody becomes prevalent and the corresponding antigen is no longer detectable in sera. Antigen-antibody complexes (immune complexes) formed in an organism are quickly removed by several immune mechanisms, so only the dominant party of an immune complex is detectable in blood sera.",wikipedia
+prophylaxis,,treatment given or action taken to prevent (rather than treat) disease.,Google itself
+hyperendemic,,exhibiting a high and continued incidence,merriam-webster.com/medical
+antenatal,,Occurring before birth; prenatal,thefreedictionary.com
+ANC,,antenatal clinic,n/a
+prevalence,,the proportion of a population found to have a condition,wikipedia
+Incidence proportion,,the number of new cases within a specified time period divided by the size of the population initially at risk. Aka cumulative incidence.,wikipedia
+Index case,,The earliest infected individual who goes on to infect other individuals in the sample of cases that are being examined.,doi:10.1038/nrmicro1845
+Offspring distribution,,The probability distribution for the number of secondary infections generated by a single infected individual.,doi:10.1038/nrmicro1845
+morbidity,,"the incidence of disease, the rate of sickness",merriam-webster.com/medical
+Satiation,,the process of becoming full / satisfied by one's comsumption (e.g. of food),Chris Wymant
+lentivirus,,"a genus of viruses of the Retroviridae family, characterized by a long incubation period. Lentiviruses can deliver a significant amount of viral RNA into the DNA of the host cell and have the unique ability among retroviruses of being able to infect non-dividing cells",wikipedia
+extant,,"still alive, not extinct",wiktionary
+clade,"monophylum, monophyletic taxon","A group composed of a collection of organisms, including the most recent common ancestor of all those organisms and all the descendants of that most recent common ancestor.",http://www.ucmp.berkeley.edu/glossary/
+Paraphyletic taxon,,"A group composed of a collection of organisms, including the most recent common ancestor of all those organisms. Unlike a monophyletic group, a paraphyletic taxon does not include all the descendants of the most recent common ancestor.",http://www.ucmp.berkeley.edu/glossary/
+Polyphyletic taxon,,"A group composed of a collection of organisms in which the most recent common ancestor of all the included organisms is not included, usually because the common ancestor lacks the characteristics of the group.",http://www.ucmp.berkeley.edu/glossary/
+Mosaic,mosaicism,the presence of two or more populations of cells with different genotypes in one individual who has developed from a single fertilized egg. Cf chimera.,wikipedia
+Old World monkeys,,"a group of primates. Unlike apes in that most have tails, and unlike the New World monkeys in that their tails are never prehensile (used to grip objects). Includes baboons and macaques.",wikipedia
+Viral matrix protein,,"A structural protein linking the viral envelope with the virus core. They play a crucial role in virus assembly, and interact with the RNP complex as well as with the viral membrane.",wikipedia
+Ribonucleoprotein,RNP,a nucleoprotein that contains RNA,wikipedia
+nucleoprotein,,any protein that is structurally associated with nucleic acid (either DNA or RNA),wikipedia
+proteome,,"the entire set of proteins expressed by a genome, cell, tissue or organism at a certain time. More specifically, it is the set of expressed proteins in a given type of cell or organism, at a given time, under defined conditions.",wikipedia
+open reading frame,ORF,"the part of a reading frame that contains no stop codons. The transcription termination pause site is located after the ORF, beyond the translation stop codon",wikipedia
+circulating recombinant form,CRF,"a strain derived from recombination between viruses of different subtypes. For HIV-1 group M, for example, CRF12_BF is a recombination between subtypes B and F.",wikipedia
+provirus,,"a virus genome that is integrated into the DNA of a host cell. This state can be a stage of virus replication, or a state that persists over longer periods of time as either inactive viral infections or an endogenous retrovirus. In inactive viral infections the virus will not replicate itself but through replication of its host cell.",wikipedia
+viral/host tropism,,"the specificity of a virus for a particular host cell type, determined in part by the interaction of viral surface structures with host cell-surface receptors.",http://www.medilexicon.com/
+CD4,,"a glycoprotein found on the surface of immune cells such as T helper cells, monocytes, macrophages, and dendritic cells.",wikipedia
+CD4 cells,"CD4+ T helper cells, T-helper cells, T4 cells","A type of T cell. One of their main roles is to send signals to other types of immune cells, including CD8 killer cells, which destroy infectious particles. CD4 cells become activated when they are presented with peptide antigens by MHC class II molecules, which are expressed on the surface of APCs. Once activated, they divide rapidly and secrete small proteins called cytokines that regulate or assist in the active immune response.",wikipedia
+T-cell receptor,TCR,"a molecule found on the surface of T cells that is responsible for recognizing antigens bound to MHC molecules. The binding between TCR and antigen is of relatively low affinity and is degenerate: that is, many TCR recognize the same antigen and many antigens are recognized by the same TCR.",wikipedia
+heterodimer,,"A dimer, derived from two or more different monomers.",Wiktionary
+co-receptor,,"a cell surface receptor that binds a signalling molecule in addition to a primary receptor in order to facilitate ligand recognition and initiate biological processes, such as entry of a pathogen into a host cell.",wikipedia
+Immunoprecipitation,IP,the technique of precipitating a protein antigen out of solution using an antibody that specifically binds to that particular protein. This process can be used to isolate and concentrate a particular protein from a sample containing many thousands of different proteins.,wikipedia
+co-immunoprecipitation,Co-IP,"IP of protein complexes, using an antibody that will bind to one protein in the complex.",wikipedia
+immunological synapse,immune synapse,the interface between an APC or target cell and a lymphocyte such as an effector T cell or Natural Killer cell.,wikipedia
+transposon,"transposable element, TE","a DNA sequence that can change its position within the genome, sometimes creating or reversing mutations and altering the cell's genome size. Transposition often results in duplication of the TE.",wikipedia
+retrotransposons,class I transposons,transposons which are copied via RNA intermediates,Chris Wymant
+retroposon,,"Retroposons are repetitive DNA fragments which are inserted into chromosomes after they had been reverse transcribed from any RNA molecule. In contrast to retrotransposons, they never encode reverse transcriptase (RT). Therefore, they are non-autonomous elements with regard to transposition activity.",wikipedia
++ssDNA,sense ssDNA,ssDNA for which an RNA version of the same sequence is translated/translatable into protein. mRNA is made using the antisense/- strand of the DNA duplex. NB antisense DNA can block protein expression by binding to the mRNA.,wikipedia
+substrate,,the molecule upon which an enzyme acts,wikipedia
+nick,,a discontinuity in a double stranded DNA molecule where there is no phosphodiester bond between adjacent nucleotides of one strand typically through damage or enzyme action. Nicks allow for the much-needed release of torsion in the strand during DNA replication.,wikipedia
+chimera,,"a single organism composed of genetically distinct cells. In animals, as a result of the merger of multiple fertilised eggs. c.f. Mosaic",wikipedia
+homology,,"the existence of shared ancestry between a pair of structures, or genes, in different species.",wikipedia
+nascent,,"Just liberated from a chemical combination, and hence more reactive because uncombined. (General use: just coming into existence.)",Medical-dictionary.thefreedictionary.com
+oligonucleotide,,short ss DNA or RNA,wikipedia
+transposition (of DNA),,movement from one location to another,biowiki.ucdavis.edu
+proteolysis,,the breakdown of a protein into smaller polypeptides or single amino acids,wikipedia
+long terminal repeats,LTRs,"identical sequences of DNA that repeat hundreds or thousands of times, found at either end of retrotransposons / proviruses. They are used by viruses to insert their genetic material into host genomes.",wikipedia
+nucleosome,,"the basic unit of DNA packaging in eukaryotes, consisting of a segment of DNA wound in sequence around eight histone protein cores.",wikipedia
+transcription unit,,a sequence of nucleotides in DNA that codes for a single RNA molecule together with the seqences necessary for its transcription (normally a promoter and a terminator),nature.com/scitable
+oncogene,,a gene that has the potential to cause cancer,wikipedia
+Proto-oncogene,,a normal gene that may become an oncogene due to mutation or increased expression,wikipedia
+cDNA,complementary DNA,DNA made from RNA (by reverse transcription),wikipedia
+pleiotropy,,"when one gene influences multiple, seemingly unrelated phenotypic traits",wikipedia
+intron,,any nucleotide sequence within a gene that is removed by RNA splicing while the final mature RNA product of a gene is being generated. The term refers to both the DNA sequence within a gene and the corresponding sequence in RNA transcripts.,wikipedia
+exon,,"the rest of a gene, excluding introns",Chris Wymant
+splicing (of RNA),,"modification of the nascent pre-mRNA transcript, in which introns are removed and exons are joined.",wikipedia
+Transactivation,,"the increased rate of gene expression, through the expression of an intermediate (transactivator) protein",wikipedia
+transcriptional elongation,,the process through which nucleotides are added to the growing RNA chain.,sparknotes.com
+downstream,,towards the 3' end of the DNA/RNA strand. Transcription goes from upstream to downstream (like rivers).,wikipedia
+ectopic expression,,"the expression of a gene in an abnormal place in an abnormal place in an organism. It can be caused by disease, or brought about artificially by introducing a transgene with a modified promoter (perhaps to help understand the gene's function).",wikipedia
+transgene,,a DNA sequence isolated from one organism and transferred to another.,wikipedia
+Trans-acting,Trans-regulation,"acting from a different molecule; intermolecular. In transcription, a trans-acting element is usually a DNA sequence coding for a protein which regulates another target gene. The trans-acting gene, the RNA and the protein it encodes are said to act 'in trans' on the target gene. Antonym: cis-acting, cis-regulation (no intermediate RNA/protein).",wikipedia
+constitutive,,"of, relating to, or being a protein produced in relatively constant amounts in all cells of an organism regardless of cell environmental conditions",I.word.com/imedical
+consensus sequence,,"the calculated order of most frequent residues, either nucleotide or amino acid, found at each position in a sequence alignment. It represents the results of a multiple sequence alignments in which related sequences are compared to each other and similar sequence motifs are calculated.",wikipedia
+Kozak consensus sequence,"Kozak consensus, Kozak sequence","The consensus (gcc)gccRccAUGG occuring in eukaryotic mRNA, playing  a major role in the initiation of the translation process.",wikipedia
+ribosome shunting,,"a mechanism of translation initiation in which ribosomes physically bypass, or shunt over, parts of the 5' untranslated region to reach the initiation codon",wikipedia
+5′ untranslated region,"Leader Sequence, leader RNA","the region of an mRNA that is directly upstream from the initiation codon. It may be completely untranslated, instead forming complex secondary structure to regulate translation; or it may be translated into a product which regulates transcription.",wikipedia
+frameshifting,"Translational frameshifting, ribosomal frameshifting",a shift in the reading frame of a ribosome,wikipedia
+morphogenesis,,the biological process that causes an organism to develop its shape.,wikipedia
+transfer RNA,"tDNA, sRNA","an adaptor molecule composed of RNA, typically 73 to 94 nucleotides in length, that serves as the physical link between the nucleotide sequence of nucleic acids (DNA and RNA) and the amino acid sequence of proteins. It does this by carrying an amino acid to the protein synthetic machinery of a cell (ribosome) as directed by a three-nucleotide sequence (codon) in a messenger RNA (mRNA)",wikipedia
+integral membrane protein,IMP,a type of membrane protein that is permanently attached to the biological membrane,wikipedia
+cytosol,"intracellular fluid, ICF, cytoplasmic matrix","the fluid inside cells. NB the cytoplasm comprises the cytosol, mitochondria, plastids, and other organelles (but not their internal fluids and structures); the cell nucleus is separate.",wikipedia
+Enzyme induction,,a process in which a molecule induces (i.e. initiates or enhances) the expression of an enzyme.,wikipedia
+Enzyme inhibition,,inhibition of the expression or activity of an enzyme,wikipedia
+auto-induction,,induction by a molecule of the enzyme responsible for its own metabolism,wikipedia
+lipidome,,the totality of lipids in cells,wikipedia
+leaflet,,one side / layer of a lipid bilayer,wikipedia
+omics,,"refers to a field of study in biology ending in -omics, such as genomics, proteomics or metabolomics. The related suffix -ome is used to address the objects of study of such fields, such as the genome, proteome or metabolome respectively. Omics aims at the collective characterization and quantification of pools of biological molecules that translate into the structure, function, and dynamics of an organism or organisms. The suffix -ome as used in molecular biology refers to a totality of some sort.",wikipedia
+Pseudotyping,,"the process of producing viruses or viral vectors in combination with foreign viral envelope proteins. With this method, the foreign viral envelope proteins can be used to alter host tropism or an increased/decreased stability of the virus particles. Pseudotyped particles do not carry the genetic material to produce additional viral envelope proteins, so the phenotypic changes can not be passed on to progeny viral particles.",wikipedia
+Heterologous,,derived from a different organism,wikipedia
+Polyadenylation,,"the addition of a poly(A) tail to a primary transcript RNA. In eukaryotes, polyadenylation is part of the process that produces mature messenger RNA (mRNA) for translation.",wikipedia
+capsid,,the protein shell enclosing the genetic material of a virus,wikipedia
+virological synapse,VS,The synapse between productively infected cells and uninfected target cells.,doi:10.1186/1742-4690-10-42
+infectious synapse,,The synapse between uninfected dendritic cells (DC) harboring HIV-1 and uninfected target cells.,doi:10.1186/1742-4690-10-42
+Cell-autonomous,,Acting independently of other cells / not affecting other cells,Chris Wymant
+cofactor,,a non-protein molecule that is required for the biological activity of a protein (particularly an enzyme).,wikipedia
+heterokaryon,,"a cell that contains multiple, genetically different nuclei.",wikipedia
+Nucleosides,,nucleotides without a phosphate group.,wikipedia
+Zoonosis,,Cross-species transmission of infectious disease.,wikipedia
+Interferons,IFNs,a subclass of cytokines,Chris Wymant
+Linkage disequilibrium,,"the non-random association of alleles at two or more loci, that descend from single, ancestral chromosomes; the occurrence of some combinations of alleles or genetic markers in a population more often or less often than would be expected from a random formation of haplotypes from alleles based on their frequencies. It is influenced by a number of factors, including genetic linkage, selection, the rate of recombination, the rate of mutation, genetic drift, non-random mating, and population structure.",wikipedia
+Amplicon,PCR product (context dependent),a piece of DNA or RNA that is the source and/or product of natural or artificial amplification or replication events. ,wikipedia
+RT-PCR,,Reverse transcription polymerase chain reaction. NB qPCR = real-time PCR,wikipedia
+NASBA,,"Nucleic acid sequence based amplification. A primer-based alternative to RT-PCR that can occur at a steady temperature, i.e. without heat cycling. Used to measure HIV-1 plasma viral load by amplifying a segment of the HIV RNA.",wikipedia
+iatrogenic,,relating to illness caused by medical examination or treatment.,Google itself
+exogenous,,"growing or originating from outside an organism. e.g. ""an exogenous hormone""",Google itself
+Endogenous ,,"(substances, processes) originating from within an organism, tissue, or cell.",wikipedia
+biomarker,,a measurable indicator of some biological state or condition. The term is also occasionally used to refer to a substance the presence of which indicates the existence of a living organism.,wikipedia
+etiology,aetiology,"the study of causes/origins, particularly of diseases. Alternatively, the causes/origins of diseases themselves.",http://dictionary.reference.com
