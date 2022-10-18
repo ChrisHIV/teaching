@@ -14,7 +14,7 @@ Start by getting as clear as you can in your head about what question your work 
 
 Plan what you are going to write, and make sure you understand what you have already written, at the level of paragraphs.
 Each paragraph should
-* collect sentences that are related to each other with an easily definable theme, preferably with a clue to what that theme is in the first sentence;
+* collect sentences that are related to each other with an easily definable theme
 * avoid repeating something from a previous paragraph (unless this is intentional for emphasis, especially between Discussion and Results),
 * come in a coherent flow of ideas from one paragraph to the next.
 
@@ -46,6 +46,10 @@ So I'd revise my structure to
 Another example: I might take a section of my paper that I already wrote without an explicit structure accompanying it, and then try to write such a list to match what I've already written.
 As a result I might identify some problems with my existing structure, e.g. one paragraph without an easily identifiable theme, or one point repeated in multiple paragraphs when those sentences would be better collected together.
 I would then move around sentences (or delete them) until the text has a sensible paragraph structure.
+
+Having an explicit written list for what the paragraph structure is will help you and your coauthors write text with good structure.
+Of course you won't include that list with the actual final text, and so your broad readership won't see quite so easily what the paragraph structure is.
+To help them, try to make the opening sentence of each paragraph indicate what the rest of the rest of the paragraph will be about.
 
 The Introduction section should have a roughly funnel structure from broad to specific, ending with an explanation of what you set out to do in this paper: “Here, we...“. I read somewhere, and agree, that the funnel should be such that the closing bit about your work should feel inevitable - you’ve drawn the reader towards your question feeling like the natural thing to work on. In the best case you have provided something completely novel, in which case immediately before your “Here, we...” is an explanation of how no one has looked at this problem before. Normally your result is more incremental, and you can say that uncertainty remains on this particular aspect of a phenomenon, or that the problem is so important that further studies are useful to validate existing results. An example funnel:
 * one paragraph on the English SARS-CoV-2 epidemic
