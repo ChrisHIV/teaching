@@ -1,6 +1,6 @@
 # teaching
 
-Here you can find educational material I've written. My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ) and my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant).
+Here you can find educational material I've written. My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
 
 ### Basic maths, with public health and epidemiology examples:
 * A [quiz](basic_maths/InductionQuiz.pdf) testing the topics covered, and the [answers](basic_maths/QuizAnswers.pdf)
@@ -15,19 +15,55 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 
 ### Other topics
 
-Inference:
-* [Inferring things from quantitative data](other_topics/2021-09-29_Chris_InferenceOnly.pdf), or why it's better to stop thinking about _doing things to data_
-* The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
-
 Pathogen sequence analysis:
-* [Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver](other_topics/Wymant_Lecture1_shiver.pdf)
-* [Estimating who infected whom with phyloscanner](other_topics/Wymant_Lecture2_phyloscanner.pdf)
+* Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver [here](other_topics/Wymant_Lecture1_shiver.pdf)
+* Estimating who infected whom with phyloscanner [here](other_topics/Wymant_Lecture2_phyloscanner.pdf)
 * A [webinar](https://www.youtube.com/watch?v=TR2a46vBwGY) in which I talk through a subset of the slides from the above two lectures
 * A computational practical showing how to use phyloscanner is [here](https://drive.google.com/drive/folders/0BwygWUC73hnxbGtHSFpWdzYzVkk?resourcekey=0-Zjt4kVHja6Djo7qKsN3r5Q&usp=sharing). Being taught this practical was [apparently](https://www.krisp.org.za/blogs.php?id=48) "like receiving piano lessons from Beethoven;" YMMV
-* An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage)
+* An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM). Virtually the same webinar but with an introduction in French is [here](https://www.youtube.com/watch?v=kpgNaiXCxfA).
+
+Inference:
+* Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
+* The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
+
+Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
+
+A [blog post](https://www.coronavirus-fraser-group.org/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
+
+Here are some [bash commands](https://www.dropbox.com/s/65eyimir8aukxe6/CommonBashCommands.sh?dl=0)</a> (i.e. working with the terminal / command line) that I find helpful.
+
+For experts I've also written summaries of some conferences:
+* Epidemics8 in 2021 [here](https://twitter.com/ChrisWymant/status/1465775301972185088) 
+* COVID-19: Advances and Remaining Challenges in 2021 [here](https://twitter.com/ChrisWymant/status/1443248100143927296)
+* Virus Genomics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1438178907438653441)
+* Human Virus Dynamics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1390733002754379784)
+* Net Zero 2019 [here](https://twitter.com/ChrisWymant/status/1171361818847121408) 
+* Oberwolfach (the maths of infectious diseases) 2018 [here](https://twitter.com/ChrisWymant/status/969205940623994881)
+* Epidemics7 in 2017 [here](https://www.dropbox.com/s/y4iuz2tdwdrq7io/Epidemics2017.txt?dl=0)
+* IAS 2017 [here](https://www.dropbox.com/s/w0uffmzcir8141s/IAS.txt?dl=0)
+* Mathematical and Computational Evolutionary Biology 2016 [here](https://twitter.com/ChrisWymant/status/743852693047881728) 
+
+Some explanations of things on twitter:
+* On the harmful oversimplification of focussing only on the _fraction_ of SARS-CoV-2 infections that become severe, [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
+* Lockdown pros and cons [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
+* Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
+* Why science is easier than politics [here](https://twitter.com/ChrisWymant/status/1154710730526117889)
+* A pet hate: academics leveraging/harnessing things left, right and centre instead of _using_ them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
+* Really funny linux jokes [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
 
 Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
-Two things I wrote while not funded by those grants:
-* Climate change, and how we're fucking up the planet and nature generally: [slides](other_topics/GroupMeeting_ClimateStuff_BoxesWithinBoxes.pdf)
-* An [explanation](other_topics/The_5-1_explained.pdf) of the "5-1" system of service receive for volleyball
+Some explanatory things other people wrote that I recommend:
+* Read [this](http://www.amazon.co.uk/The-Elements-Style-William-Strunk/dp/020530902X) if you write in English. Read [this](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point.
+* Read [this](http://www.damtp.cam.ac.uk/user/tong/talks/talk.pdf) if you give talks.
+* Read [this](https://doi.org/10.1371/journal.pcbi.1005510) if you're a scientist using a computer.
+* Other people recommended these resources for learning to interact with your computer through the command line (a.k.a. the terminal a.k.a. the shell), which is very helpful for being able to use other people's computational scientific methods: [here](http://rik.smith-unna.com/command_line_bootcamp) [here](http://www.ee.surrey.ac.uk/Teaching/Unix) and [here](http://swcarpentry.github.io/shell-novice/)
+* Other people recommended [this](http://happygitwithr.com/) for learning version control with Git (aimed at users of R but with more general applicability), which is invaluable for writing your own scientific methods.
+* [This](http://detexify.kirelabs.org/classify.html) helps one remember obscure latex symbols.
+
+Finally some things I wrote while not funded by the grants mentioned above:
+* A talk on climate change and how we're fucking up the planet and nature generally [here](other_topics/GroupMeeting_ClimateStuff_BoxesWithinBoxes.pdf)
+* A summary of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945). Here's me doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561), and happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
+* Suggestions for good twitter accounts to follow on climate, from when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
+* An explanation of the "5-1" system of service receive for volleyball [here](other_topics/The_5-1_explained.pdf)
+* Really you made it this far? Maybe you'll like my lovingly curated [playlists](https://tinyurl.com/SpotifyChrisW) or vegan recipe [meta-analyses](https://docs.google.com/spreadsheets/d/1f3MYycHjTvrQagO-raRTsJtIC8fnsa1SVfEqTxF1HGk/edit?usp=sharing)
