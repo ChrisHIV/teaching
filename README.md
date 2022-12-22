@@ -15,6 +15,11 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 
 ### Other topics
 
+Inference:
+* Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. 
+* Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
+* The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
+
 Pathogen sequence analysis:
 * Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver [here](other_topics/Wymant_Lecture1_shiver.pdf)
 * Estimating who infected whom with phyloscanner [here](other_topics/Wymant_Lecture2_phyloscanner.pdf)
@@ -22,9 +27,7 @@ Pathogen sequence analysis:
 * A computational practical showing how to use phyloscanner is [here](https://drive.google.com/drive/folders/0BwygWUC73hnxbGtHSFpWdzYzVkk?resourcekey=0-Zjt4kVHja6Djo7qKsN3r5Q&usp=sharing). Being taught this practical was [apparently](https://www.krisp.org.za/blogs.php?id=48) "like receiving piano lessons from Beethoven;" YMMV
 * An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM). Virtually the same webinar but with an introduction in French is [here](https://www.youtube.com/watch?v=kpgNaiXCxfA).
 
-Inference:
-* Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
-* The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
+
 
 Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
 
