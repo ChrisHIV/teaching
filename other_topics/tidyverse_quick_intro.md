@@ -28,7 +28,7 @@ They have no differences in practise except that they print to screen more clear
 `bind_rows` and `bind_cols` are basically `rbind` and `cbind`.  
 `map` is basically like `lapply`; variants of it include `map_dbl` which coerces the resulting list into a vector of doubles or dies trying, and similar for other data types.
 Useful for checking your output is what you expect.  
-The following verbs for doing something to a df (all from dplyr or tidyr I think)
+The following functions are 'verbs' - they do something to a df - and are all from dplyr:
 * `rename` renames cols
 * `select` selects the named cols (or discards if with a minus sign)
 * `mutate` defines new cols or overwrites existing ones, according the expression given e.g. `mutate(cases_per_capita  = cases / population)`
@@ -37,16 +37,17 @@ The following verbs for doing something to a df (all from dplyr or tidyr I think
 * `arrange` sorts the rows of the df by the value of the col supplied 
 * `summarise` I only use after a `group_by()` call...  
 
-The `group_by()` adverb doesn’t change the content of the df, but affixes some metadata ready for a subsequent operation that will work on each group separately; `group_by(col_1)` groups together all rows that have the same value for the `col_1` variable.  
-* ...`summarise` calculates one value per group of the desired variable (and if there are no groups, one value for the whole df). e.g. if `df` has cols `date`, `authority` and `num_cases`, then `df %>% group_by(authority) %>% summarise(cases_total = sum(cases))` would give a df with just cols authority and cases_total, with the latter being a sum over all dates present for that authority in the original df.  
+`group_by()` is an 'adverb': it doesn’t change the content of the df, but affixes some metadata ready to alter how subsequent verbs do their thing (c.f. in the English language, the adverb 'slowly' alters the meaning of the verb 'to run').
+In the specific case of `group_by()`, it means subsequent verbs will work on each group separately; `group_by(col_1)` groups together all rows that have the same value for the `col_1` variable.  
+* ...`summarise` calculates one value per group of the desired variable (and if there are no groups, one value for the whole df). e.g. if `df` has cols `date`, `region` and `num_cases`, then `df %>% group_by(region) %>% summarise(cases_total = sum(cases))` would give a df with just cols `region` and `cases_total`, with the latter being a sum over all dates present for that region in the original df.  
 
 (`ungroup` just removes the grouping metadata, which is good practise to avoid unexpected things downstream, though redundant if it follows a summarise that acted on only a single grouping variable.)
 
 The `*_join` set of functions merge dataframes by matching on a desired col (or cols).
 e.g. `left_join(df_1, df_2, by = matching_col_name)` creates a dataframe that _usually_ has as many rows as the left argument `df_1`, adding in new cols present in `df_2`.
-e.g. if `df_1` has `authority`, `date`, `num_cases`, and `df_2` has `authority`, `population`, then `left_join(df_1, df_2, by = "authority")` gives a dataframe like `df_1` with a new col `population` (with values that get duplicated many times because each authority appears many times in `df_1`).
+e.g. if `df_1` has `region`, `date`, `num_cases`, and `df_2` has `region`, `population`, then `left_join(df_1, df_2, by = "region")` gives a dataframe like `df_1` with a new col `population` (with values that get duplicated many times because each region appears many times in `df_1`).
 (The exception to that _usually_ is if the values of the matching variable are not unique in `df_2`, in which case you get a row for each match.)
-Subsequently piping to `mutate(num_cases_per_capita = num_cases / authority)` would be de rigueur.
+Subsequently piping to `mutate(num_cases_per_capita = num_cases / region)` would be de rigueur.
 If there are any authorities in `df_1` that don’t appear in `df_2`, their value of population would be set to `NA`.
 `inner_join` creates in dataframes that only include rows for values of the matching variable that appear in both dataframes; `full_join` includes rows for values of the matching variable that appear in either.  
 
@@ -143,13 +144,17 @@ df_cases <- df_cases_england %>%
   arrange(desc(date))
 ```
 I would start by writing
+```R
 df_cases_england %>%
   select(date, count)
+ ```
 which _prints_ the modification I intend in the first step (just picking two cols).
 Then I'd write
+```R
 df_cases_england %>%
   select(date, count) %>%
   rename(count_eng = count)
+```  
 which _prints_ the next modification I intend (renaming cols c.f. the previous step).
 I'd keep doing that till all my steps are there and the result printed to the screen is what I'm happy with, then I'd go back to the first line and replace
 ```R
