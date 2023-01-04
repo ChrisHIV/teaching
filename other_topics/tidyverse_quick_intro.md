@@ -9,23 +9,23 @@ From https://www.tidyverse.org/:
 science. All packages share an underlying design philosophy, grammar, and data
 structures."
 
-When I used to write R code using only 'base R' (i.e. functions included in
-the language without extra packages) for my basic operations, R was my least
-favourite language. When I switched to using the tidyverse, it very quickly
-became my favourite language. My main reliance on the tidyverse is for the
+When I used to write R code using only 'base R' (i.e. functions included in the language without extra packages) for my basic operations, R was my least favourite language. When I switched to using the tidyverse, it very quickly became my favourite language.
+My main reliance on the tidyverse is for the
 dplyr package.
 
 A key operator included in the tidyverse is the pipe operator:   
 `object %>% func(arg2, arg3)` is equivalent to `func(object, arg2, arg3)`  
 `x %>% y %>% z` is equivalent to `z(y(x))`  
-When you want to manipulate one object by performing a series of steps on it,
-using the pipe operator makes it clearer by arranging the steps in the order
-in which they are performed.
-The pipe operator was recently added to base R as `|>` 
+When you want to manipulate one object by performing a series of steps on it, using the pipe operator makes it clearer by arranging the steps in the order
+in which they are performed, and makes it more concise by avoiding the need to repeatedly refer to the thing being modified.  
+If you don't want to use the output of the previous step exactly once and as the first argument of the next step, use the dot `.` as a shorthand for the output of the previous step.  
+e.g. passing the output as the second argument instead of the first: `1:3 %>% paste(c("a", "b", "c"), .)`  
+e.g. passing the output twice, as the first and last argument: `1:3 %>% paste(., c("a", "b", "c"), .)`  
+The pipe operator was recently added to base R as `|>`. 
 
 Tibbles inherit from the `dataframe` class (i.e. they are instances of this class but with some extra features).
 They have no differences in practise except that they print to screen more clearly.
-`bind_rows` and `bind_cols` are basically `rbind` and `cbind` I think.  
+`bind_rows` and `bind_cols` are basically `rbind` and `cbind`.  
 `map` is basically like `lapply`; variants of it include `map_dbl` which coerces the resulting list into a vector of doubles or dies trying, and similar for other data types.
 Useful for checking your output is what you expect.  
 The following verbs for doing something to a df (all from dplyr or tidyr I think)
