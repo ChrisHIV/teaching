@@ -23,27 +23,28 @@ using the pipe operator makes it clearer by arranging the steps in the order
 in which they are performed.
 The pipe operator was recently added to base R as `|>` 
 
-Tibbles inherit from dataframes and have no differences in practise.  
+Tibbles inherit from the `dataframe` class (i.e. they are instances of this class but with some extra features).
+They have no differences in practise except that they print to screen more clearly.
 `bind_rows` and `bind_cols` are basically `rbind` and `cbind` I think.  
 `map` is basically like `lapply`; variants of it include `map_dbl` which coerces the resulting list into a vector of doubles or dies trying, and similar for other data types.
 Useful for checking your output is what you expect.  
-The following verbs for doing something to a dataframe (all from dplyr or tidyr I think)
-* `rename` renames columns
-* `select` selects the named columns (or discards if with a minus sign)
-* `mutate` defines new columns or overwrites existing ones, according the expression given e.g. `mutate(cases_per_capita  = cases / population)`
-* `pull` returns a single named column as vector, i.e. `pull(df, my_col) == df %>% pull(my_col) == df$my_col`
+The following verbs for doing something to a df (all from dplyr or tidyr I think)
+* `rename` renames cols
+* `select` selects the named cols (or discards if with a minus sign)
+* `mutate` defines new cols or overwrites existing ones, according the expression given e.g. `mutate(cases_per_capita  = cases / population)`
+* `pull` returns a single named col as vector, i.e. `pull(df, my_col) == df %>% pull(my_col) == df$my_col`
 * `filter` picks out rows satisfying the supplied condition
-* `arrange` sorts the rows of the dataframe by the value of the column supplied 
+* `arrange` sorts the rows of the df by the value of the col supplied 
 * `summarise` I only use after a `group_by()` call...  
 
-The `group_by()` adverb doesn’t change the content of the dataframe, but affixes some metadata ready for a subsequent operation that will work on each group separately; `group_by(col_1)` groups together all rows that have the same value for the `col_1` variable.  
-* ...`summarise` calculates one value per group of the desired variable (and if there are no groups, one value for the whole dataframe). e.g. if `df` has columns `date`, `authority` and `num_cases`, then `df %>% group_by(authority) %>% summarise(cases_total = sum(cases))` would give a dataframe with just columns authority and cases_total, with the latter being a sum over all dates present for that authority in the original dataframe.  
+The `group_by()` adverb doesn’t change the content of the df, but affixes some metadata ready for a subsequent operation that will work on each group separately; `group_by(col_1)` groups together all rows that have the same value for the `col_1` variable.  
+* ...`summarise` calculates one value per group of the desired variable (and if there are no groups, one value for the whole df). e.g. if `df` has cols `date`, `authority` and `num_cases`, then `df %>% group_by(authority) %>% summarise(cases_total = sum(cases))` would give a df with just cols authority and cases_total, with the latter being a sum over all dates present for that authority in the original df.  
 
 (`ungroup` just removes the grouping metadata, which is good practise to avoid unexpected things downstream, though redundant if it follows a summarise that acted on only a single grouping variable.)
 
-The `*_join` set of functions merge dataframes by matching on a desired column (or columns).
-e.g. `left_join(df_1, df_2, by = matching_col_name)` creates a dataframe that _usually_ has as many rows as the left argument `df_1`, adding in new columns present in `df_2`.
-e.g. if `df_1` has `authority`, `date`, `num_cases`, and `df_2` has `authority`, `population`, then `left_join(df_1, df_2, by = "authority")` gives a dataframe like `df_1` with a new column `population` (with values that get duplicated many times because each authority appears many times in `df_1`).
+The `*_join` set of functions merge dataframes by matching on a desired col (or cols).
+e.g. `left_join(df_1, df_2, by = matching_col_name)` creates a dataframe that _usually_ has as many rows as the left argument `df_1`, adding in new cols present in `df_2`.
+e.g. if `df_1` has `authority`, `date`, `num_cases`, and `df_2` has `authority`, `population`, then `left_join(df_1, df_2, by = "authority")` gives a dataframe like `df_1` with a new col `population` (with values that get duplicated many times because each authority appears many times in `df_1`).
 (The exception to that _usually_ is if the values of the matching variable are not unique in `df_2`, in which case you get a row for each match.)
 Subsequently piping to `mutate(num_cases_per_capita = num_cases / authority)` would be de rigueur.
 If there are any authorities in `df_1` that don’t appear in `df_2`, their value of population would be set to `NA`.
@@ -126,13 +127,12 @@ df_cases_monthly <- df_cases %>%
             num_observations = n())
 ```
 
-# CHECKING CODE LINE BY LINE ---------------------------------------------------
+### Checking code line by line 
 
-# It might look easier to check the base R version as you go, because you keep
-# redefining your DF and so you can see what it looks like at each step, whereas
-# the dplyr version does all the steps in one go. But in practise you would (or
-# at least I do) write this kind of code to print your modified df one step at a
-# time and see that it gives you what want. e.g. to write
+In that example the base R version might look like it's easier to check each line as you go, because you keep redefining your df and so you can see what it looks like at each step, whereas the dplyr version does all the steps in one go.
+But in practise you would (or at least I do) write this kind of code to _print_ your modified df one step at a time and see that it gives you what want.
+e.g. to write
+```R
 df_cases <- df_cases_england %>%
   select(date, count) %>%
   rename(count_eng = count) %>%
@@ -141,28 +141,31 @@ df_cases <- df_cases_england %>%
   mutate(count = count_eng + count_wal) %>%
   filter(date >= "2020-03-01") %>%
   arrange(desc(date))
-# I would start with
+```
+I would start by writing
 df_cases_england %>%
   select(date, count)
-# which prints the modification I intended (just picking two columns).
-# Then I'd write
+which _prints_ the modification I intend in the first step (just picking two cols).
+Then I'd write
 df_cases_england %>%
   select(date, count) %>%
   rename(count_eng = count)
-# which prints the modification I intended (renaming c.f. the previous step).
-# I'd keep doing that till all my steps are there and I'm happy with them, then
-# go back to the first line and replace
-# df_cases_england %>%
-# by
-# df_cases <- df_cases_england %>%
-# to assign the result of those steps to a df instead of just printing them.
+which _prints_ the next modification I intend (renaming cols c.f. the previous step).
+I'd keep doing that till all my steps are there and the result printed to the screen is what I'm happy with, then I'd go back to the first line and replace
+```R
+df_cases_england %>%
+```
+by
+```R
+df_cases <- df_cases_england %>%
+```
+to _assign_ the result of those steps to a df instead of just _printing_ them.
 
-# That's a particularly handy way of writing a block of steps when you're
-# modifying an existing df instead of creating a new one, e.g. with
-# df <- df %>%
-#        ...
-# because you can check you're modifying the way you intended as you go without
-# overwriting the thing you start with, so if you change your mind you don't
-# have to regenerate df.
-# And if you're checking a block that has already been written, you can just
-# highlight and execute part of it to help follow the steps.
+That's a particularly handy way of writing a block of steps when you're modifying an existing df instead of creating a new one, e.g. with
+```R
+df <- df %>%
+    ...
+```
+because you can check you're modifying the way you intended as you go without overwriting the thing you start with.
+That way, if you change your mind about the modification you don't have to go back to regenerate df - you haven't overwritten it with the wrong thing.
+If you're checking a block of code that has already been written, you can just highlight and execute part of it to print its result to the screen to help you follow the steps.
