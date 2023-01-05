@@ -1,0 +1,525 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\thetanot}{\theta_{\not \mathbf{x}}}
+
+# An easy mistake to make with posterior predictive checks when some parameters are numerically sampled and others are analytically marginalised
+
+### Short summary of this article  
+
+You're doing Bayesian inference using a model with a set of parameters $\theta$.
+When you numerically explore all parameters in $\theta$, you can write your likelihood for an observation $y$ as $P(y | \theta)$ and then reuse that same distribution for simulating a new $y$ from the posterior (recalling that a likelihood can also be considered a sampling distribution, depending whether you're thinking about varying the data or the parameters) as part of a posterior predictive check.
+However, when you analytically marginalise over some of the parameters in $\theta$, $\bx$ say, then for your likelihood and for your posterior predictive check you need to do two different marginalisations.
+Splitting $\theta$ up into $\bx$ and $\thetanot$, i.e. the latter are the parameters numerically explored and not marginalised over, the likelihood is 
+$$
+P(y|\thetanot) = \int_{\bx} P(y|\bx, \thetanot) P(\bx | \thetanot) \, d\bx
+$$
+whereas the distribution for a predicted new observation $y_\text{new}$ having observed $y$ is
+$$
+\begin{aligned}
+P(y_\text{new} | y) = & \; \int_\theta P(y_\text{new} | \theta) P(\theta | y) \, d\theta \\
+ = & \; \int_{\thetanot} \int_\bx P(y_\text{new} | \thetanot, \bx) P(\thetanot, \bx | y) \, d\bx \, d\thetanot \\
+ = & \; \int_{\thetanot} \left( \int_{\bx} P(y_\text{new} | \thetanot, \bx) P(\bx | \thetanot, y)  \, d\bx \right) P(\thetanot | y) \, d\thetanot \\
+\end{aligned}
+$$
+
+The inner integral here is almost the same one required for the likelihood, except that the marginalisation over $\bx$ weights it by its posterior $P(\bx | \thetanot, y)$ instead of its prior $P(\bx | \thetanot)$.
+Contrast this with the case of numerically exploring parameters, when we could re-use the likelihood as a sampling distribution for the posterior predictive check.
+The difference is because  
+* when we calculate the likelihood, we're never conditioning on the data (we're calculating the probability of the data);  
+* when we simulate from the posterior, we need all parameters to be conditioned on the data;  
+* MCMC sampling for Bayesian inference gives us parameters sampled from their posterior, but if there are any parameters analytically marginalised---not explored by the MCMC---we need to take care of their being marginalised without conditioning on the data for the likelihood but with conditioning on the data for the posterior prediction.
+
+### Posterior predictive check recap  
+
+Posterior predictive checks (henceforth PPCs, sometimes more accurately called retrodictive checks) show how well your model fits the data.
+An acceptably good fit is a necessary condition for the model outputs to be meaningful.
+A PPC considers the probability distribution
+$$
+P(\text{new data} | \text{observed data}) = \int_\theta P(\text{new data} | \theta) P(\theta | \text{observed data}) \, d\theta
+$$
+where $\theta$ is the set of parameters of the model.
+This distribution merges our uncertain knowledge of the true values underlying the system---the posterior $P(\theta | \text{observed data})$---and the inherent stochasticity even if we knew the system's parameters perfectly---$P(\text{new data} | \theta)$.
+In sampling from this distribution we imagine drawing new data that has identical predictors to the observed data but with a fresh sampling of whatever inherent stochasticity there is in the system.
+A good model fit is characterised by the observed data seeming to fall as you would expect from random chance within this distribution, P(new data | observed data), i.e. there are no systematic differences for meaningful subsets of the data.
+Generally, the distribution should also not be overly disperse with respect to the observed data, which could indicate e.g. that the model converged on an overestimate for the scale of intrinsic stochasticity.
+However we'll revisit this later.
+
+### Introduction  
+
+Notation: by $y \sim N(\mu, \sigma^2)$ we mean $y$ is normally distributed with mean $\mu$ and variance $\sigma^2$.
+By $N(y | \mu, \sigma^2)$ we mean the probability density function for that normal distribution evaluated at point $y$, i.e. the value $(2\pi\sigma^2)^\frac{-1}{2}\exp(\frac{-1}{2\sigma^2}(y-\mu)^2)$.
+
+Imagine that we observe a set of values $\by$, and we think they are related to an unobserved set of values $\bx$ like this:
+$$
+\begin{aligned}
+y_i \sim & \: N(mx_i+c, \sigma_y^2) \\
+x_i \sim & \: N(\mu_x, \sigma_x^2)
+\end{aligned}
+$$
+where $N(\ldots)$ indicates the normal distribution. We'd like to estimate $\mu_x$ and $\sigma_x$.
+If the only thing we know is $\by$ then there is too little identifiability here, so just for the sake of the example imagine that we know the values of $m$, $c$ and $\sigma_y$.  
+**A summary of what we'll do in this article:**  
+1. numerically explore (using MCMC as implemented in Stan) the space of possible values for $\mu_x$, $\sigma_x$ and $\bx$, and find that everything is fine;  
+2. numerically explore the space of possible values for $\mu_x$ and $\sigma_x$, analytically marginalise over possible values for $\bx$, and find that a naive adaptation of our previous PPC has gone wrong;  
+3. correct the above error using the extra analytical marginalisation that's required.
+
+### Setting things up  
+
+First let's set up our R code,
+
+```{r message = FALSE}
+library(tidyverse)
+library(rstan)
+options(mc.cores = parallel::detectCores()) # parallelise
+rstan_options(auto_write = TRUE)            # avoid re-compiling stan code
+```
+
+choose some parameters for simulation,
+
+```{r}
+set.seed(12345)
+
+mu_x <- 5
+sigma_x <- 2
+
+m <- 2
+c <- 3
+sigma_y <- 0.1
+
+N <- 5
+```
+
+and simulate data
+
+```{r}
+x <- rnorm(N, mu_x, sigma_x)
+y <- rnorm(N, m * x + c, sigma_y)
+```
+
+
+## 1. Inference with numerical exploration of all parameters  
+
+The following Stan code allows us to sample from both the posterior and the prior.
+It explores the parameter space defined by $\bx$, $\mu_x$ and $\sigma_x$, though we use a non-centered parameterisation for $\bx$: we scale and shift it so that its prior is $N(0, 1)$, and then we scale and shift back where we need the original $\bx$.
+This makes it easier for Stan to explore the posterior geometry, improving convergence (e.g. see [here](https://mc-stan.org/docs/2_18/stan-users-guide/reparameterization-section.html)).
+
+```{stan output.var = "foo", eval = FALSE}
+// The input required for inference
+data {
+  int<lower = 1> N;
+  real y[N];
+  real m;
+  real c;
+  real sigma_y;
+
+  // A boolean switch for whether we sample from the
+  // posterior or the prior, to see how and how much the data are updating our
+  // beliefs about the parameters and the kind of data they generate.
+  // 0 for prior, 1 for posterior
+  int<lower = 0, upper = 1> get_posterior_not_prior;
+}
+
+// Convenient transformations of that input
+transformed data {
+  vector[N] c_vec = rep_vector(c, N);
+}
+
+// The parameters whose values Stan should explore 
+parameters {
+  real<lower = -20, upper = 20> mu_x;
+  real<lower = 0, upper = 20> sigma_x;
+  vector[N] x_unscaled; // defined such that x = sigma_x * x_unscaled + mu_x
+}
+
+// Convenient transformations of those parameters
+transformed parameters {
+  vector[N] x = sigma_x * x_unscaled + rep_vector(mu_x, N);
+  vector[N] y_expected = m * x + c_vec;
+}
+
+// The model for defining the probability density (for either the prior or the
+// posterior) for each point in parameter space
+model {
+  // Priors
+  x_unscaled ~ normal(0, 1); // implies x ~ N(mu_x, sigma_x)
+  
+  // Likelihood:
+  if (get_posterior_not_prior) {
+    y ~ normal(y_expected, sigma_y);
+  }
+}
+
+// Quantities we are interested in generating only if the MCMC accepts the point
+// to be in the collection of samples returned
+generated quantities {
+  real y_simulated[N] = normal_rng(y_expected, sigma_y);
+}
+```
+
+Above, note the idiomatic form of  
+* constructing `y_expected` as a transformation of the parameters,  
+* defining the likelihood via a simple statement such as `y ~ normal(y_expected, sigma_y)`,  
+* simulating new data via the almost identical `y_simulated[N] = normal_rng(y_expected, sigma_y)`.  
+I find this form helps clarity and it can be used in lots of different statistical models.  
+Assuming the above code is saved in a file whose path is stored in the R variable `file_stan_code` (e.g. you've run `file_stan_code <- "path/to/my_stan.stan"` or similar), we compile it:
+
+```{r include = FALSE}
+file_stan_code <- "~/Dropbox (Infectious Disease)/ViralLoad_Modelling/related stan/Stan_example_predicting_from_analytically_marginalised_params_WithoutMarginalisation.stan"
+```
+```{r}
+model_compiled <- stan_model(file_stan_code)
+```
+
+We prepare one list of inputs for sampling from the posterior and one for sampling from the prior, then we sample from both:
+
+```{r message = FALSE, warning = FALSE}
+stan_input_posterior <- list(
+  N = N,
+  y = y,
+  m = m,
+  c = c,
+  sigma_y = sigma_y,
+  get_posterior_not_prior = 1L
+)
+stan_input_prior <- stan_input_posterior
+stan_input_prior$get_posterior_not_prior <- 0L
+
+num_mcmc_iterations <- 2000
+num_mcmc_chains <- 4
+fit <- sampling(model_compiled,
+                data = stan_input_posterior,
+                iter = num_mcmc_iterations,
+                chains = num_mcmc_chains)
+fit_prior <- sampling(model_compiled,
+                      data = stan_input_prior,
+                      iter = num_mcmc_iterations,
+                      chains = num_mcmc_chains)
+
+```
+
+We gather all the samples from both posterior and prior into a long dataframe:
+
+```{r}
+df_fit <- bind_rows(fit %>%
+                      as.data.frame() %>% 
+                      mutate(density_type = "posterior",
+                             sample = row_number()),
+                    fit_prior %>% 
+                      as.data.frame() %>%
+                      mutate(density_type = "prior",
+                             sample = row_number())) %>%
+  as_tibble() %>%
+  pivot_longer(-c("sample", "density_type"), names_to = "param")
+
+df_fit %>% arrange(sample, param)
+```
+
+For the two parameters $\mu_x$ and $\sigma_x$ compare the prior, posterior, and simulation truth (vertical black lines):
+
+```{r}
+df_params_true <- tibble(
+  param = c("mu_x", "sigma_x"),
+  value = c( mu_x,   sigma_x))
+ggplot(df_fit %>% filter(param %in% df_params_true$param)) +
+  geom_histogram(aes(value, y = ..density.., fill = density_type),
+                 alpha = 0.6,
+                 position = "identity",
+                 bins = 60) +
+  geom_vline(data = df_params_true, aes(xintercept = value), color = "black") +
+  facet_wrap(~param, scales = "free", nrow = 1) +
+  scale_fill_brewer(palette = "Set1") +
+  theme_classic() +
+  coord_cartesian(expand = FALSE) +
+  labs(fill = "",
+       x = "param value",
+       y = "probability density")
+```
+
+Now do a PPC.
+We'll look at certain quantiles of the distribution $P(\text{new data} | \text{observed data})$.
+
+```{r}
+quantiles <- c(0.05, 0.5, 0.95)
+df_posterior_prediction <- df_fit %>%
+  filter(density_type == "posterior",
+         startsWith(param, "y_simulated")) %>%
+  mutate(which_y = str_match(param, "\\[([0-9]+)\\]$")[,2] %>%
+           as.factor()) %>%
+  group_by(which_y) %>% 
+  summarise(value = quantile(value, quantiles),
+            .groups = "drop") %>%
+  {mutate(., quantile = rep(quantiles, nrow(.) / length(quantiles)))} %>%
+  pivot_wider(values_from = value, names_from = quantile, names_prefix = "y_quantile_")
+
+df_posterior_prediction
+  
+ggplot(df_posterior_prediction) +
+  geom_point(aes(which_y, y_quantile_0.5)) +
+  geom_errorbar(aes(which_y, ymin = y_quantile_0.05, ymax = y_quantile_0.95)) +
+  geom_point(data = tibble(which_y = as.factor(1:N), y = y),
+             aes(which_y, y), col = "blue") +
+  theme_classic() +
+  labs(y = "y value",
+       x = "which y")
+```
+
+Every observed data point falls smack bang in the middle of the $P(\text{new data} | \text{observed data})$ distribution.
+
+### Aside  
+
+Generally the observed data _always_ being right in the middle of the $P(\text{new data} | \text{observed data})$ distribution would suggest the model has overestimated the scale of intrinsic uncertainty---we'd normally expect 10\% of values to fall in the upper 10\% of the distribution etc.
+An example of this is ordinary least squares regression, in which we estimate $m$, $c$ and $\sigma$ for $y_i \sim N(mx_i + c, \sigma^2)$ having observed both $\by$ and $\bx$.
+There, the difference between the model's central prediction and the observed value is expected to move around within the scale of inherent stochasticity $\sigma$, and if the difference is usually much smaller, it would suggest the inference has converged on an overestimate for $\sigma$.
+However, here we told the inference the exactly known $\sigma_y$.
+Even if we hadn't done, and this scale was estimated from additional data providing increased identifiability (as in a problem I'm working on), every observed data point ($y_i$) has an associated parameter ($x_i$) that can be varied to get the model's central prediction arbitrarily close to the observed data point.
+So all the data points falling right in the middle of the posterior predicted distribution does not indicate a problem, I think.
+
+
+## 2. Inference with analytical marginalisation of some parameters, not being careful enough with the PPC  
+
+When the $x_i$ are considered arguments of the likelihood---part of the parameter space we are numerically exploring---each observation $y_i$ contributes to the likelihood a factor $P(y_i | x_i, \mu_x, \sigma_x) = N(y_i | mx_i + c, \sigma_y^2)$.
+However we can analytically marginalise $x_i$ in this.
+An exercise in completing the square shows gives the final result here:
+
+$$
+\begin{aligned}
+P(y_i | \mu_x, \sigma_x) = & \; \int_{x_i = -\infty}^\infty P(y_i | x_i, \mu_x, \sigma_x) P(x_i | \mu_x, \sigma_x) \\
+= & \; \int_{x_i = -\infty}^\infty N(y_i | mx_i + c, \sigma_y^2) N(x_i | \mu_x, \sigma_x^2) \, dx_i \\
+= & \; N(y_i | m \mu_x + c, \sigma_y^2 + m^2 \sigma_x^2)
+\end{aligned}
+$$
+
+
+Let's update the Stan code above to use this for the likelihood, so Stan doesn't explore the $\bx$ parameter space.
+Here's that same Stan code, removing all the previous comments for brevity and adding new comments only at the point where we've change things:
+
+```{stan output.var = "foo", eval = FALSE} 
+data {
+  int<lower = 1> N;
+  vector[N] y;
+  real m;
+  real c;
+  real sigma_y;
+  int<lower = 0, upper = 1> get_posterior_not_prior;
+}
+
+transformed data {
+  vector[N] c_vec = rep_vector(c, N);
+}
+
+parameters {
+  real<lower = -20, upper = 20> mu_x;
+  real<lower = 0, upper = 20> sigma_x;
+  // We no longer declare that x_unscaled parameter
+}
+
+transformed parameters {
+  // we used to have y_expected = m * x + c_vec
+  // now we have:
+  vector[N] y_expected = m * mu_x + c_vec; 
+}
+
+model {
+  // No prior for x (via x_unscaled) needs to be specified now
+  
+  if (get_posterior_not_prior) {
+    // we used to have y ~ normal(y_expected, sigma_y)
+    // now we have:
+    y ~ normal(y_expected, sqrt(sigma_y^2 + (m * sigma_x)^2));
+  }
+}
+
+generated quantities {
+  // This next line seems right for a PPC but it's wrong. We'll discuss.
+  real y_simulated_wrong[N] = normal_rng(y_expected, sqrt(sigma_y^2 + (m * sigma_x)^2));
+}
+```
+
+When we run that Stan code and plot its output in the same way as before, we get very similar looking posteriors for $\mu_x$ and $\sigma_x$ to before, plotted below. (We didn't gain a lot by marginalising over just 5 parameters; as $N$ gets larger the improvement from marginalisation gets larger, because it saves Stan from having to explore an increasingly high-dimensional parameter space.) 
+
+```{r include = FALSE}
+file_stan_code <- "~/Dropbox (Infectious Disease)/ViralLoad_Modelling/related stan/Stan_example_predicting_from_analytically_marginalised_params_WithMarginalisation.stan"
+
+model_compiled <- stan_model(file_stan_code)
+
+num_mcmc_iterations <- 2000
+num_mcmc_chains <- 4
+fit <- sampling(model_compiled,
+                data = stan_input_posterior,
+                iter = num_mcmc_iterations,
+                chains = num_mcmc_chains)
+fit_prior <- sampling(model_compiled,
+                      data = stan_input_prior,
+                      iter = num_mcmc_iterations,
+                      chains = num_mcmc_chains)
+
+df_fit <- bind_rows(fit %>%
+                      as.data.frame() %>% 
+                      mutate(density_type = "posterior",
+                             sample = row_number()),
+                    fit_prior %>% 
+                      as.data.frame() %>%
+                      mutate(density_type = "prior",
+                             sample = row_number())) %>%
+  as_tibble() %>%
+  pivot_longer(-c("sample", "density_type"), names_to = "param")
+```
+
+```{r echo = FALSE}
+ggplot(df_fit %>% filter(param %in% df_params_true$param)) +
+  geom_histogram(aes(value, y = ..density.., fill = density_type),
+                 alpha = 0.6,
+                 position = "identity",
+                 bins = 60) +
+  geom_vline(data = df_params_true, aes(xintercept = value), color = "black") +
+  facet_wrap(~param, scales = "free", nrow = 1) +
+  scale_fill_brewer(palette = "Set1") +
+  theme_classic() +
+  coord_cartesian(expand = FALSE) +
+  labs(fill = "",
+       x = "param value",
+       y = "probability density")
+
+```
+
+Lets plot the new PPC (the same plotting code as before but with `y_simulated` replaced by `y_simulated_wrong`):
+
+```{r echo = FALSE}
+df_posterior_prediction <- df_fit %>%
+  filter(density_type == "posterior",
+         startsWith(param, "y_simulated_wrong")) %>%
+  mutate(which_y = str_match(param, "\\[([0-9]+)\\]$")[,2] %>%
+           as.factor()) %>%
+  group_by(which_y) %>% 
+  summarise(value = quantile(value, quantiles),
+            .groups = "drop") %>%
+  {mutate(., quantile = rep(quantiles, nrow(.) / length(quantiles)))} %>%
+  pivot_wider(values_from = value, names_from = quantile, names_prefix = "y_quantile_")
+
+ggplot(df_posterior_prediction) +
+  geom_point(aes(which_y, y_quantile_0.5)) +
+  geom_errorbar(aes(which_y, ymin = y_quantile_0.05, ymax = y_quantile_0.95)) +
+  geom_point(data = tibble(which_y = as.factor(1:N), y = y),
+             aes(which_y, y), col = "blue") +
+  theme_classic() +
+  labs(y = "y value",
+       x = "which y")
+```
+
+It looks like something has gone wrong here, right?
+Right.
+Our distribution $P(\text{new data} | \text{observed data})$ is much broader than before, and is no longer shifted to higher or lower values for higher or lower observations.
+
+### What went wrong?  
+
+In the first case, without marginalisation, we defined  
+* the likelihood through `y ~ normal(y_expected, sigma_y)` and  
+* the simulated $y$ through `y_simulated[N] = normal_rng(y_expected, sigma_y)`.  
+We were too quick to think we could do the same thing in the case with marginalisation, i.e. defining  
+* the likelihood through `y ~ normal(y_expected, sqrt(sigma_y^2 + (m * sigma_x)^2))` and  
+* the simulated $y$  through `y_simulated_wrong[N] = normal_rng(y_expected, sqrt(sigma_y^2 + (m * sigma_x)^2))`.
+
+Let's revisit the probabilities we're trying to calculate more carefully.
+We want
+$$
+P(\text{new data} | \text{observed data}) = \int_\theta P(\text{new data} | \theta) P(\theta | \text{observed data}) \, d\theta
+$$
+In the first case, our MCMC was sampling all parameters in the collection $\theta$ for us, so for each sampled value of $\theta$, we could stochastically simulate a value from $P(\text{new data} | \theta)$ knowing that the observed data had been conditioned upon for the sampling of $\theta$.
+In the second case, our MCMC was not sampling $\bx$.
+We analytically marginalised over $\bx$ for the likelihood, for which we weighted it by its _prior_---$N(\mu_x, \sigma_x^2)$.
+When we simulated new $y$ values using the same `y_expected` that we used for the likelihood, we're effectively using the prior for $\bx$ when we should be using its posterior.
+Let's split our set of all parameters, $\theta$, into $\bx$ and everything else---defining the latter to be $\thetanot$.
+(In our case $\thetanot = \{ \mu_x, \sigma_x \}$ but let's keep it general for a moment; if $m$, $c$ and $\sigma_y$ were to be estimated instead of treated as known then they would be included in $\thetanot$ too.)
+The above equation becomes
+$$
+\begin{aligned}
+P(\text{new data} | \text{observed data}) = & \; \int_{\thetanot} \int_\bx P(\text{new data} | \thetanot, \bx) P(\thetanot, \bx | \text{observed data}) \, d\bx \, d\thetanot \\
+ = & \; \int_{\thetanot} \left( \int_{\bx} P(\text{new data} | \thetanot, \bx) P(\bx | \theta, \text{observed data})  \, d\bx \right) P(\thetanot | \text{observed data}) \, d\thetanot \\
+\end{aligned}
+$$
+
+The MCMC handles the outer integration over $\thetanot$.
+We need to make sure we get the inner integration right---the analytical marginalisation over $\bx$.
+When we carelessly used the same `y_expected` for the prediction of new data as for the likelihood, we were effectively marginalising over $\bx$ taking it to be distributed according to its prior $P(\bx | \theta)$ (as in the marginalisation used for the likelihood) whereas the equation above makes it clear that we need to use $\bx$'s posterior $P(\bx | \theta, \text{observed data})$ for the marginalisation.
+The MCMC will sample from $\thetanot$ in proportion to its posterior, i.e. it has conditioned on the data to determine which values of $\thetanot$ are more likely, but it's down to us to condition on the data for the marginalisation of $\bx$. 
+We don't need to do that for the marginalisation of $\bx$ occuring in the likelihood, because of course you don't condition on the data when calculating the probability of the data, but we do for the posterior.
+
+We didn't encounter this problem in the first case---with no analytical marginalisation---because then the parameters used for the PPC were all sampled by MCMC in proportion to their posterior i.e. the data has been conditioned on to consider which values of $\bx$ are more likely.
+
+
+## 3. Getting that last analytical marginalisation right  
+
+Rewriting that last equation with $y_\text{new}$ in place of 'new data' and $y$ in place of 'observed data', and returning to the specifics of this model, we have:
+$$
+\begin{aligned}
+P(y_{i, \text{new}} | y_i) = & \; \int_{\thetanot} \left( \int_{x_i} P(y_{i, \text{new}} | \thetanot, x_i) P(x_i | \thetanot, y_i)  \, dx_i \right) P(\thetanot | y_i) \, d\thetanot
+\end{aligned}
+$$
+
+First we'll need the analytical posterior for $x_i$:
+
+$$
+\begin{aligned}
+P(x_i | \thetanot, y_i) = & \; \frac{P(y_i | x_i, \thetanot) P(x_i | \thetanot)}{P(y_i|\thetanot)} \\
+= & \; \frac{N(y_i | mx_i + c, \sigma_y^2) N(x_i | \mu_x, \sigma_x^2)}{P(y_i|\thetanot)} \\
+= & \; N(x_i | \mu'_i, \sigma_i'^2)
+\end{aligned}
+$$
+where we have defined
+$$
+\begin{aligned}
+\frac{1}{\sigma_i'^2} = & \; \frac{m^2}{\sigma_y^2} + \frac{1}{\sigma_x^2} \\
+\mu_i' = & \; \sigma_i'^2 \left( \frac{m(y_i - c)}{\sigma_y^2} + \frac{\mu_x}{\sigma_x^2} \right)
+\end{aligned}
+$$
+I skipped the steps of the derivation; these are just algebra, and for convenience we can ignore multiplicative factors and impose at the end that the result is normalised such that its integral over all $x_i$ gives 1.  
+Then we just need to insert this into our previous expression for $P(y_{i, \text{new}} | y_i)$:
+$$
+\begin{aligned}
+P(y_{i, \text{new}} | y_i) = & \; \int_{\thetanot} \left( \int_{x_i} P(y_{i, \text{new}} | \thetanot, x_i) P(x_i | \thetanot, y_i)  \, dx_i \right) P(\thetanot | y_i) \, d\thetanot \\
+= & \; \int_{\thetanot} \left( \int_{x_i} N(y_{i, \text{new}} | m x_i + c, \sigma_y^2) N(x_i | \mu'_i, \sigma_i'^2) \, dx_i \right) P(\thetanot | y_i) \, d\thetanot \\
+= & \; \int_{\thetanot} N(y_{i, \text{new}} | m \mu_i' + c, \sigma_y^2 + m \sigma_i'^2) P(\thetanot | y_i) \, d\thetanot
+\end{aligned}
+$$
+where the integral over $x_i$ was the same exercise in completing the square as previously.
+Thus we see that, unlike in the fully numerical case, the sampling distribution we need for $y_{i, \text{new}}$ is not the same as the likelihood for $y_i$.
+The former has conditioned on some values of $x_i$ being more likely in light of the observed $y_i$.  
+So let's correct our Stan code with these extra lines in the `generated quantities` block, implementing that last bit of maths:
+```{stan output.var = "foo", eval = FALSE} 
+  real sigma_prime_squared = 1 / ((m / sigma_y)^2 + 1 / sigma_x^2);
+  vector[N] mu_prime = sigma_prime_squared *
+                       (m * (y - c_vec) / sigma_y^2 + mu_x / sigma_x^2);
+  real y_analytical_simulated[N] = normal_rng(m * mu_prime + c_vec,
+                                              sqrt(sigma_y^2 + sigma_prime_squared));
+```
+
+and plot the PPC again with same code replacing `y_simulated` by `y_analytical_simulated`:
+
+```{r echo = FALSE}
+quantiles <- c(0.05, 0.5, 0.95)
+df_posterior_prediction <- df_fit %>%
+  filter(density_type == "posterior",
+         startsWith(param, "y_analytical_simulated")) %>%
+  mutate(which_y = str_match(param, "\\[([0-9]+)\\]$")[,2] %>%
+           as.factor()) %>%
+  group_by(which_y) %>% 
+  summarise(value = quantile(value, quantiles),
+            .groups = "drop") %>%
+  {mutate(., quantile = rep(quantiles, nrow(.) / length(quantiles)))} %>%
+  pivot_wider(values_from = value, names_from = quantile, names_prefix = "y_quantile_")
+  
+ggplot(df_posterior_prediction) +
+  geom_point(aes(which_y, y_quantile_0.5)) +
+  geom_errorbar(aes(which_y, ymin = y_quantile_0.05, ymax = y_quantile_0.95)) +
+  geom_point(data = tibble(which_y = as.factor(1:N), y = y),
+             aes(which_y, y), col = "blue") +
+  theme_classic()
+```
+
+Much better.
