@@ -21,7 +21,7 @@ Inference:
 * The need for hierarchical models to infer things from naturally grouped data: [slides](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf) and the associated example [R](other_topics/HierarchicalSchools.R) and [Stan](other_topics/HierarchicalSchools.stan) code
 
 The [Stan](https://mc-stan.org/) language for probabilistic programming (especially Bayesian inference):  
-* A list of places I know of for learning about Stan, both generally and in the context of infectious disease epidemiology, [here](TODO)
+* A list of places I know of for learning about Stan, both generally and in the context of infectious disease epidemiology, [here](other_topics/stan_learning_resources.md)
 * A decision tree for which block you should declare parameters in [here](other_topics/WhichBlockForParameters.png) 
 * A simple example of inference on censored/truncated data, involving a likelihood with both probability density and probability mass, R code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.R) and Stan code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.stan)
 
