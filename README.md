@@ -27,6 +27,7 @@ The [Stan](https://mc-stan.org/) language for probabilistic programming (especia
 * A decision tree for which block you should declare parameters in [here](other_topics/WhichBlockForParameters.png) 
 * A simple example of inference on censored/truncated data, involving a likelihood with both probability density and probability mass, R code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.R) and Stan code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.stan)
 * A simple example of a hierarchical/multi-level model, R code [here](other_topics/HierarchicalSchools.R) and Stan code [here](other_topics/HierarchicalSchools.stan)
+* The last bullet point in the 'Inference' section above has exampled Stan code incorporated in it
 
 Pathogen sequence analysis:
 * Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver [here](other_topics/Wymant_Lecture1_shiver.pdf)
