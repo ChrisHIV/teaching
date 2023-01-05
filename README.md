@@ -20,6 +20,7 @@ Inference:
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [here](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf).
 Code for the example is the hierarchical model in the Stan section below.
+* If you are using a Bayesian statistical model to explore some parameters numerically, while also analytically marginalising over some parameters (usually for computational efficiency), and you use a posterior predictive check for how well your model fits the data, a subtle point you can easily get wrong is described in detail [here](https://htmlpreview.github.io/?https://github.com/ChrisHIV/teaching/blob/main/other_topics/Stan_example_predicting_from_analytically_marginalised_params.html) (the underlying R markdown file is [here](other_topics/Stan_example_predicting_from_analytically_marginalised_params.Rmd)).
 
 The [Stan](https://mc-stan.org/) language for probabilistic programming (especially Bayesian inference):  
 * A list of places I know of for learning about Stan, both generally and in the context of infectious disease epidemiology, [here](other_topics/stan_learning_resources.md)
