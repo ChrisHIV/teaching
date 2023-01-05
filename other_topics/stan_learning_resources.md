@@ -1,4 +1,4 @@
-* The Stan [user’s guide](https://mc-stan.org/docs/2_28/stan-users-guide/index.html).
+* The Stan [user’s guide](https://mc-stan.org/docs/stan-users-guide/index.html).
 NB “We recommend working through this guide using the textbooks _Bayesian Data Analysis_ (BDA3) and _Statistical Rethinking: A Bayesian Course with Examples in R and Stan_ as references on the concepts”.
 BDA3 is available for free [here](http://www.stat.columbia.edu/~gelman/book/); Appendix C, p591, is _Computation in R and Stan_.  
 The Statistical Rethinking book is not free, but its associated lecture course is, [here](https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA).
