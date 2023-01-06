@@ -13,32 +13,33 @@ Here you can find educational material I've written. My publications are [here](
 I wrote the above (for a Bachelors course, a masters course and 'the short course' for professionals) while employed by Imperial College London, who have a claim on copyright. Do not re-use this material.
 
 
-### Other topics
-
-Inference:
+### Inference / data analysis:
 * Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. 
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [here](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf).
 Code for the example is the hierarchical model in the Stan section below.
 * If you are using a Bayesian statistical model to explore some parameters numerically, while also analytically marginalising over some parameters (usually for computational efficiency), and you use a posterior predictive check for how well your model fits the data, a subtle point you can easily get wrong is described in detail [here](https://htmlpreview.github.io/?https://github.com/ChrisHIV/teaching/blob/main/other_topics/Stan_example_predicting_from_analytically_marginalised_params.html) (the underlying R markdown file is [here](other_topics/Stan_example_predicting_from_analytically_marginalised_params.Rmd)).
 
-The [Stan](https://mc-stan.org/) language for probabilistic programming (especially Bayesian inference):  
+### The [Stan](https://mc-stan.org/) language for probabilistic programming (especially Bayesian inference):  
 * A list of places I know of for learning about Stan, both generally and in the context of infectious disease epidemiology, [here](other_topics/stan_learning_resources.md)
 * A decision tree for which block you should declare parameters in [here](other_topics/WhichBlockForParameters.png) 
 * A simple example of inference on censored/truncated data, involving a likelihood with both probability density and probability mass, R code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.R) and Stan code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.stan)
 * A simple example of a hierarchical/multi-level model, R code [here](other_topics/HierarchicalSchools.R) and Stan code [here](other_topics/HierarchicalSchools.stan)
+* A simple example of the (non-trivial) problem of binary classification - getting the probability that each observation has come from either one process (a signal distribution) or another (a noise distribution) - working around Stan not supporting discrete parameters. R code [here](other_topics/estimate_binary_vector.R) and Stan code [here](other_topics/estimate_binary_vector.stan)
 * The last bullet point in the 'Inference' section above has exampled Stan code incorporated in it
 
-Pathogen sequence analysis:
+### Pathogen sequence analysis:
 * Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver [here](other_topics/Wymant_Lecture1_shiver.pdf)
 * Estimating who infected whom with phyloscanner [here](other_topics/Wymant_Lecture2_phyloscanner.pdf)
 * A [webinar](https://www.youtube.com/watch?v=TR2a46vBwGY) in which I talk through a subset of the slides from the above two lectures
 * A computational practical showing how to use phyloscanner is [here](https://drive.google.com/drive/folders/0BwygWUC73hnxbGtHSFpWdzYzVkk?resourcekey=0-Zjt4kVHja6Djo7qKsN3r5Q&usp=sharing). Being taught this practical was [apparently](https://www.krisp.org.za/blogs.php?id=48) "like receiving piano lessons from Beethoven;" YMMV
 * An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM). Virtually the same webinar but with an introduction in French is [here](https://www.youtube.com/watch?v=kpgNaiXCxfA).
 
-Coding in R:  
+### Coding in R:  
 * A quick introduction to the tidyverse (basically just to the dplyr package and the pipe operator) [here](other_topics/tidyverse_quick_intro.md)
 * more to come...
+
+### Other bits and pieces
 
 Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
 
@@ -65,11 +66,11 @@ Some explanations of things on twitter:
 * Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
 * Why science is easier than politics [here](https://twitter.com/ChrisWymant/status/1154710730526117889)
 * A pet hate: academics leveraging/harnessing things left, right and centre instead of _using_ them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
-* Really funny linux jokes [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
+* Really funny jokes about the command line [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
 
 Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
-Some explanatory things other people wrote that I recommend:
+### Explanatory things that other people wrote that I recommend:
 * Read [this](http://www.amazon.co.uk/The-Elements-Style-William-Strunk/dp/020530902X) if you write in English. Read [this](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point.
 * Read [this](http://www.damtp.cam.ac.uk/user/tong/talks/talk.pdf) if you give talks.
 * Read [this](https://doi.org/10.1371/journal.pcbi.1005510) if you're a scientist using a computer.
@@ -77,7 +78,7 @@ Some explanatory things other people wrote that I recommend:
 * Other people recommended [this](http://happygitwithr.com/) for learning version control with Git (aimed at users of R but with more general applicability), which is invaluable for writing your own scientific methods.
 * [This](http://detexify.kirelabs.org/classify.html) helps one remember obscure latex symbols.
 
-Finally some things I wrote while not funded by the grants mentioned above:
+### Finally some things I wrote while not funded by the grants mentioned above:
 * A talk on climate change and how we're fucking up the planet and nature generally [here](other_topics/GroupMeeting_ClimateStuff_BoxesWithinBoxes.pdf)
 * A summary of experts advocating taking to the streets for climate action [here](https://twitter.com/ChrisWymant/status/1180468223889874945). Here's me doing so with [students](https://twitter.com/ChrisWymant/status/1106564598629613569), [doctors](https://twitter.com/ChrisWymant/status/1175086736130609152) and other [scientists](https://twitter.com/ChrisWymant/status/1183110115207106561), and happily talking to the [police](https://twitter.com/ChrisWymant/status/1118083365134131201)
 * Suggestions for good twitter accounts to follow on climate, from when I used to have the bandwidth for that, [here](https://twitter.com/ChrisWymant/status/1225491802574217220)
