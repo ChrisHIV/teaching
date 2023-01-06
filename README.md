@@ -25,8 +25,8 @@ Code for the example is the hierarchical model in the Stan section below.
 * A decision tree for which block you should declare parameters in [here](other_topics/WhichBlockForParameters.png) 
 * A simple example of inference on censored/truncated data, involving a likelihood with both probability density and probability mass, R code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.R) and Stan code [here](other_topics/continuous_truncated_variable_mixed_likelihood_density_mass.stan)
 * A simple example of a hierarchical/multi-level model, R code [here](other_topics/HierarchicalSchools.R) and Stan code [here](other_topics/HierarchicalSchools.stan)
-* A simple example of the (non-trivial) problem of binary classification - getting the probability that each observation has come from either one process (a signal distribution) or another (a noise distribution) - working around Stan not supporting discrete parameters. R code [here](other_topics/estimate_binary_vector.R) and Stan code [here](other_topics/estimate_binary_vector.stan)
-* The last bullet point in the 'Inference' section above has exampled Stan code incorporated in it
+* A simple example of the (not so simple) problem of binary classification - getting the probability that each observation has come from either one process (a signal distribution) or another (a noise distribution) - working around Stan not supporting discrete parameters. R code [here](other_topics/estimate_binary_vector.R) and Stan code [here](other_topics/estimate_binary_vector.stan)
+* The last bullet point in the 'Inference' section above has Stan code examples incorporated in it
 
 ### Pathogen sequence analysis:
 * Pathogen phylogenetic trees, and how to assemble viral genomes from genetic sequence data with shiver [here](other_topics/Wymant_Lecture1_shiver.pdf)
