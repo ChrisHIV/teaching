@@ -14,7 +14,7 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 
 
 ### Inference / data analysis:
-* Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. 
+* Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. Code for the first part of the practical is [here](other_topics/practical_poisson.R)
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [here](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf).
 Code for the example is the hierarchical model in the Stan section below.
