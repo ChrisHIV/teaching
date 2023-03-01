@@ -60,6 +60,19 @@ The Introduction section should have a roughly funnel structure from broad to sp
 
 What I look for in every presentation or paper is what should people do differently as a result of what you’ve found. For a methods paper, it’s normally to use that method instead of the best previous alternative for this particular application. For applied results papers, it might be that doctors/society should consider using more X to get more of desirable outcome Y, or at least that further study should establish your X-Y link more concretely and explore feasibility, cost-effectiveness etc. For theoretical results papers, it might be that other researchers should investigate your new idea because it has the potential to help us understand something which is manifestly important. For a convincing negative result - enough data for statistical power, appropriate kind of data & method for accuracy and generalisability - the implication might be that people should stop pursuing an avenue previously thought to be promising. There are lots of possibilities for how your finding might influence some people, but if you struggle to think concretely of who and how, it’s worth having a frank conversation with yourself about whether your paper was a good use of your time. No use crying over spilt milk of course, but one can strive to not keep spilling milk forever. (This was a big factor in why I stopped working on theoretical particle physics.)
 
+Clearly establish and then stick to a one-to-one mapping between [things] and [the names we use to refer to those things].
+i.e. avoid using different terms to refer to the same thing, and avoid using the same term to mean different things.
+A one-to-one map makes it as clear as possible for the reader and frees up their concentration for more important things.
+Expanding on this, repetition - in the sense of repeating the decision you make about how to write a particular thing (not repeating the same point) - helps the reader to see the connections between different places in your writing.
+(Ah, it's a different name here, so it's a different thing; ah, it's the same name here, so it's the same thing.)
+This goes for structure as well as choice of names.
+Compare:  
+_Authors A used method a and found result X [A]. Result Y was obtained [b] leveraging methodology b. Employing c, C et al [C] demonstrated Z._  
+with something like  
+_A et al used method a and found X [A]. B et al used method b and found Y [B]. C et al used method c and found Z [C]._  
+The latter is certainly drier but easier to parse.
+In the same way that coercing data into [tidy format](https://vita.had.co.nz/papers/tidy-data.pdf) (rectangular, one row per observation, one column per aspect of the observation i.e. per variable) makes the data clearer as well as easier to operate on (obviously some data is naturally of a different structure, such as trees), coercing two or more similar sentences (or clauses within a sentence) into a common structure helps to clarify both their similarities and their differences for lower mental effort.
+
 Tenses: I like past tense for Methods and Results, present (or future) tense for Discussion.
 Paraphrasing an explanation I was given: mathematicians and physicists favour the present tense for results because there is a feel of timelessness to the findings.
 However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.  
