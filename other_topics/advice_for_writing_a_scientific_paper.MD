@@ -82,3 +82,12 @@ Discussion: We *interpret* this as evidence that x *causes* y, given the assumed
 
 And use the active tense for what you did (*We did X*); recommendations to use the passive tense (*X was done*) to sound more netural are so last century.
 I read somewhere that the active tense reminds the reader that the steps taken were made by fallible humans, not by some idealised notion of the scientific process.
+
+Finally, a point of grammar which comes up all the time in technical writing: hyphenation of modifiers.
+When we write A B C where C is a noun and A and B are modifiers, we hypenate A-B if and only if A and B work together to form a single composite modifier, the most common example being that A modifies B.
+We don't hyphenate if and only if A and B separately modify C.
+e.g. a strange smelling cheese is a cheese that is strange and possesses the ability to smell, whereas a strange-smelling cheese is probably what one means.
+I like the recommendation of the Chicago Manual of Style to break this rule when A is an adverb that ends in "ly", because ending in "ly" means it's obviously an adverb and adverbs only modify adjectives or verbs, never nouns, so there's no ambiguity about what A is modifying.
+e.g. a "significantly improved method" is just as clear and more stylish than a "significantly-improved method".
+Hyphenation is for when the modifiers precede the noun, not when they follow it.
+e.g. that cheese is strange smelling, not strange-smelling.
