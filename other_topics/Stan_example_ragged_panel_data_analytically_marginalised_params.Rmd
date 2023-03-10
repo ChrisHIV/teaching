@@ -1,0 +1,298 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+\newcommand{\|}{\: | \:}
+
+# Ragged panel data with analytically marginalised random effects in Stan
+
+#### Chris Wymant
+
+### Summary
+
+In this example we consider panel data (longitudinal data for each of several units) that is ragged (different number of observations per unit).
+We fit a simple linear slope to the time trend for each unit, modelling the observations as normally distributed about the trend, and modelling the differences in slope and intercept between the units as normally distributed.
+We analytically marginalise over all the random effects, leaving only six parameters to be numerically estimated regardless of the number of units.
+We implement this in Stan and test it on data simulated in R.
+
+### The maths of the statistical model
+
+Let $y_{i,j}$ be the $j$th observation for unit $i$.
+We model it as normally distributed around its expected value $\langle y_{i,j} \rangle$ when conditioning on all values including the random effects:
+$$
+P(y_{i,j} \| \text{all parameters}) = N(y_{i,j} \| \langle y_{i,j} \rangle, \sigma_y^2)
+$$
+We model the expected value $\langle y_{i,j} \rangle$ as a linear function of time of $i$'s $j$th observation, $t_{i,j}$.
+Slope $m$ and intercept $c$ parameters are shared by all units, with unit-specific random effects on the slope $m_i$ and intercept $c_i$ contributing additively:
+$$
+\langle y_{i,j} \rangle = (m + m_i) t_{i,j} + c + c_i
+$$
+We model the random effects as normally distributed, independently between units but with $m_i$ and $c_i$ correlated with correlation coefficient $\rho$:
+$$
+\begin{aligned}
+P\left(
+\begin{pmatrix}
+m_i\\
+c_i
+\end{pmatrix}
+\| \sigma_{m}, \sigma_{c}, \rho\right) = & \; N\left(
+\begin{pmatrix}
+m_i\\
+c_i
+\end{pmatrix}
+\| \begin{pmatrix}
+0\\
+0
+\end{pmatrix}
+, \mathbf{k}
+\right) \\
+\text{with } \mathbf{k} = & \; \begin{pmatrix}
+\sigma_{m}^2, \; \rho \sigma_{m} \sigma_{c}\\
+\rho \sigma_{m} \sigma_{c}, \; \sigma_{c}^2
+\end{pmatrix}
+\end{aligned}
+$$
+If we\
+
+* flatten all observations from all units into a single vector $\mathbf{y}'$, keeping observations from the same unit next to each other in the vector,\
+* define the expected value $\hat{\mathbf{y}'}$ of $\mathbf{y}'$ as $m$ multiplied by the times of each observation in $\mathbf{y}'$ plus $c$,\
+* flatten all the random effects into a single vector $\mathbf{d} = (m_1, c_1, m_2, c_2, \ldots)$, whose covariance matrix $\mathbf{K}$ just consists of $\mathbf{k}$ along the diagonal,\
+* construct a matrix $\mathbf{X}$ with as many rows as $\mathbf{y}'$ and as many columns as $\mathbf{d}$, for which the $a$th row consists of zeros except for the two columns corresponding to the random effects for the unit for the $a$th observation in $\mathbf{y}'$, whose two values are the time for the $a$th observation and 1, then  
+we can re-write the observation model as
+$$
+P(\mathbf{y}' \| \text{all parameters}) = N(\mathbf{y}' \| \hat{\mathbf{y}'} + \mathbf{X} \mathbf{d}, \sigma_y^2 \mathbf{I}) 
+$$
+Next we use the result for the marginal probability of a variable whose conditional probability is normal around a linear function of another variable that is normally distributed:
+$$
+\begin{gathered}
+\text{If } P(\mathbf{v}) = N(\mathbf{v} | \mathbf{m}, \mathbf{s}) \text{ and } P(\mathbf{C} | \mathbf{v}) = N(\mathbf{C} | \mathbf{a} \cdot \mathbf{v} + \mathbf{b}, \mathbf{S})\\
+\text{then } P(\mathbf{C}) = N(\mathbf{C} | \mathbf{a} \cdot \mathbf{m} + \mathbf{b}, \mathbf{S} + \mathbf{a} \cdot \mathbf{s} \cdot \mathbf{a}^T)
+\end{gathered}
+$$
+(e.g. equation 2.115 from [Bishop](https://www.microsoft.com/en-us/research/uploads/prod/2006/01/Bishop-Pattern-Recognition-and-Machine-Learning-2006.pdf)).
+With this result we can calculate the likelihood with $\mathbf{d}$ marginalised:
+$$
+\begin{aligned}
+P(\mathbf{y}' \| \text{all parameters except } \mathbf{d}) = & \; \int_\mathbf{d} P(\mathbf{y}' \| \text{all parameters}) P(\mathbf{d} \| \sigma_{m}, \sigma_{c}, \rho) \, d\mathbf{d}\\
+ = & \; \int_\mathbf{d} N(\mathbf{y}' \| \hat{\mathbf{y}'} + \mathbf{X} \mathbf{d}, \sigma_y^2 \mathbf{I}) \: N(\mathbf{d} \| \mathbf{0}, \mathbf{K}) \, d\mathbf{d}\\
+ = & \; N(\mathbf{y}' \| \hat{\mathbf{y}'}, \sigma_y^2 \mathbf{I} + \mathbf{X} \mathbf{K} \mathbf{X}^T) 
+\end{aligned}
+$$
+The matrix $\mathbf{X} \mathbf{K} \mathbf{X}^T$ is block diagonal, with one block for each set of observations from the same unit (which we grouped next to each other in $\mathbf{y}'$).
+Specifically, the $(a,b)$th element of the block for unit $i$ is $\sigma_m^2 t_{i,a} t_{i,b} + \rho \sigma_m \sigma_c (t_{i,a} + t_{i,b}) + \sigma_c^2$.
+This matrix is probably very sparse, and will take less memory stored as an array of those blocks that occur along the diagonal.
+However, that's a ragged array because each block has different dimension, so we'll need a work-around for this in Stan.
+
+Now let's simulate from this model and infer the simulation parameters.
+
+### Code
+
+Abbreviations used in the code:\
+
+* inter = intercept\
+* param = parameter\
+* num = number\
+* obs = observation\
+* df = dataframe\
+
+Let's simulate data in R.
+First let's get set up:
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+library(rstan)
+library(mvtnorm)
+options(mc.cores = parallel::detectCores()) # parallelise
+rstan_options(auto_write = TRUE)            # avoid re-compiling stan code
+set.seed(12345)
+```
+Then pick the params of the model that we'll estimate in Stan:
+```{r}
+slope <- 2
+inter <- 10
+sigma_y <- 0.5
+sigma_m <- 0.5
+sigma_c <- 1
+rho <- 0.5
+```
+Then pick some aspects of the data generating process that we condition on (i.e. we don't estimate)
+```{r}
+num_units_initial <- 500 # We'll exclude units that randomly get 0 observations
+num_obs_per_unit_mean <- 5
+times_shape <- 3 # For a gamma distribution of observation times
+times_scale <- 1
+```
+Simulate the data:
+```{r}
+unit_random_effects <-
+  rmvnorm(num_units_initial, c(0, 0),
+          matrix(c(sigma_m^2, rho * sigma_m * sigma_c,
+                   rho * sigma_m * sigma_c, sigma_c^2),
+                 2, 2, byrow = TRUE))
+
+df_units <- tibble(unit_slope = unit_random_effects[, 1],
+                   unit_inter = unit_random_effects[, 2],
+                   num_obs = rpois(num_units_initial, num_obs_per_unit_mean)) %>%
+  filter(num_obs != 0) %>%
+  mutate(unit = row_number())
+
+df_obs <- df_units %>%
+  uncount(num_obs) %>%
+  mutate(.,
+         time = rgamma(n = nrow(.), shape = times_shape, scale = times_scale),
+         y = rnorm(n = nrow(.),
+                   mean = (slope + unit_slope) * time + inter + unit_inter, 
+                   sd = sigma_y)) %>%
+  arrange(unit, time)
+```
+Plot some of the data:
+```{r}
+ggplot(df_obs %>% filter(unit <= 10)) +
+  geom_line(aes(time, y, col = as.factor(unit))) +
+  geom_point(aes(time, y, col = as.factor(unit))) +
+  theme_classic() +
+  labs(col = "unit")
+```
+
+Next up is the Stan code we'll use to analyse the data.
+
+Previously we calculated the non-diagonal covariance matrix that connects the different observations from a given unit after analytically marginalising over that unit's inter and slope random effects induces.
+That matrix depends on the params `sigma_m`, `sigma_c` and `rho`, but we can pre-calculate two things that contribute to the matrix from the data: `matrix_t_x_t` and `matrix_t_p_t` defined for each unit in the `transformed data` block.
+The matrices differ in dimension between units, because the units differ in their number of observations.
+To collect together all these matrices into a single container, given that Stan does not (yet) support ragged arrays, we pad them all with negative infinity values such that they all have the size of the largest one needed (for the unit with most observations); thanks to Ben Goodrich [here](https://discourse.mc-stan.org/t/is-ragged-array-allowed-in-stan/5752/15) for suggesting this.
+
+In the model block, we iterate through the vector we called $\mathbf{y}'$ in the maths above and extract the set of observations from a given unit, one unit at a time, and evaluate their normal density using the covariance matrix for that unit.
+```{stan output.var = "foo", eval = FALSE}
+data {
+  int<lower = 2> num_obs;
+  int<lower = 2> num_units;
+  vector<lower = 0>[num_obs] y; 
+  vector<lower = 0>[num_obs] times;
+  array[num_units] int num_obs_per_unit;
+}
+
+transformed data {
+  int max_num_obs_per_unit = max(num_obs_per_unit);
+  matrix[max_num_obs_per_unit, max_num_obs_per_unit] matrix_t_x_t[num_units];
+  matrix[max_num_obs_per_unit, max_num_obs_per_unit] matrix_t_p_t[num_units];
+  int current_obs = 1;
+  for (unit in 1:num_units) {
+    int n = num_obs_per_unit[unit];
+    vector[n] times_this_unit = segment(times, current_obs, n);
+    matrix_t_x_t[unit] = rep_matrix(negative_infinity(), max_num_obs_per_unit,
+    max_num_obs_per_unit); 
+    matrix_t_x_t[unit] = rep_matrix(negative_infinity(), max_num_obs_per_unit,
+    max_num_obs_per_unit);
+    for (i in 1:n) {
+      for (j in 1:n) {
+        matrix_t_x_t[unit][i, j] = times_this_unit[i] * times_this_unit[j];
+        matrix_t_p_t[unit][i, j] = times_this_unit[i] + times_this_unit[j];
+      }
+    }
+    current_obs = current_obs + n;
+  }
+}
+
+// Provide upper and lower bounds for all params that contain the simulation
+// truth values.
+parameters {
+  real<lower = -10, upper = 10> slope;
+  real<lower = 0, upper = 20> inter;
+  real<lower = 0, upper = 10> sigma_y;
+  real<lower = 0, upper = 10> sigma_m;
+  real<lower = 0, upper = 10> sigma_c;
+  real<lower=-1, upper=1> rho;
+}
+
+transformed parameters {
+  vector[num_obs] y_expected = inter + slope * times;
+}
+
+model {
+
+  // For priors we use the implicit uniform distribution between the previously
+  // specified upper and lower bounds.
+
+  int current_obs_ = 1;
+  for (unit in 1:num_units) {
+    int n = num_obs_per_unit[unit];
+    vector[n] times_this_unit = segment(times, current_obs_, n);
+    matrix[n, n] Sigma_this_unit = sigma_y^2 * identity_matrix(n) +
+    sigma_m^2 * block(matrix_t_x_t[unit], 1, 1, n, n) +
+    rho * sigma_m * sigma_c * block(matrix_t_p_t[unit], 1, 1, n, n) +
+    rep_matrix(sigma_c^2, n, n);
+    segment(y, current_obs_, n) ~
+    multi_normal(segment(y_expected, current_obs_, n), Sigma_this_unit);
+    current_obs_ = current_obs_ + n;
+  }
+}
+```
+Now feed the simulated data into Stan:
+```{r}
+stan_input <- list(
+  num_obs = nrow(df_obs),
+  num_units = nrow(df_units),
+  y = df_obs$y,
+  times = df_obs$time,
+  num_obs_per_unit = df_units$num_obs
+)
+```
+Assuming the above code is saved in a file whose path is stored in the R variable `file_stan_code` (e.g. you've run `file_stan_code <- "path/to/my_stan.stan"` or similar), we compile it:
+
+```{r include = FALSE}
+file_stan_code <- "~/Dropbox (Infectious Disease)/STAN/CD4/CD4decline_lineage_toy.stan"
+```
+```{r}
+model_compiled <- stan_model(file_stan_code)
+```
+and run it:
+```{r}
+num_mcmc_iterations <- 500
+num_mcmc_chains <- 4
+fit <- sampling(model_compiled,
+                data = stan_input,
+                iter = num_mcmc_iterations,
+                chains = num_mcmc_chains,
+                pars = "y_expected",
+                include = FALSE)
+```
+We gather all the samples from the posterior into a long df:
+```{r}
+df_fit <- fit %>%
+  as.data.frame() %>%
+  as_tibble() %>%
+  mutate(sample = row_number()) %>%
+  pivot_longer(-sample, names_to = "param")
+```
+We make a df of true param values:
+```{r}
+params_true <- list(
+  slope = slope,
+  inter = inter,
+  sigma_y = sigma_y,
+  sigma_m = sigma_m,
+  sigma_c = sigma_c,
+  rho = rho
+)
+df_params_true <- tibble(
+  param = names(params_true),
+  value = unlist(params_true)
+)
+```
+And plot the true param values (vertical lines) with the posterior distributions:
+```{r}
+ggplot(df_fit %>% filter(param != "lp__")) +
+  geom_histogram(aes(value, ..density..,),
+                 alpha = 0.6,
+                 position = "identity",
+                 bins = 40) +
+  geom_vline(data = df_params_true, aes(xintercept = value), color = "black") +
+  facet_wrap(~param, scales = "free", nrow = 5) +
+  coord_cartesian(expand = F) +
+  labs(x = "param value",
+       y = "posterior density")
+```
+
+See other code in my [Stan section](https://github.com/ChrisHIV/teaching) for niceties skipped here in the interest of brevity, such as switching between sampling from the posterior and the prior in order to plot how the two distributions differ (which one should always do), and passing the boundaries of the priors as data to avoid recompilation when you want to change them.  
+Doing a posterior predictive (or more accurately retrodictive) check of the model's fit to the data is left as an exercise to the interested reader, who will need to beware of the easy mistake one can make when doing this with analytical marginalisation over some params, which I describe [here](https://htmlpreview.github.io/?https://github.com/ChrisHIV/teaching/blob/main/other_topics/Stan_example_predicting_from_analytically_marginalised_params.html).
