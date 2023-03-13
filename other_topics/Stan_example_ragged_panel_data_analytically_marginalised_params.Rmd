@@ -105,7 +105,7 @@ library(rstan)
 library(mvtnorm)
 options(mc.cores = parallel::detectCores()) # parallelise
 rstan_options(auto_write = TRUE)            # avoid re-compiling stan code
-set.seed(12345)
+set.seed(123456)
 ```
 Then pick the params of the model that we'll estimate in Stan:
 ```{r}
@@ -217,7 +217,6 @@ model {
   int current_obs_ = 1;
   for (unit in 1:num_units) {
     int n = num_obs_per_unit[unit];
-    vector[n] times_this_unit = segment(times, current_obs_, n);
     matrix[n, n] Sigma_this_unit = sigma_y^2 * identity_matrix(n) +
     sigma_m^2 * block(matrix_t_x_t[unit], 1, 1, n, n) +
     rho * sigma_m * sigma_c * block(matrix_t_p_t[unit], 1, 1, n, n) +
