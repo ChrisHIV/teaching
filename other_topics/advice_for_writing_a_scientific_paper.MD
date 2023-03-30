@@ -1,14 +1,29 @@
 ## Advice on writing a scientific paper (in academia)
 
-Writing the Methods section is easiest: it’s just what you’ve done (made accessible to others). For that reason I’ve heard it recommended as a starting point - to get your foot in. However, grappling with constructing a narrative for your work may make you realise that part of what you’ve done is unnecessary, or that something you haven’t done is necessary, or that it would be better to split into several papers. So I think it’s better to work on the big picture before diving into easy details.
+CLARITY CLARITY CLARITY.
+Write to be understood as clearly as possible.
+Do not use your writing style to try to make the work sound more impressive.
+If impressing people is your aim, have something impressive to say (in which case being as clear as possible helps); if you don't, using an impressive-sounding style makes you a salesperson for a crappy car - it's not a good look.
+_Use_ methods, don't leverage them.
+_Analyse_ data, don't leverage it. 
+_A methodology_ is a class of methods; are you sure that's what you mean rather than _a method_?
+A single method can still have aspects of it that can be adjusted; this doesn't mean we should promote it to being a class of methods.
+_Methodologies_ can almost always be replaced by _methods_.
+
+Writing the Methods section is the easiest thing to do: it’s just describing what you’ve done.
+For that reason I’ve heard it recommended as a starting point - to get your foot into in the writing process.
+However, grappling with the construction of a narrative for your work may make you realise that part of what you’ve done is unnecessary, or that something you haven’t done is necessary, or that it would be better to split into several papers.
+So I think it’s better to work on the big picture before diving into easy details.
 
 Start by getting as clear as you can in your head about what question your work addresses.
-* Anecdotally, I find a fairly common structure in talks (less so papers) is
+* Anecdotally, I find a fairly common structure in talks (less so papers) by junior scientists is
   * Introduction to the general area of study,
   * What you did, in detail,
   * What the result of doing that was,
   * Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.
-* That’s not a compelling structure, because as one follows, it’s less clear _why_ you’re doing what you’re doing. Starting with a question, and explaining (if not self-evident) why that question matters, means people are either hooked from then onwards or they realise as early as possible that what you’ve done isn’t relevant for them.
+* That’s not a compelling structure, because as one follows, it’s less clear _why_ you’re doing what you’re doing.
+Starting with a question, and explaining (if not self-evident) why that question matters, means people are either hooked from then onwards or they realise as early as possible that what you’ve done isn’t relevant for them, and they can save their mental bandwidth for something else.
+It also means people know where you're trying to get to as they follow your journey for getting there, which is much clearer.
 * The question you present is not necessarily the same question that you actually set out to answer at the start of your project: there's nothing wrong with finding some result and then realising afterwards that it answers someone else’s important question. And you might want to revisit the question you started with depending what you found, e.g. restrict the scope if you realise there are problems with generalisability.
 * I feel (I am perhaps biased) that an exception to this question-focussed approach is when you discover a thing that exists (or existed) that wasn’t known to exist, e.g. a [viral variant](https://www.beehive.ox.ac.uk/hiv-lineage) with certain properties, or a volcano, or an ancient language. There’s not necessarily an obvious question preceding such findings. One could try to shoehorn any finding into this exception, e.g. “I discovered that there exists a statistically significant correlation between variables x and y in my data,” but the fact that you could do something doesn't mean you should. Generally, people are interested in what you find in your data only to the extent that we can generalise from it to something bigger. Which means e.g. considering whether the data you started with was a good thing to start with for the question in hand. So it's better not to shoehorn but to challenge oneself to construct a question to which one’s findings provide a reasonable answer (such as does actionable thing X cause desirable outcome Y).
 
