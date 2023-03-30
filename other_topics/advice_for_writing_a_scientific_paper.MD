@@ -94,10 +94,11 @@ Paraphrasing an explanation I was given: mathematicians and physicists favour th
 However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.  
 Methods: We *regressed* y against x.  
 Results: We *found* a correlation.  
-Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absense of confounders.
-
+Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absense of confounders.  
 And use the active tense for what you did (*We did X*); recommendations to use the passive tense (*X was done*) to sound more netural are so last century.
 I read somewhere that the active tense reminds the reader that the steps taken were made by fallible humans, not by some idealised notion of the scientific process.
+I agree.
+There can also be genuine ambiguity about who did the thing that was done if you're also talking about previous work.
 
 Finally, a point of grammar which comes up all the time in technical writing: hyphenation of modifiers.
 When we write A B C where C is a noun and A and B are modifiers, we hypenate A-B if and only if A and B work together to form a single composite modifier, the most common example being that A modifies B.
