@@ -6,8 +6,8 @@ Do not use your writing style to try to make the work sound more impressive.
 If impressing people is your aim, have something impressive to say (in which case being as clear as possible helps); if you don't, using an impressive-sounding style makes you a salesperson for a crappy car - it's not a good look.
 _Use_ methods, don't leverage them.
 _Analyse_ data, don't leverage it. 
-_A methodology_ is a class of methods; are you sure that's what you mean rather than _a method_?
-A single method can still have aspects of it that can be adjusted; this doesn't mean we should promote it to being a class of methods.
+_A methodology_ is a class of methods - are you sure that's what you mean rather than _a method_?
+A single method can still have aspects of it that can be adjusted in different applications; this doesn't mean we should promote it to being a class of methods.
 _Methodologies_ can almost always be replaced by _methods_.
 
 Writing the Methods section is the easiest thing to do: it’s just describing what you’ve done.
