@@ -11,7 +11,7 @@ My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAA
 * Probability parts [one](basic_maths/Lecture7_part1.pdf) and [two](basic_maths/Lecture7_part2.pdf)
 * A bit of supplementary material about [calculus](basic_maths/PostXmas_Calculus.pdf) and [matrices](basic_maths/PostXmas_matrices.pdf)  
 
-I wrote the above (for a Bachelors course, a masters course and 'the short course' for professionals) while employed by Imperial College London, who have a claim on copyright. Do not re-use this material.
+I wrote the above (for a Bachelors course, a masters course and 'the short course' for professionals) while employed by Imperial College London who claim  copyright in such circumstances, therefore this material should not be re-used.
 
 
 ### Inference / data analysis:
