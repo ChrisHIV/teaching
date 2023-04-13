@@ -1,6 +1,7 @@
 # teaching
 
-Here you can find educational material I've written, pitched at various levels from student to researcher. My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
+Here you can find educational/explanatory material I've written, pitched at various levels from student to researcher.
+My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
 
 ### Basic maths, with public health and epidemiology examples:
 * A [quiz](basic_maths/InductionQuiz.pdf) testing the topics covered, and the [answers](basic_maths/QuizAnswers.pdf)
