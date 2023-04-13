@@ -42,6 +42,17 @@ Code for the example is the hierarchical model in the Stan section below.
 * A quick introduction to the tidyverse (basically just to the dplyr package and the pipe operator) [here](other_topics/tidyverse_quick_intro.md)
 * more to come...
 
+### Summary notes I made about some conferences:
+* Epidemics8 in 2021 [here](https://twitter.com/ChrisWymant/status/1465775301972185088) 
+* COVID-19: Advances and Remaining Challenges in 2021 [here](https://twitter.com/ChrisWymant/status/1443248100143927296)
+* Virus Genomics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1438178907438653441)
+* Human Virus Dynamics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1390733002754379784)
+* Net Zero 2019 [here](https://twitter.com/ChrisWymant/status/1171361818847121408) 
+* Oberwolfach (the maths of infectious diseases) 2018 [here](https://twitter.com/ChrisWymant/status/969205940623994881)
+* Epidemics7 in 2017 [here](https://www.dropbox.com/s/y4iuz2tdwdrq7io/Epidemics2017.txt?dl=0)
+* IAS 2017 [here](https://www.dropbox.com/s/w0uffmzcir8141s/IAS.txt?dl=0)
+* Mathematical and Computational Evolutionary Biology 2016 [here](https://twitter.com/ChrisWymant/status/743852693047881728) 
+
 ### Other bits and pieces
 
 Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
@@ -54,17 +65,6 @@ A [glossary](other_topics/Glossary_HIV.csv) of HIV terms (mainly at the molecula
 
 Here are some [bash commands](https://www.dropbox.com/s/65eyimir8aukxe6/CommonBashCommands.sh?dl=0)</a> (i.e. working with the terminal / command line) that I find helpful.
 
-Summary notes I made about some conferences:
-* Epidemics8 in 2021 [here](https://twitter.com/ChrisWymant/status/1465775301972185088) 
-* COVID-19: Advances and Remaining Challenges in 2021 [here](https://twitter.com/ChrisWymant/status/1443248100143927296)
-* Virus Genomics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1438178907438653441)
-* Human Virus Dynamics and Evolution 2021 [here](https://twitter.com/ChrisWymant/status/1390733002754379784)
-* Net Zero 2019 [here](https://twitter.com/ChrisWymant/status/1171361818847121408) 
-* Oberwolfach (the maths of infectious diseases) 2018 [here](https://twitter.com/ChrisWymant/status/969205940623994881)
-* Epidemics7 in 2017 [here](https://www.dropbox.com/s/y4iuz2tdwdrq7io/Epidemics2017.txt?dl=0)
-* IAS 2017 [here](https://www.dropbox.com/s/w0uffmzcir8141s/IAS.txt?dl=0)
-* Mathematical and Computational Evolutionary Biology 2016 [here](https://twitter.com/ChrisWymant/status/743852693047881728) 
-
 Some explanations of things on twitter:
 * On the harmful oversimplification of focussing only on the _fraction_ of SARS-CoV-2 infections that become severe, [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
 * Lockdown pros and cons [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
@@ -73,7 +73,7 @@ Some explanations of things on twitter:
 * A pet hate: academics leveraging/harnessing things left, right and centre instead of _using_ them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
 * Really funny jokes about the command line [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
 
-Acknowledgement: I wrote the above while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
+Acknowledgement: I wrote all the above materials while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
 ### Explanatory things that other people wrote that I recommend:
 * Read [this](http://www.amazon.co.uk/The-Elements-Style-William-Strunk/dp/020530902X) if you write in English. Read [this](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point.
