@@ -1,34 +1,23 @@
 ## Advice on writing a scientific paper (in academia)
 
-CLARITY CLARITY CLARITY.
-Write to be understood as clearly as possible.
-Do not use your writing style to try to make the work sound more impressive.
-If impressing people is your aim, have something impressive to say (in which case being as clear as possible helps); if you don't, using an impressive-sounding style makes you a salesperson for a crappy car - it's not a good look.
-_Use_ methods, don't leverage them.
-_Analyse_ data, don't leverage it. 
-_A methodology_ is a class of methods - are you sure that's what you mean rather than _a method_?
-A single method can still have aspects of it that can be adjusted in different applications; this doesn't mean we should promote it to being a class of methods.
-_Methodologies_ can almost always be replaced by _methods_.
-
-Writing the Methods section is the easiest thing to do: it’s just describing what you’ve done.
-For that reason I’ve heard it recommended as a starting point - to get your foot into in the writing process.
-However, grappling with the construction of a narrative for your work may make you realise that part of what you’ve done is unnecessary, or that something you haven’t done is necessary, or that it would be better to split into several papers.
-So I think it’s better to work on the big picture before diving into easy details.
+### Use a question-driven approach
 
 Start by getting as clear as you can in your head about what question your work addresses.
-Some points about a question-driven approach:
-* Anecdotally, I find a fairly common structure in talks (less so papers) by junior scientists is
-  * Introduction to the general area of study,
-  * What you did, in detail,
-  * What the result of doing that was,
-  * Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.
-* That’s not a compelling structure, because as one follows, it’s less clear _why_ you’re doing what you’re doing.
+Anecdotally, I find a fairly common structure in talks (less so papers) by junior scientists is  
+* An introduction to the general area of study,
+* What you did, in detail,
+* What the result of doing that was,
+* Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.
+That’s not a compelling structure, because as one follows, it’s less clear _why_ you’re doing what you’re doing.
 **Finish your introduction with the specific question you attempted to answer, explaining why that question matters**.
 That means people are either hooked from the start, or they realise as early as possible that what you’ve done isn’t relevant for them and they can save their mental bandwidth for something else.
 It also means people know where you're trying to get to as they follow your journey for getting there, which is much clearer.
-* The question you present is not necessarily the same question that you actually set out to answer at the start of your project: there's nothing wrong with finding some result and then realising afterwards that it answers someone else’s important question. And you might want to revisit the question you started with depending what you found, e.g. restrict the scope if you realise there are problems with generalisability.
-* I feel (I am perhaps biased) that an exception to this question-focussed approach is when you discover a thing that exists (or existed) that wasn’t known to exist, e.g. a [viral variant](https://www.beehive.ox.ac.uk/hiv-lineage) with certain properties, or a volcano, or an ancient language. There’s not necessarily an obvious question preceding such findings. One could try to shoehorn any finding into this exception, e.g. “I discovered that there exists a statistically significant correlation between variables x and y in my data,” but the fact that you could do something doesn't mean you should. Generally, people are interested in what you find in your data only to the extent that we can generalise from it to something bigger. Which means e.g. considering whether the data you started with was a good thing to start with for the question in hand. So it's better not to shoehorn but to challenge oneself to construct a question to which one’s findings provide a reasonable answer (such as does actionable thing X cause desirable outcome Y).
-* I've seen people tweet that scientific work should always be testing a hypothesis, to avoid people fishing in the data for signals for which explanations are later constructed, but which are actually just noise, worsening the reproducibility crisis.
+
+The question you present is not necessarily the same question that you actually set out to answer at the start of your project: there's nothing wrong with finding some result and then realising afterwards that it answers someone else’s important question. And you might want to revisit the question you started with depending what you found, e.g. restrict the scope if you realise there are problems with generalisability.
+
+I feel (I am perhaps biased) that an exception to this question-focussed approach is when you discover a thing that exists (or existed) that wasn’t known to exist, e.g. a [viral variant](https://www.beehive.ox.ac.uk/hiv-lineage) with certain properties, or a volcano, or an ancient language. There’s not necessarily an obvious question preceding such findings. One could try to shoehorn any finding into this exception, e.g. “I discovered that there exists a statistically significant correlation between variables x and y in my data,” but the fact that you could do something doesn't mean you should. Generally, people are interested in what you find in your data only to the extent that we can generalise from it to something bigger. Which means e.g. considering whether the data you started with was a good thing to start with for the question in hand. So it's better not to shoehorn but to challenge oneself to construct a question to which one’s findings provide a reasonable answer (such as does actionable thing X cause desirable outcome Y).
+
+I've seen people tweet that scientific work should always be testing a hypothesis, to avoid people fishing in the data for signals for which explanations are later constructed, but which are actually just noise, worsening the reproducibility crisis.
 I saw one reply providing the counter-example of counting species in a given area: there is no hypothesis being tested.
 Both sides here have a point.
 Focussing too narrowly on 'testing' hypotheses comes from a frequentist statistics tradition of rejecting or failing to reject null hypotheses.
@@ -36,6 +25,8 @@ As Andrew Gelman pithily [summarises](https://statmodeling.stat.columbia.edu/201
 I already know my model is false, so I don’t pat myself on the back for finding problems with the fit (thus “rejecting” the model); rather, when I find problems with fit, this motivates improvement to the model."
 Scientific work should aim to discriminate between different hypotheses (which could be continuous rather than discrete, for example corresponding to the true value of a continuous parameter such as the spatial density of species).
 This is similar to saying we should start from a question: we should be seeing how the evidence discriminates between different possible answers (and knowing that one answer provides a poor explanation of the data does not mean we should reject it - we need to also show that a different plausible answer provides a good explanation of the data).
+
+### Structure your writing at the level of paragraphs
 
 Plan what you are going to write, and make sure you understand what you have already written, at the level of paragraphs.
 Each paragraph should
@@ -82,6 +73,22 @@ The Introduction section should have a roughly funnel structure from broad to sp
 * one paragraph on digital contact tracing
 * one paragraph on previous studies of digital contact tracing, mentioning absence of empirical estimates of epidemiological impact
 * “Here, we empirically estimated the epidemiological impact of the NHS COVID-19 app. We do this by [very brief summary]”
+
+### Other considerations
+
+CLARITY CLARITY CLARITY.
+Write to be understood as clearly as possible.
+Do not use your writing style to try to make the work sound more impressive.
+If impressing people is your aim, have something impressive to say (in which case being as clear as possible helps your aim); if you don't, using an impressive-sounding style makes you a salesperson for a crappy car - it's not a good look.
+_Use_ methods and _analyse_ data: don't leverage them or harness them.
+_A methodology_ is a class of methods - are you sure that's what you mean rather than _a method_?
+A single method can still have aspects of it that can be adjusted in different applications; this doesn't mean we should promote it to being a class of methods.
+_Methodologies_ can almost always be replaced by _methods_.
+
+Writing the Methods section is the easiest thing to do: it’s just describing what you’ve done.
+For that reason I’ve heard it recommended as a starting point - to get your foot into in the writing process.
+However, grappling with the construction of a narrative for your work may make you realise that part of what you’ve done is unnecessary, or that something you haven’t done is necessary, or that it would be better to split into several papers.
+So I think it’s better to work on the big picture before diving into easy details.
 
 What I look for in every presentation or paper is what should people do differently as a result of what you’ve found. For a methods paper, it’s normally to use that method instead of the best previous alternative for this particular application. For applied results papers, it might be that doctors/society should consider using more X to get more of desirable outcome Y, or at least that further study should establish your X-Y link more concretely and explore feasibility, cost-effectiveness etc. For theoretical results papers, it might be that other researchers should investigate your new idea because it has the potential to help us understand something which is manifestly important. For a convincing negative result - enough data for statistical power, appropriate kind of data & method for accuracy and generalisability - the implication might be that people should stop pursuing an avenue previously thought to be promising. There are lots of possibilities for how your finding might influence some people, but if you struggle to think concretely of who and how, it’s worth having a frank conversation with yourself about whether your paper was a good use of your time. No use crying over spilt milk of course, but one can strive to not keep spilling milk forever. (This was a big factor in why I stopped working on theoretical particle physics.)
 
