@@ -103,7 +103,8 @@ _Authors A used method a and found result X [A]. Result Y was obtained [b] lever
 with something like  
 _A et al used method a and found X [A]. B et al used method b and found Y [B]. C et al used method c and found Z [C]._  
 The latter is certainly drier but easier to parse.
-In the same way that coercing data into [tidy format](https://vita.had.co.nz/papers/tidy-data.pdf) (rectangular, one row per observation, one column per aspect of the observation i.e. per variable) makes the data clearer as well as easier to operate on (obviously some data is naturally of a different structure, such as trees), coercing two or more similar sentences (or clauses within a sentence) into a common structure helps to clarify both their similarities and their differences for lower mental effort.
+Recall that coercing data into [tidy format](https://vita.had.co.nz/papers/tidy-data.pdf) (rectangular, one row per observation, one column per aspect of the observation i.e. per variable) makes the data clearer as well as easier to operate on (though obviously some data is naturally of a different structure, such as trees).
+In the same way, coercing two or more similar sentences (or clauses within a sentence) into a common structure helps to clarify both their similarities and their differences for lower mental effort.
 
 Tenses: I like past tense for Methods and Results, present (or future) tense for Discussion.
 Paraphrasing an explanation I was given: mathematicians and physicists favour the present tense for results because there is a feel of timelessness to the findings.
