@@ -69,6 +69,7 @@ Some explanations of things on twitter:
 * On the harmful oversimplification of focussing only on the _fraction_ of SARS-CoV-2 infections that become severe, [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
 * Lockdown pros and cons [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
 * Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
+* A summary of results obtained from that model [here](https://twitter.com/ChrisWymant/status/1250842199086059523) (summarising our report provided to NHSX [here](https://github.com/BDI-pathogens/covid-19_instant_tracing/blob/master/Report%20-%20Effective%20Configurations%20of%20a%20Digital%20Contact%20Tracing%20App.pdf))
 * Why science is easier than politics [here](https://twitter.com/ChrisWymant/status/1154710730526117889)
 * A pet hate: academics leveraging/harnessing things left, right and centre instead of _using_ them [here](https://twitter.com/ChrisWymant/status/1082201811640086528)
 * Really funny jokes about the command line [here](https://twitter.com/ChrisWymant/status/974329420180803584) and [here](https://twitter.com/ChrisWymant/status/950682089313259521)
