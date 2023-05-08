@@ -60,6 +60,7 @@ If we\
 * define the expected value $\hat{\mathbf{y}'}$ of $\mathbf{y}'$ as $m$ multiplied by the times of each observation in $\mathbf{y}'$ plus $c$,\
 * flatten all the random effects into a single vector $\mathbf{d} = (m_1, c_1, m_2, c_2, \ldots)$, whose covariance matrix $\mathbf{K}$ just consists of $\mathbf{k}$ along the diagonal,\
 * construct a matrix $\mathbf{X}$ with as many rows as $\mathbf{y}'$ and as many columns as $\mathbf{d}$, for which the $a$th row consists of zeros except for the two columns corresponding to the random effects for the unit for the $a$th observation in $\mathbf{y}'$, whose two values are the time for the $a$th observation and 1, then  
+
 we can re-write the observation model as
 $$
 P(\mathbf{y}' \| \text{all parameters}) = N(\mathbf{y}' \| \hat{\mathbf{y}'} + \mathbf{X} \mathbf{d}, \sigma_y^2 \mathbf{I}) 
@@ -242,7 +243,7 @@ Assuming the above code is saved in a file whose path is stored in the R variabl
 ```{r include = FALSE}
 file_stan_code <- "~/Dropbox (Infectious Disease)/STAN/CD4/CD4decline_lineage_toy.stan"
 ```
-```{r}
+```{r message = FALSE, warning = FALSE}
 model_compiled <- stan_model(file_stan_code)
 ```
 and run it:
@@ -288,9 +289,10 @@ ggplot(df_fit %>% filter(param != "lp__")) +
                  bins = 40) +
   geom_vline(data = df_params_true, aes(xintercept = value), color = "black") +
   facet_wrap(~param, scales = "free", nrow = 5) +
-  coord_cartesian(expand = F) +
   labs(x = "param value",
-       y = "posterior density")
+       y = "posterior density") +
+  coord_cartesian(expand = F) +
+  theme_classic()
 ```
 
 See other code in my [Stan section](https://github.com/ChrisHIV/teaching) for niceties skipped here in the interest of brevity, such as switching between sampling from the posterior and the prior in order to plot how the two distributions differ (which one should always do), and passing the boundaries of the priors as data to avoid recompilation when you want to change them.  
