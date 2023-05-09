@@ -7,7 +7,8 @@ Anecdotally, I find a fairly common structure in talks (less so papers) by junio
 * An introduction to the general area of study,
 * What you did, in detail,
 * What the result of doing that was,
-* Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.  
+* Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.
+  
 That’s not a compelling structure, because as one follows, it’s less clear _why_ you’re doing what you’re doing.
 **Finish your introduction with the specific question you attempted to answer, explaining why that question matters**.
 That means people are either hooked from the start, or they realise as early as possible that what you’ve done isn’t relevant for them and they can save their mental bandwidth for something else.
