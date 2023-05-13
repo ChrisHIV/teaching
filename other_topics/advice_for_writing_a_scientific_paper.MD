@@ -99,8 +99,7 @@ What I look for in every presentation or paper is what should people do differen
 Clearly establish and then stick to a one-to-one mapping between [things] and [the names we use to refer to those things].
 i.e. avoid using different terms to refer to the same thing, and avoid using the same term to mean different things.
 A one-to-one map makes it as clear as possible for the reader and frees up their concentration for more important things.
-Expanding on this, repetition - in the sense of repeating the decision you make about how to write a particular thing (not repeating the same point) - helps the reader to see the connections between different places in your writing.
-(Ah, it's a different name here, so it's a different thing; ah, it's the same name here, so it's the same thing.)
+Expanding on this, repetition - in the sense of repeating your decision _how_ to write a particular thing, not repeating the same point - helps the reader to see the connections between different places in your writing.
 This goes for structure as well as choice of names (see [Strunk and White](http://www.jlakes.org/ch/web/The-elements-of-style.pdf) rule 19: Express coordinate ideas in similar form).
 Compare:  
 _Authors A used method a and found result X [A]. Result Y was obtained [b] leveraging methodology b. Employing c, C et al [C] demonstrated Z._  
