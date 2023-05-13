@@ -101,7 +101,7 @@ i.e. avoid using different terms to refer to the same thing, and avoid using the
 A one-to-one map makes it as clear as possible for the reader and frees up their concentration for more important things.
 Expanding on this, repetition - in the sense of repeating the decision you make about how to write a particular thing (not repeating the same point) - helps the reader to see the connections between different places in your writing.
 (Ah, it's a different name here, so it's a different thing; ah, it's the same name here, so it's the same thing.)
-This goes for structure as well as choice of names.
+This goes for structure as well as choice of names (see [Strunk and White](http://www.jlakes.org/ch/web/The-elements-of-style.pdf) rule 19: Express coordinate ideas in similar form).
 Compare:  
 _Authors A used method a and found result X [A]. Result Y was obtained [b] leveraging methodology b. Employing c, C et al [C] demonstrated Z._  
 with something like  
