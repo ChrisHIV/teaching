@@ -9,7 +9,7 @@ It becomes ugly and inaccurate because our thoughts are foolish, but the slovenl
 The point is that the process is reversible.
 Modern English, especially written English, is full of bad habits which spread by imitation and which can be avoided if one is willing to take the necessary trouble."
 
-(I'm convinced "leverage", "harness" etc. are following [a contagious process](https://twitter.com/ChrisWymant/status/1082201811640086528).)
+(I'm convinced "leverage", "harness" etc. in place of "use" is following [a contagious process](https://twitter.com/ChrisWymant/status/1082201811640086528).)
 
 "Characteristic phrases are: _render inoperative, militate against, make contact with, be subjected to, give rise to, give grounds for, have the effect of, play a leading part (role) in, make itself felt, take effect, exhibit a tendency to, serve the purpose of,_ etc. etc.
 The keynote is the elimination of simple verbs.
@@ -30,7 +30,7 @@ It is easier - even quicker, once you have the habit - to say _In my opinion it 
 "I think the following rules will cover most cases.  
 (i) Never use a metaphor, simile or other figure of speech which you are used to seeing in print.  
 (ii) Never use a long word where a short one will do.  
-(iii) If it is possible to cut a word out, always cut it out.  
+(iii) If it is possible to cut a word out, always cut it out [c.f. "Omit needless words" - rule 17 of [Strunk and White](http://www.jlakes.org/ch/web/The-elements-of-style.pdf)].  
 (iv) Never use the passive where you can use the active.  
 (v) Never use a foreign phrase, a scientific word or a jargon word if you can think of an everyday English equivalent.  
 (vi) Break any of these rules sooner than say anything outright barbarous."
