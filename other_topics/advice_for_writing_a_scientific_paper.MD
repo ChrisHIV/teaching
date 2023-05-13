@@ -1,7 +1,7 @@
 ## Advice on writing a scientific paper (in academia)
 
 Read Strunk and White (it's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf)).
-Read [Politics and the English Language](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068); some highlights are [here](other_topics/politics_and_the_english_language_highlights.md).
+Read [Politics and the English Language](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068); some highlights are [here](politics_and_the_english_language_highlights.md).
 
 ### Use a question-driven approach
 
