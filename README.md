@@ -77,7 +77,7 @@ Some explanations of things on twitter:
 Acknowledgement: I wrote all the above materials while funded by ERC Advanced Grant PBDR-339251 and a Li Ka Shing Foundation grant, both awarded to [Christophe Fraser](https://www.bdi.ox.ac.uk/Team/christophe-fraser).
 
 ### Explanatory things that other people wrote that I recommend:
-* Read [this](http://www.amazon.co.uk/The-Elements-Style-William-Strunk/dp/020530902X) if you write in English. Read [this](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point.
+* Read Strunk and White if you write in English (it's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf)). Read [Politics and the English Language](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point; some highlights are [here](other_topics/politics_and_the_english_language_highlights.md).
 * Read [this](http://www.damtp.cam.ac.uk/user/tong/talks/talk.pdf) if you give talks.
 * Read [this](https://doi.org/10.1371/journal.pcbi.1005510) if you're a scientist using a computer.
 * Other people recommended these resources for learning to interact with your computer through the command line (a.k.a. the terminal a.k.a. the shell), which is very helpful for being able to use other people's computational scientific methods: [here](http://rik.smith-unna.com/command_line_bootcamp) [here](http://www.ee.surrey.ac.uk/Teaching/Unix) and [here](http://swcarpentry.github.io/shell-novice/)
