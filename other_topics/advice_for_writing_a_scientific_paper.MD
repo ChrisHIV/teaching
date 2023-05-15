@@ -1,8 +1,8 @@
 ## Advice on writing a scientific paper (in academia)
 
-I recommned reading Strunk and White before writing anything: it's very concise and has good general guidelines.
+I recommend reading Strunk and White before writing anything: it's very concise and has good general guidelines.
 It's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf).
-I recommned reading Politics and the English Language before writing to make a point: it's a good argument for clarity and simplicity, and against common ways of trying to impress while writing.
+I recommend reading Politics and the English Language before writing to make a point: it's a good argument for clarity and simplicity, drawing attention to common silly things people to do make their writing sound impressive.
 It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/) and a few of my favourite bits are [here](politics_and_the_english_language_highlights.md).
 
 ### Use a question-driven approach
