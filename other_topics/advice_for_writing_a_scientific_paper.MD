@@ -46,19 +46,19 @@ Depending on what mood you're currently in, it can be better to plan your struct
 Keep that plan visible when you share your draft with co-authors: it's helpful for them to see at a glance what your structure is supposed to be, instead of them each needing to figure it out.
 If you start the writing process by creating a draft of this list, that’s a great point at which to get early feedback from co-authors, because the whole point and structure of the paper is clear at a glance and can easily be turned into something different with minimal wasted writing.
 
-As an example of the previous paragraph, I might start by writing this paragraph structure for my Discussion section:  
+As an example of this approach, I might start by writing this paragraph structure for my Discussion section:  
 1. summary: what we did, what we found, how we interpret that finding  
 2. refer to previous studies  
 3. limitation: non-representative data limits generalisability  
 4. limitation: demonstrated correlation not causation  
 5. outlook, what should (some) people do now in light of this result
   
-I might show this to a coauthor who can tell me immediately that our data is much more representative that I thought, so there's no need to write paragraph 4.
+I might show this to a coauthor who can tell me immediately that our data is much more representative that I thought, so there's no need to write paragraph 4 (saving my time writing it and her time reading it).
 Then I might start to write the actual paragraphs and realise there's so much to say on intepretation that a whole paragraph would be better, in which we should talk about novelty, because interpretation and novelty both help people understand why they should care about this result.
 So I'd revise my structure to
 
 1. summary of what we did and what we found  
-2. why care: how we interpret that finding and why it's novel  
+2. why we care: how we interpret that finding and why it's novel  
 3. refer to previous studies  
 4. limitation: correlation not causation  
 5. outlook, what should (some) people do now in light of this result
@@ -78,7 +78,7 @@ The Introduction section should have a roughly funnel structure from broad to sp
 * one paragraph on contact tracing as an approach to reduce the spread of COVID-19 
 * one paragraph on digital contact tracing (using proximity-detecting smartphone apps)
 * one paragraph on previous studies of digital contact tracing, mentioning the absence of and the importance of empirical estimates of epidemiological impact
-* “Here, we empirically estimated the epidemiological impact of the NHS COVID-19 app. We do this by... [very brief summary of data and method]”
+* "Here, we empirically estimated the epidemiological impact of digital contact tracing in England and Wales. We do this by... [very brief summary of data and method]"
 
 ### Other considerations
 
@@ -91,8 +91,8 @@ _A methodology_ is a class of methods - are you sure that's what you mean rather
 A single method can still have aspects of it that can be adjusted in different applications; this doesn't mean we should promote it to being a class of methods.
 _Methodologies_ can almost always be replaced by _methods_.
 
-Writing the Methods section is the easiest thing to do: it’s just describing what you’ve done.
-For that reason I’ve heard it recommended as a starting point - to get your foot into in the writing process.
+Writing the Methods section is the easiest thing to do: it’s just describing the relevant parts of what you did in a way that others can understand.
+I’ve heard it recommended as a starting point for that reason - start with something easy to get your foot into in the writing process.
 However, grappling with the construction of a narrative for your work may make you realise that part of what you’ve done is unnecessary, or that something you haven’t done is necessary, or that it would be better to split into several papers.
 So I think it’s better to work on the big picture before diving into easy details.
 
