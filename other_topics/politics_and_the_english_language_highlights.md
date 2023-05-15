@@ -1,6 +1,6 @@
-Orwell's 13-page essay Politics and the English Language is great and relevant for modern scientific writing.
-
-Highlights (his italics):
+I recommend reading Orwell's 13-page essay Politics and the English Language before writing to make a point: it's a good argument for clarity and simplicity, drawing attention to silly things people to do make their writing sound impressive which are common in modern scientific writing in my experience.
+It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/); below are a few of my favourite bits.
+Italics are Orwell's.
 
 "an effect can become a cause, reinforcing the original cause and producing the same effect in an intensified form, and so on indefinitely.
 A man may take to drink because he feels himself to be a failure, and then fail all the more completely because he drinks.
@@ -9,7 +9,7 @@ It becomes ugly and inaccurate because our thoughts are foolish, but the slovenl
 The point is that the process is reversible.
 Modern English, especially written English, is full of bad habits which spread by imitation and which can be avoided if one is willing to take the necessary trouble."
 
-(I'm convinced "leverage", "harness" etc. in place of "use" is following [a contagious process](https://twitter.com/ChrisWymant/status/1082201811640086528).)
+(I'm convinced that the use of "leverage", "harness" etc. instead of "use" is following [a contagious process](https://twitter.com/ChrisWymant/status/1082201811640086528).)
 
 "Characteristic phrases are: _render inoperative, militate against, make contact with, be subjected to, give rise to, give grounds for, have the effect of, play a leading part (role) in, make itself felt, take effect, exhibit a tendency to, serve the purpose of,_ etc. etc.
 The keynote is the elimination of simple verbs.
