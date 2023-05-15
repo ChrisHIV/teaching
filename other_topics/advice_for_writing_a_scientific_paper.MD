@@ -23,14 +23,13 @@ The question you present is not necessarily the same question that you actually 
 
 I feel (I am perhaps biased) that an exception to this question-focussed approach is when you discover a thing that exists (or existed) that wasn’t known to exist, e.g. a [viral variant](https://www.beehive.ox.ac.uk/hiv-lineage) with certain properties, or a volcano, or an ancient language. There’s not necessarily an obvious question preceding such findings. One could try to shoehorn any finding into this exception, e.g. “I discovered that there exists a statistically significant correlation between variables x and y in my data,” but the fact that you could do something doesn't mean you should. Generally, people are interested in what you find in your data only to the extent that we can generalise from it to something bigger. Which means e.g. considering whether the data you started with was a good thing to start with for the question in hand. So it's better not to shoehorn but to challenge oneself to construct a question to which one’s findings provide a reasonable answer (such as does actionable thing X cause desirable outcome Y).
 
-I've heard people say that scientific work should always be testing a hypothesis, to avoid people fishing in the data for signals for which explanations are later constructed, but which are actually just noise, worsening the reproducibility crisis.
-I heard one reply providing the counter-example of counting species in a given area: there is no hypothesis being tested.
+I've heard people say that scientific work should always be testing some hypothesis.
+I heard one reply providing the counter-example of counting species in a given area to record biodiversity: there is no hypothesis being tested.
 Both sides here have a point.
-Focussing too narrowly on 'testing' a hypothesis probably comes from a frequentist statistics tradition of rejecting or failing to reject a null hypothesis.
-As Andrew Gelman pithily [summarises](https://statmodeling.stat.columbia.edu/2018/06/17/bayesians-are-frequentists/): "I do model checking to test the model that I am fitting, usually not to test a straw-man null hypothesis.
-I already know my model is false, so I don’t pat myself on the back for finding problems with the fit (thus "rejecting" the model); rather, when I find problems with fit, this motivates improvement to the model."
-Scientific work should aim to discriminate between different hypotheses (which could be continuous rather than discrete, for example corresponding to the true value of a continuous parameter such as the spatial density of species).
-This is similar to saying we should start from a question: we should be seeing how the evidence discriminates between different possible answers/hypotheses (and knowing that one answer provides a poor explanation of the data does not mean we should reject it - logically, we must also show that at least one other plausible answer provides a good explanation of the data).
+If you fish around in your data for anything interesting and then later construct some explanation for what you found, you're at risk of misinterpreting random chance in the data, worsening the reproducibility crisis.
+However, reducing science to the 'testing' of a hypothesis is overly reductionist$\dag$.
+Scientific work should aim to discriminate between different hypotheses, and these may form a continuous space rather than just two possibilities, such as the spatial density of species.
+This is similar to saying we should start from a question: we should be seeing how the evidence discriminates between different possible answers (and knowing that one answer provides a poor explanation of the data does not mean we should reject it - logically, we must also show that at least one other plausible answer provides a good explanation of the data).
 
 ### Structure your writing at the level of paragraphs
 
@@ -129,3 +128,7 @@ I like the recommendation of the Chicago Manual of Style to break this rule when
 e.g. a "significantly improved method" is just as clear and more stylish than a "significantly-improved method".
 Hyphenation is for when the modifiers precede the noun, not when they follow it.
 e.g. that cheese is strange smelling, not strange-smelling.
+
+$\dag$ I suspect that focussing too narrowly on 'testing' a hypothesis probably comes from a frequentist statistics tradition of rejecting or failing to reject a null hypothesis.
+As Andrew Gelman pithily [summarises](https://statmodeling.stat.columbia.edu/2018/06/17/bayesians-are-frequentists/): "I do model checking to test the model that I am fitting, usually not to test a straw-man null hypothesis.
+I already know my model is false, so I don’t pat myself on the back for finding problems with the fit (thus "rejecting" the model); rather, when I find problems with fit, this motivates improvement to the model."
