@@ -10,7 +10,7 @@ It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell
 Start by getting as clear as you can in your head about what question your work addresses.
 Anecdotally, I find a fairly common structure in talks (less so papers) by junior scientists is  
 * An introduction to the general area of study,
-* What you did, in great detail (before one learns from experience that this might show how much you had to struggle, but it does not help your audience to follow better),
+* What you did, in great detail (before you learn from experience that while this shows how much you had to struggle, everyone struggles at the start of something new, and these details can usually be summarised with no loss of your audience's understanding),
 * What the result of doing that was,
 * Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.
   
