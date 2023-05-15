@@ -53,7 +53,7 @@ As an example of this approach, I might start by writing this paragraph structur
 5. outlook, what should (some) people do now in light of this result
   
 I might show this to a coauthor who can tell me immediately that our data is much more representative that I thought, so there's no need to write paragraph 4 (saving my time writing it and her time reading it).
-Then I might start to write the actual paragraphs and realise there's so much to say on intepretation that a whole paragraph would be better, in which we should talk about novelty, because interpretation and novelty both help people understand why they should care about this result.
+Then I might start to write the actual paragraphs and realise there's so much to say on interpretation that a whole paragraph would be better, in which we should talk about novelty, because interpretation and novelty both help people understand why they should care about this result.
 So I'd revise my structure to
 
 1. summary of what we did and what we found  
@@ -115,14 +115,14 @@ Paraphrasing an explanation I was given: mathematicians and physicists favour th
 However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.  
 Methods: We *regressed* y against x.  
 Results: We *found* a correlation.  
-Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absense of confounders.  
-And use the active tense for what you did (*We did X*); recommendations to use the passive tense (*X was done*) to sound more netural are so last century.
+Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absence of confounders.  
+And use the active tense for what you did (*We did X*); recommendations to use the passive tense (*X was done*) to sound more neutral are so last century.
 I read somewhere that the active tense reminds the reader that the steps taken were made by fallible humans, not by some idealised notion of the scientific process.
 I agree.
 There can also be genuine ambiguity about who did the thing that was done if you're also talking about previous work.
 
 Finally, a point of grammar which comes up all the time in technical writing: hyphenation of modifiers.
-When we write A B C where C is a noun and A and B are modifiers, the rule is to hypenate A-B if and only if A and B work together to form a single composite modifier (the most common example being that A modifies B), not hyphenating if and only if A and B separately modify C.
+When we write A B C where C is a noun and A and B are modifiers, the rule is to hyphenate A-B if and only if A and B work together to form a single composite modifier (the most common example being that A modifies B), not hyphenating if and only if A and B separately modify C.
 e.g. a strange smelling cheese is a cheese that is strange and possesses the ability to smell, whereas a strange-smelling cheese is a cheese that smells strange.
 I like the recommendation of the Chicago Manual of Style to break this rule when A is an adverb that ends in "ly", because ending in "ly" means it's obviously an adverb and adverbs only modify adjectives or verbs, never nouns, so there's no ambiguity about what A is modifying.
 e.g. a "significantly improved method" is just as clear and more stylish than a "significantly-improved method".
