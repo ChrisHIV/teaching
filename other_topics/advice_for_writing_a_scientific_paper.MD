@@ -1,14 +1,16 @@
 ## Advice on writing a scientific paper (in academia)
 
-Read Strunk and White (it's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf)).
-Read [Politics and the English Language](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068); some highlights are [here](politics_and_the_english_language_highlights.md).
+I recommned reading Strunk and White before writing anything: it's very concise and has good general guidelines.
+It's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf).
+I recommned reading Politics and the English Language before writing to make a point: it's a good argument for clarity and simplicity, and against common ways of trying to impress while writing.
+It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/) and a few of my favourite bits are [here](politics_and_the_english_language_highlights.md).
 
 ### Use a question-driven approach
 
 Start by getting as clear as you can in your head about what question your work addresses.
 Anecdotally, I find a fairly common structure in talks (less so papers) by junior scientists is  
 * An introduction to the general area of study,
-* What you did, in detail,
+* What you did, in great detail (before one learns from experience that this might show how much you had to struggle, but it does not help your audience to follow better),
 * What the result of doing that was,
 * Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.
   
@@ -72,11 +74,11 @@ Of course you won't include that list with the actual final text, and so your br
 To help them, try to make the opening sentence of each paragraph indicate what the rest of the rest of the paragraph will be about.
 
 The Introduction section should have a roughly funnel structure from broad to specific, ending with an explanation of what you set out to do in this paper: “Here, we...“. I read somewhere, and agree, that the funnel should be such that the closing bit about your work should feel inevitable - you’ve drawn the reader towards your question feeling like the natural thing to work on. In the best case you have provided something completely novel, in which case immediately before your “Here, we...” is an explanation of how no one has looked at this problem before. Normally your result is more incremental, and you can say that uncertainty remains on this particular aspect of a phenomenon, or that the problem is so important that further studies are useful to validate existing results. An example funnel:
-* one paragraph on the English SARS-CoV-2 epidemic
-* one paragraph on contact tracing
-* one paragraph on digital contact tracing
-* one paragraph on previous studies of digital contact tracing, mentioning absence of empirical estimates of epidemiological impact
-* “Here, we empirically estimated the epidemiological impact of the NHS COVID-19 app. We do this by [very brief summary]”
+* one paragraph on the COVID-19 pandemic in England and Wales
+* one paragraph on contact tracing as an approach to reduce the spread of COVID-19 
+* one paragraph on digital contact tracing (using proximity-detecting smartphone apps)
+* one paragraph on previous studies of digital contact tracing, mentioning the absence of and the importance of empirical estimates of epidemiological impact
+* “Here, we empirically estimated the epidemiological impact of the NHS COVID-19 app. We do this by... [very brief summary of data and method]”
 
 ### Other considerations
 
@@ -121,9 +123,8 @@ I agree.
 There can also be genuine ambiguity about who did the thing that was done if you're also talking about previous work.
 
 Finally, a point of grammar which comes up all the time in technical writing: hyphenation of modifiers.
-When we write A B C where C is a noun and A and B are modifiers, we hypenate A-B if and only if A and B work together to form a single composite modifier, the most common example being that A modifies B.
-We don't hyphenate if and only if A and B separately modify C.
-e.g. a strange smelling cheese is a cheese that is strange and possesses the ability to smell, whereas a strange-smelling cheese is probably what one means.
+When we write A B C where C is a noun and A and B are modifiers, the rule is to hypenate A-B if and only if A and B work together to form a single composite modifier (the most common example being that A modifies B), not hyphenating if and only if A and B separately modify C.
+e.g. a strange smelling cheese is a cheese that is strange and possesses the ability to smell, whereas a strange-smelling cheese is a cheese that smells strange.
 I like the recommendation of the Chicago Manual of Style to break this rule when A is an adverb that ends in "ly", because ending in "ly" means it's obviously an adverb and adverbs only modify adjectives or verbs, never nouns, so there's no ambiguity about what A is modifying.
 e.g. a "significantly improved method" is just as clear and more stylish than a "significantly-improved method".
 Hyphenation is for when the modifiers precede the noun, not when they follow it.
