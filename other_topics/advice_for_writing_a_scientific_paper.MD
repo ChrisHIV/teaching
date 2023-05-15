@@ -27,7 +27,7 @@ I've heard people say that scientific work should always be testing some hypothe
 I heard one reply providing the counter-example of counting species in a given area to record biodiversity: there is no hypothesis being tested.
 Both sides here have a point.
 If you fish around in your data for anything interesting and then later construct some explanation for what you found, you're at risk of misinterpreting random chance in the data, worsening the reproducibility crisis.
-However, reducing science to the 'testing' of a hypothesis is overly reductionist $\dag$.
+However, reducing science to the 'testing' of a hypothesis is overly reductionist $\dagger$.
 Scientific work should aim to discriminate between different hypotheses, and these may form a continuous space rather than just two possibilities, such as the spatial density of species.
 This is similar to saying we should start from a question: we should be seeing how the evidence discriminates between different possible answers (and knowing that one answer provides a poor explanation of the data does not mean we should reject it - logically, we must also show that at least one other plausible answer provides a good explanation of the data).
 
