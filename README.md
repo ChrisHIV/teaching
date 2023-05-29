@@ -80,6 +80,7 @@ Acknowledgement: I wrote all the above materials while funded by ERC Advanced Gr
 * Read Strunk and White if you write in English (it's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf)). Read [Politics and the English Language](https://www.amazon.co.uk/Politics-English-Language-Penguin-Classics/dp/0141393068) if you write in order to make a point; some highlights are [here](other_topics/politics_and_the_english_language_highlights.md).
 * Read [this](http://www.damtp.cam.ac.uk/user/tong/talks/talk.pdf) if you give talks.
 * Read [this](https://doi.org/10.1371/journal.pcbi.1005510) if you're a scientist using a computer.
+* [Here](https://halllab2.sitehost.iu.edu/grad-student-resources.html) is a large collection of resources providing advice for graduate students, organised by topic
 * Other people recommended these resources for learning to interact with your computer through the command line (a.k.a. the terminal a.k.a. the shell), which is very helpful for being able to use other people's computational scientific methods: [here](http://rik.smith-unna.com/command_line_bootcamp) [here](http://www.ee.surrey.ac.uk/Teaching/Unix) and [here](http://swcarpentry.github.io/shell-novice/)
 * Other people recommended [this](http://happygitwithr.com/) for learning version control with Git (aimed at users of R but with more general applicability), which is invaluable for writing your own scientific methods.
 * [This](http://detexify.kirelabs.org/classify.html) helps one remember obscure latex symbols.
