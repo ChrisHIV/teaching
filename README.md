@@ -1,6 +1,6 @@
 # teaching
 
-Here you can find educational/explanatory material I've written, pitched at various levels from student to researcher.
+Here you can find educational/explanatory material written by me (Chris Wymant), pitched at various levels from student to researcher.
 My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
 
 ### Basic maths, with public health and epidemiology examples:
