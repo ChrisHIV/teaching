@@ -10,14 +10,17 @@ It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell
 Start by getting as clear as you can in your head about what question your work addresses.
 Anecdotally, I find a fairly common structure in talks (less so papers) by junior scientists is  
 * An introduction to the general area of study,
-* What you did, in great detail (before you learn from experience that while this shows how much you had to struggle, everyone struggles at the start of something new, and these details can usually be summarised with no loss of your audience's understanding),
+* What you did, in great detail (before you learn from experience that while this shows how much you had to struggle, everyone struggles at the start of something new, and these details can usually be summarised or omitted with no loss of your audience's understanding),
 * What the result of doing that was,
 * Speculation as to why that might be of interest to the general area: which hypotheses the result (dis)favours.
   
 That’s not a compelling structure, because as one follows, it’s less clear _why_ you’re doing what you’re doing.
 **Finish your introduction with the specific question you attempted to answer, explaining why that question matters**.
-That means people are either hooked from the start, or they realise as early as possible that what you’ve done isn’t relevant for them and they can save their mental bandwidth for something else.
-It also means people know where you're trying to get to as they follow your journey for getting there, which is much clearer.
+This means that people have understood _where_ you're trying to get to as they then follow your explanation for _how_ you tried to get there, which is much clearer and more satisfying.
+It means people are either hooked from your introduction onwards, or they realise as early as possible that what you’ve done isn’t relevant for them and they can save their mental bandwidth for something else.
+There are too many papers and too many talks: help people to know if yours is right for them.
+I suspect that the uncompelling structure above arises because the author is writing too narrowly from their own perspective (which is also responsible for failure to explain things that are very familiar to the author).
+An important point beyond the use of a question-driven approach is to _identify your audience and write your paper bearing in mind their perspective_.
 
 The question you present is not necessarily the same question that you actually set out to answer at the start of your project: there's nothing wrong with finding some result and then realising afterwards that it answers someone else’s important question. And you might want to revisit the question you started with depending what you found, e.g. restrict the scope if you realise there are problems with generalisability.
 
@@ -29,7 +32,7 @@ Both sides here have a point.
 If you fish around in your data for anything interesting and then later construct some explanation for what you found, you're at risk of misinterpreting random chance in the data, worsening the reproducibility crisis.
 However, reducing science to the 'testing' of a hypothesis is overly reductionist $^\dagger$.
 Scientific work should aim to discriminate between different hypotheses, and these may form a continuous space rather than just two possibilities, such as the spatial density of species.
-This is similar to saying we should start from a question: we should be seeing how the evidence discriminates between different possible answers (and knowing that one answer provides a poor explanation of the data does not mean we should reject it - logically, we must also show that at least one other plausible answer provides a good explanation of the data).
+This is similar to saying we should start from a question: we should be investigating how the evidence discriminates between different possible answers.
 
 ### Structure your writing at the level of paragraphs
 
@@ -121,6 +124,19 @@ I read somewhere that the active tense reminds the reader that the steps taken w
 I agree.
 There can also be genuine ambiguity about who did the thing that was done if you're also talking about previous work.
 
+Report results to the appropriate level of precision.
+For numerical values, that's a choice for the number of significant figures.
+(If you're unfamiliar with the concept, you should google it, though a basic example may suffice: 36, 36000, 3.6 x 10^5, and 0.00036 are all quoted to 2 significant figures.)
+Two factors are relevant: the precision with which you know the value, and the maximum precision that any of your readers might care about (remembering that the most interested readers will want to dive into the underlying data and not just copy-paste your derived values).
+You should use the smaller of these two.
+A first example: if my friend asks me when I'm going on holiday, I would not reply 09:39 on August 3rd even though I know my departure time to that level of precision: that would be more precision than they care about.
+A second example: if I observe 100 successes out of 300 trials, it would be silly to report the success probability as 0.33333333 not only because no-one cares about the later digits but because I am extremely uncertain what their values should be.
+For simplicity let us say I report Frequentist confidence intervals as a quantification of uncertainty (a common [abuse](https://doi.org/10.3758/s13423-015-0947-8) of the concept of uncertainty), obtaining the interval 0.2808136 - 0.3901981 from running `prop.test(100, 300)` in R.
+This range is adequately summarised as 0.28 - 0.39, because using a third significant figure would be negligibly small compared to the size of the range itself.
+Then for consistency we should quote our central estimate to two significant figures too: we report our estimate of the success probability as 0.33 (95% CI: 0.28 - 0.39).
+If reporting p-values (read elsewhere, e.g. [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing), for issues with that), one significant figure is usually best, occasionally two, never more.
+No-one's conclusion will be different if you report p = 0.0589 instead of p = 0.06.
+
 Finally, a point of grammar which comes up all the time in technical writing: hyphenation of modifiers.
 When we write A B C where C is a noun and A and B are modifiers, the rule is to hyphenate A-B if and only if A and B work together to form a single composite modifier (the most common example being that A modifies B), not hyphenating if and only if A and B separately modify C.
 e.g. a strange smelling cheese is a cheese that is strange and possesses the ability to smell, whereas a strange-smelling cheese is a cheese that smells strange.
@@ -131,4 +147,4 @@ e.g. that cheese is strange smelling, not strange-smelling.
 
 $^\dagger$ I suspect that focussing too narrowly on 'testing' a hypothesis probably comes from a frequentist statistics tradition of rejecting or failing to reject a null hypothesis.
 As Andrew Gelman pithily [summarises](https://statmodeling.stat.columbia.edu/2018/06/17/bayesians-are-frequentists/): "I do model checking to test the model that I am fitting, usually not to test a straw-man null hypothesis.
-I already know my model is false, so I don’t pat myself on the back for finding problems with the fit (thus "rejecting" the model); rather, when I find problems with fit, this motivates improvement to the model."
+I already know my model is false, so I don’t pat myself on the back for finding problems with the fit (thus "rejecting" the model); rather, when I find problems with fit, this motivates improvement to the model." We should be investigating how the evidence discriminates between different possible answers, and knowing that one answer provides a poor explanation of the data does not mean we should reject it: logically, we must also show that at least one other plausible answer provides a good explanation of the data.
