@@ -136,6 +136,8 @@ This range is adequately summarised as 0.28 - 0.39, because using a third signif
 Then for consistency we should quote our central estimate to two significant figures too: we report our estimate of the success probability as 0.33 (95% CI: 0.28 - 0.39).
 If reporting p-values (read elsewhere, e.g. [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing), for issues with that), one significant figure is usually best, occasionally two, never more.
 No-one's conclusion will be different if you report p = 0.0589 instead of p = 0.06.
+An exception to these considerations is tables of numerical values: where these are automatically generated and contain many values, it would take a lot of work (and perhaps look a little untidy) to adjust the number of significant figures for every cell in the table independently.
+In this case it is forgivable for the author to make one choice of the most appropriate number of significant figures (or decimal places) and apply this to the whole table (or to each row or to each column, where these have values with very different sizes).
 
 Finally, a point of grammar which comes up all the time in technical writing: hyphenation of modifiers.
 When we write A B C where C is a noun and A and B are modifiers, the rule is to hyphenate A-B if and only if A and B work together to form a single composite modifier (the most common example being that A modifies B), not hyphenating if and only if A and B separately modify C.
