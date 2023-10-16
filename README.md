@@ -62,7 +62,7 @@ In case you missed it: advice on writing a scientific paper in academia [here](o
 
 Slides [here](other_topics/Wymant_DigitalContactTracing_2023-03-29_LSHTM_public.pdf) and a recorded webinar [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883) about two of our group's papers on digital contact tracing (our initial [proposal](https://doi.org/10.1126/science.abb6936) and our [evaluation](https://doi.org/10.1038/s41586-021-03606-z)).
 
-A [blog post](https://www.coronavirus-fraser-group.org/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
+A [blog post](https://045.medsci.ox.ac.uk/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
 
 A [glossary](other_topics/Glossary_HIV.csv) of HIV terms (mainly at the molecular and cellular level) from when I first started working on HIV.
 
