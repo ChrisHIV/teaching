@@ -3,6 +3,8 @@
 Here you can find educational/explanatory material written by me (Chris Wymant), pitched at various levels from student to researcher.
 My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
 
+Perhaps my main beef with academic science is how people write papers. Advice for doing that better is [here](other_topics/advice_for_writing_a_scientific_paper.MD).
+
 ### Basic maths, with public health and epidemiology examples:
 * A [quiz](basic_maths/InductionQuiz.pdf) testing the topics covered, and the [answers](basic_maths/QuizAnswers.pdf)
 * One set of [slides](basic_maths/ShortCourse_MathsRefresher2015_ChrisWymant.pdf) covering most of the material (the following slides go into a bit more detail)
@@ -56,7 +58,7 @@ Code for the example is the hierarchical model in the Stan section below.
 
 ### Other bits and pieces
 
-Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
+In case you missed it: advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
 
 Slides [here](other_topics/Wymant_DigitalContactTracing_2023-03-29_LSHTM_public.pdf) and a recorded webinar [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883) about two of our group's papers on digital contact tracing (our initial [proposal](https://doi.org/10.1126/science.abb6936) and our [evaluation](https://doi.org/10.1038/s41586-021-03606-z)).
 
