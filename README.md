@@ -3,7 +3,7 @@
 Here you can find educational/explanatory material written by me (Chris Wymant), pitched at various levels from student to researcher.
 My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
 
-I feel there's room for improvement in how people tend to write papers in academic science. Advice for doing that better is [here](other_topics/advice_for_writing_a_scientific_paper.MD).
+There are lots of bits and pieces below; one highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science. I feel there's room for improvement in how we do that.
 
 ### Basic maths, with public health and epidemiology examples:
 * A [quiz](basic_maths/InductionQuiz.pdf) testing the topics covered, and the [answers](basic_maths/QuizAnswers.pdf)
