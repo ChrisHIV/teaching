@@ -23,6 +23,7 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 Code for the example is the hierarchical model in the Stan section below.
 * Some basic basics about causal inference [here](other_topics/causal_inference_wymant.pdf)
 * Why I prefer Bayesianism to Frequentism for inference [here](other_topics/2022-12-12_Chris_FrequentistAndOrBayesian.pdf)
+* Gelman proposed a useful [folk theorem](https://statmodeling.stat.columbia.edu/2008/05/13/the_folk_theore/) of statistical computing. A minor proposed addition to this: _If your statistical model is failing to infer the known parameters values used to simulate data, it's 50:50 that the problem is with your simulation rather than your statistical model._   
 * If you are using a Bayesian statistical model to explore some parameters numerically, while also analytically marginalising over some parameters (usually for computational efficiency), and you use a posterior predictive check for how well your model fits the data, a subtle point you can easily get wrong is described in detail [here](https://htmlpreview.github.io/?https://github.com/ChrisHIV/teaching/blob/main/other_topics/Stan_example_predicting_from_analytically_marginalised_params.html) (the underlying R markdown file is [here](other_topics/Stan_example_predicting_from_analytically_marginalised_params.Rmd)).
 
 ### The [Stan](https://mc-stan.org/) language for probabilistic programming (especially Bayesian inference):  
