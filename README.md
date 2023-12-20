@@ -3,7 +3,13 @@
 Here you can find educational/explanatory material written by me (Chris Wymant), pitched at various levels from student to researcher.
 My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
 
-There are lots of bits and pieces below; one highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science. I feel there's room for improvement in how we do that.
+There's lots of material below organised by topic. One thing to highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science. I think that improvement there is low-hanging fruit: communication of results is an important and undervalued part of what we do. And here are recorded talks I've given on various topics:
+* pathogen sequence analysis [here](https://www.youtube.com/watch?v=TR2a46vBwGY),
+* our discovery of a highly virulent variant of HIV [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM) (or with an introduction in French [here](https://www.youtube.com/watch?v=kpgNaiXCxfA)),
+* our proposal and evaluation of digital contact tracing for SARS-CoV-2 [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883),
+* the interplay of proximity and duration of exposure for SARS-CoV-2 transmission [here](https://www.youtube.com/watch?v=wfBiF7rmr7E).
+
+Materials by topic:
 
 ### Basic maths, with public health and epidemiology examples:
 * A [quiz](basic_maths/InductionQuiz.pdf) testing the topics covered, and the [answers](basic_maths/QuizAnswers.pdf)
@@ -42,6 +48,11 @@ Code for the example is the hierarchical model in the Stan section below.
 * A computational practical showing how to use phyloscanner is [here](https://drive.google.com/drive/folders/0BwygWUC73hnxbGtHSFpWdzYzVkk?resourcekey=0-Zjt4kVHja6Djo7qKsN3r5Q&usp=sharing). Being taught this practical was [apparently](https://www.krisp.org.za/blogs.php?id=48) "like receiving piano lessons from Beethoven;" YMMV
 * An accessible summary of our discovery of the VB variant of HIV is [here](https://www.beehive.ox.ac.uk/hiv-lineage), and a webinar on the subject is [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM). Virtually the same webinar but with an introduction in French is [here](https://www.youtube.com/watch?v=kpgNaiXCxfA).
 
+### SARS-CoV-2 / COVID-19:
+* Slides [here](other_topics/Wymant_DigitalContactTracing_2023-03-29_LSHTM_public.pdf) and a recorded webinar [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883) about two of our group's papers on digital contact tracing (our initial [proposal](https://doi.org/10.1126/science.abb6936) and our [evaluation](https://doi.org/10.1038/s41586-021-03606-z)).
+* A recorded webinar [here](https://www.youtube.com/watch?v=wfBiF7rmr7E) about how transmission risk depends on the interplay between proximity and duration of exposure. I wrote a short summary [here](https://045.medsci.ox.ac.uk/risk_measurement) and a thread in our group twitter account [here](https://twitter.com/ChristoPhraser/status/1737513767733272914).
+* A [blog post](https://045.medsci.ox.ac.uk/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of index cases.
+
 ### Coding in R:  
 * A quick introduction to the tidyverse (basically just to the dplyr package and the pipe operator) [here](other_topics/tidyverse_quick_intro.md)
 * more to come...
@@ -59,11 +70,7 @@ Code for the example is the hierarchical model in the Stan section below.
 
 ### Other bits and pieces
 
-In case you missed it: advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
-
-Slides [here](other_topics/Wymant_DigitalContactTracing_2023-03-29_LSHTM_public.pdf) and a recorded webinar [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883) about two of our group's papers on digital contact tracing (our initial [proposal](https://doi.org/10.1126/science.abb6936) and our [evaluation](https://doi.org/10.1038/s41586-021-03606-z)).
-
-A [blog post](https://045.medsci.ox.ac.uk/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of SARS-CoV-2 index cases.
+Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
 
 A [glossary](other_topics/Glossary_HIV.csv) of HIV terms (mainly at the molecular and cellular level) from when I first started working on HIV.
 
