@@ -6,12 +6,12 @@ rstan_options(auto_write = TRUE) # helpful options for stan
 options(mc.cores = parallel::detectCores()) # helpful options for stan
 
 # Change to what's appropriate for you
-setwd("~/Dropbox (Infectious Disease)/talks_mine_misc/2023-01_StatsLectureAndPractical/Canvas/")
+setwd("~/")
 
 # LOAD AND WRANGLE REAL DATA ---------------------------------------------------
 
 # Read in daily COVID-19 case and death data from the WHO
-df <- read_csv("WHO-COVID-19-global-data.csv")
+df <- read_csv("Wymant_practical_CFR_WHO-COVID-19-global-data.csv")
 
 # Restrict to the desired country and period
 df <- df %>%
