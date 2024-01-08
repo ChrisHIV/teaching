@@ -23,6 +23,12 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 
 
 ### Inference / data analysis:
+* 2024 Health Data Sciences CDT lecture:  
+    - lecture slides [here](other_topics/health_data_science_cdt_stats_2024.pdf)
+    - practical [here](https://docs.google.com/document/d/1buYJB5s9NMz8XkN03mmGziGp598Mo90X1hdXa40qgxE/edit?usp=sharing)
+    - worked solutions to practical exercise 1 are [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R)
+    - worked solutions to practical exercise 2 are [here](other_topics/Wymant_practical_CFR.R) and [here](other_topics/Wymant_practical_CFR.stan)
+    - worked solutions to practical exercise 3 are [here](other_topics/Wymant_practical_CD4decline_lineage.R) and [here](other_topics/Wymant_practical_CD4decline_lineage.stan)
 * Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. Code as a worked solution to the two parts of the practical is [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R)
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [here](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf).
