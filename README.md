@@ -23,13 +23,8 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 
 
 ### Inference / data analysis:
-* 2024 Health Data Sciences CDT lecture:  
-    - lecture slides [here](other_topics/health_data_science_cdt_stats_2024.pdf)
-    - practical [here](https://docs.google.com/document/d/1buYJB5s9NMz8XkN03mmGziGp598Mo90X1hdXa40qgxE/edit?usp=sharing)
-    - worked solutions to practical exercise 1 are [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R)
-    - worked solutions to practical exercise 2 are [here](other_topics/Wymant_practical_CFR.R) and [here](other_topics/Wymant_practical_CFR.stan)
-    - worked solutions to practical exercise 3 are [here](other_topics/Wymant_practical_CD4decline_lineage.R) and [here](other_topics/Wymant_practical_CD4decline_lineage.stan)
-* Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. Code as a worked solution to the two parts of the practical is [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R)
+* Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A 2023 lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. Code as a worked solution to the two parts of the practical is [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R)
+* For my 2024 lecture on that same course I focussed on what mathematical modelling and statistical modelling are at a high level, the basic laws of probability, a little about counterfactuals, and using random-effects (hierarchical/multi-level) models to describe CD4 cell decline during HIV infection. Lecture slides [here](other_topics/health_data_science_cdt_stats_2024.pdf), practical [here](https://docs.google.com/document/d/1buYJB5s9NMz8XkN03mmGziGp598Mo90X1hdXa40qgxE/edit?usp=sharing), worked solutions to practical exercises are [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R) for 1, [here](other_topics/Wymant_practical_CFR.R) and [here](other_topics/Wymant_practical_CFR.stan) for 2 using [this](other_topics/Wymant_practical_CFR_WHO-COVID-19-global-data.csv) WHO data, [here](other_topics/Wymant_practical_CD4decline_lineage.R) and [here](other_topics/Wymant_practical_CD4decline_lineage.stan) for 3.
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [here](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf).
 Code for the example is the hierarchical model in the Stan section below.
@@ -81,6 +76,8 @@ Advice on writing a scientific paper in academia [here](other_topics/advice_for_
 A [glossary](other_topics/Glossary_HIV.csv) of HIV terms (mainly at the molecular and cellular level) from when I first started working on HIV.
 
 Here are some [bash commands](https://www.dropbox.com/s/65eyimir8aukxe6/CommonBashCommands.sh?dl=0)</a> (i.e. working with the terminal / command line) that I find helpful.
+
+A simple tip for handling responses to reviewers during peer review: as soon as you receive your reviews copy them all into a Google doc, put a differently formatted TODO between each separate point, then share this document with your coauthors. Replace the TODOs with your actual responses once you've addressed that comment. This is a handy way of tracking progress, noting things to remember, and discussing with coauthors how best to respond (use Google doc's comment feature and "@" people at specific places). Using this document even to read your your reviews for the first time (as opposed to reading the email they came in) means you can make a note of whatever first thoughts pop into your head. Example [here](https://docs.google.com/document/d/1lbm3UDjS3ne6WVl8h5sACTQMefunkV-VBx0Y_FqLGKc/edit?usp=sharing).
 
 Some explanations of things on twitter:
 * On the harmful oversimplification of focussing only on the _fraction_ of SARS-CoV-2 infections that become severe, [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
