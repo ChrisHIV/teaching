@@ -1,0 +1,417 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+\newcommand{\xm}{x_\text{min}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\thetanot}{\theta_{\not \mathbf{x}}}
+
+# Estimation using two correlated variables, either or both of which may be censored
+#### By Chris Wymant. This document lives with other resources at [github.com/ChrisHIV/teaching](https://github.com/ChrisHIV/teaching).
+
+$~$
+
+The problem: we have a set of observations of two quantities, $x$ and $y$ say, which may be correlated, and either or both of them may be censored: below the threshold values $\xm$ and $y_\text{min}$ they cannot be observed.
+
+$~$
+
+### A little maths
+
+For this example we take the vector $(x,y)$ to have a two-dimensional normal distribution: 
+$$
+P(x,y) = 
+\frac{1}{2 \pi  \sigma_X \sigma_Y \sqrt{1-\rho^2}}
+\exp
+\left( -\frac{1}{2\left[1 - \rho^2\right]}\left[
+\left(\frac{x-\mu_X}{\sigma_X}\right)^2 -
+2\rho\left(\frac{x - \mu_X}{\sigma_X}\right)\left(\frac{y - \mu_Y}{\sigma_Y}\right) +
+\left(\frac{y - \mu_Y}{\sigma_Y}\right)^2 
+\right]
+\right)
+$$
+A little algebra gives us the probability (density) that $y$ has a particular value and that $x$ is censored:
+
+$$
+\begin{aligned}
+\int_{x = -\infty}^{\xm} P(x,y) \, dx = N(y \: | \: \mu_y, \sigma_y) \: \Phi((1-\rho^2)^{-1/2} (\xm - \mu_x - \frac{\rho\sigma_x}{ \sigma_y}(y - \mu_y) ))
+\end{aligned}
+$$
+where $N(y \: | \: \mu_y, \sigma_y)$ is the one-dimensional normal density with mean $\mu_y$ and variance $\sigma^2$ evaluated at $y$, and $\Phi$ is the standard normal cumulative density function i.e. $\Phi(x) = \int_{x'=-\infty}^x N(x' | 0, 1) \, dx'$.
+Trivially, swapping $x$ and $y$ in the expression above gives the probability (density) that $x$ has a particular value and that $y$ is censored.
+
+The probability that both $x$ and $y$ are censored---the double integral defining the cumulative density function of the two-dimensional normal---is described as Stan code [here](https://github.com/stan-dev/stan/issues/2356) (with links to the maths).
+
+### R code simulating the data-generating process
+
+Henceforth, for coding, we'll switch terminology from $x$ and $y$ to $y_1$ and $y_2$, collected together into the two-component vector $\by$.
+And we'll abreviate 'censored' by 'cens'.
+
+First let's set up our R code,
+
+```{r message = FALSE}
+library(tidyverse)
+library(rstan)
+library(mvtnorm)
+library(ellipse)
+options(mc.cores = parallel::detectCores()) # parallelise
+rstan_options(auto_write = TRUE)            # avoid re-compiling stan code
+theme_set(theme_classic())                  # make simpler & cleaner ggplots
+```
+
+choose some parameters for simulation,
+
+```{r}
+set.seed(12345)
+
+mu <- c(0.5,0.5)
+sigma <- c(1,1)
+y_min <- c(0,0)
+rho <- -0.9
+N <- 200
+```
+
+simulate data,
+
+```{r}
+# The covariance matrix
+Sigma <- matrix(c(sigma[[1]]^2, rho * sigma[[1]] * sigma[[2]],
+                  rho * sigma[[1]] * sigma[[2]], sigma[[2]]^2), nrow = 2)
+
+y_uncens <- rmvnorm(n = N, mean = mu, sigma = Sigma)
+
+# Censor: replace values below their min by -infinity. This is actually not
+# necessary because we'll ignore those values, but it clarifies how the data
+# would look.
+y <- y_uncens
+y[, 1] <- if_else(y[, 1] < y_min[[1]], -Inf, y[, 1])
+y[, 2] <- if_else(y[, 2] < y_min[[2]], -Inf, y[, 2])
+```
+
+and visualise it
+
+```{r message = FALSE, warning = FALSE}
+ggplot(tibble(y1 = y[, 1], y2 = y[, 2])) +
+  geom_bin2d(aes(x = y1, y = y2)) +
+  geom_vline(xintercept = y_min[[1]], col = "red") +
+  geom_hline(yintercept = y_min[[2]], col = "red") +
+  labs(subtitle = "red lines show censoring thresholds")
+```
+
+### Stan code for inference
+
+```{stan output.var = "foo", eval = FALSE}
+// binormal_cdf is the probability that a draw from a standard normal has its
+// values below z1 and z2.
+// It is not implemented in Stan at time of writing.
+// Credit: Ben Goodrich https://github.com/stan-dev/stan/issues/2356
+functions {
+real binormal_cdf(real z1, real z2, real rho) {
+if (z1 != 0 || z2 != 0) {
+if (rho == 1) {
+return min([Phi(z1), Phi(z2)]);
+}
+if (rho == -1) {
+return Phi(z1) + Phi(z2) - 1;
+}
+real denom = fabs(rho) < 1.0 ? sqrt((1 + rho) * (1 - rho)) : not_a_number();
+real a1 = (z2 / z1 - rho) / denom;
+real a2 = (z1 / z2 - rho) / denom;
+real product = z1 * z2;
+real delta = product < 0 || (product == 0 && (z1 + z2) < 0);
+return 0.5 * (Phi(z1) + Phi(z2) - delta) - owens_t(z1, a1) - owens_t(z2, a2);
+}
+return 0.25 + asin(rho) / (2 * pi());
+}
+}
+
+// The input required for inference
+data {
+int<lower = 0> N_cens_0; // number of observations with neither cens
+int<lower = 0> N_cens_1; // number of observations with only element 1 cens
+int<lower = 0> N_cens_2; // number of observations with only element 2 cens
+int<lower = 0> N_cens_3; // number of observations with both cens
+array[N_cens_0] vector[2] y_cens_0; // observations with neither cens
+vector[N_cens_1] y_cens_1; // observations with only element 1 cens
+vector[N_cens_2] y_cens_2; // observations with only element 2 cens
+vector[2] y_min; // cens thresholds: values below which y is cens
+}
+
+// Convenient transformations of that input (executed once only)
+transformed data {
+int<lower = 0, upper = 1> exists_cens_3 = N_cens_3 > 0;
+}
+
+// The parameters whose values Stan should explore, and their ranges 
+parameters {
+vector<lower = -10, upper = 10>[2] mu;
+vector<lower = 0,   upper = 10>[2] sigma;
+real<lower=-1, upper=1> rho;
+}
+
+// Convenient transformations of those parameters 
+// (executed once per point in parameter space)
+transformed parameters {
+
+cov_matrix[2] Sigma;
+Sigma[1, 1] = sigma[1]^2;
+Sigma[2, 2] = sigma[2]^2;
+Sigma[1, 2] = rho * sigma[1] * sigma[2];
+Sigma[2, 1] = Sigma[1, 2];
+
+// prob_cens_3_log is the log probability that both values are cens.
+// If it is too small, calculating its value can cause problems 
+// even if it's not used! We therefore calculate it only if needed, by giving 
+// it a 0 or 1 index if N_cens_3 is 0 or not respectively.
+real prob_cens_3_log[exists_cens_3];
+if (exists_cens_3) {
+prob_cens_3_log[1] = log(binormal_cdf((y_min[1] - mu[1]) / sigma[1],
+(y_min[2] - mu[2]) / sigma[2], rho));
+}
+
+// Pre-calculate some quantities that get used inside loops, for efficiency
+real rho_factor = 1 / sqrt(1 - rho^2);
+real scale_1_by_2 = rho * sigma[1] / sigma[2];
+real scale_2_by_1 = rho * sigma[2] / sigma[1];
+real rho_factor_scaled_1_by_2 = rho_factor * scale_1_by_2;
+real rho_factor_scaled_2_by_1 = rho_factor * scale_2_by_1;
+real term_in_Phi_arg_1 = rho_factor * (y_min[1] - mu[1] + scale_1_by_2 * mu[2]);
+real term_in_Phi_arg_2 = rho_factor * (y_min[2] - mu[2] + scale_2_by_1 * mu[1]);
+}
+
+// The model defining the probability density for each point in parameter space
+model {
+
+// Here for simplicity we do not include probabilities for the parameter
+// values, such that their priors are taken to be uniform with the previously
+// specified ranges.
+
+if (N_cens_0 > 0) {
+y_cens_0 ~ multi_normal(mu, Sigma);
+}
+
+if (N_cens_1 > 0) {
+for (i in 1:N_cens_1) {
+target += std_normal_lcdf(
+term_in_Phi_arg_1 - rho_factor_scaled_1_by_2 * y_cens_1[i]); 
+}
+y_cens_1 ~ normal(mu[2], sigma[2]);
+}
+
+if (N_cens_2 > 0) {
+for (i in 1:N_cens_2) {
+target += std_normal_lcdf(
+term_in_Phi_arg_2 - rho_factor_scaled_2_by_1 * y_cens_2[i]);
+}
+y_cens_2 ~ normal(mu[1], sigma[1]);
+}
+
+if (N_cens_3 > 0) {
+target += N_cens_3 * prob_cens_3_log[1];
+}
+}
+```
+
+### Doing the inference
+
+Assuming the above code is saved in a file whose path is stored in the R variable `file_stan_code` (e.g. you've run `file_stan_code <- "path/to/my_stan.stan"` or similar), we compile it:
+
+```{r include = FALSE}
+file_stan_code <- "~/Dropbox (Infectious Disease)/STAN/2Dnormal_censored.stan"
+```
+```{r message = FALSE, warning = FALSE}
+model_compiled <- stan_model(file_stan_code)
+```
+
+get input into the required form for Stan:
+```{r message = FALSE, warning = FALSE}
+y_cens_0 <- y[y[,1] >= y_min[1] & y[,2] >= y_min[2], ]
+y_cens_1 <- y[y[,1]  < y_min[1] & y[,2] >= y_min[2], ]
+y_cens_2 <- y[y[,1] >= y_min[1] & y[,2]  < y_min[2], ]
+y_cens_3 <- y[y[,1]  < y_min[1] & y[,2]  < y_min[2], ]
+N_cens_0 <- nrow(y_cens_0)
+N_cens_1 <- nrow(y_cens_1)
+N_cens_2 <- nrow(y_cens_2)
+N_cens_3 <- nrow(y_cens_3)
+
+list_stan <- list(
+  y_cens_0 = y_cens_0,
+  y_cens_1 = y_cens_1[,2],
+  y_cens_2 = y_cens_2[,1],
+  N_cens_0 = N_cens_0,
+  N_cens_1 = N_cens_1,
+  N_cens_2 = N_cens_2,
+  N_cens_3 = N_cens_3,
+  y_min = y_min
+)
+```
+
+and sample from the posterior:
+
+```{r message = FALSE, warning = FALSE}
+parameters_to_include <- c("sigma", "mu", "rho")
+fit <- sampling(model_compiled,
+                data = list_stan,
+                iter = 500,
+                chains = 4,
+                pars = parameters_to_include,
+                include = TRUE)
+```
+
+We gather all the samples from the posterior into a dataframe:
+
+```{r}
+df_fit <- fit %>% 
+  as.data.frame() %>% 
+  as_tibble() %>%
+  mutate(sample = row_number())
+```
+
+and plot the posteriors with the true values
+
+```{r message = FALSE, warning = FALSE}
+df_true <- tribble(
+  ~parameter, ~value,
+  "mu[1]", mu[1],
+  "mu[2]", mu[2],
+  "sigma[1]", sigma[1],
+  "sigma[2]", sigma[2],
+  "rho", rho
+)  
+
+ggplot(df_fit %>%
+         select(-`lp__`) %>%
+         pivot_longer(-sample, names_to = "parameter") ) +
+  geom_histogram(aes(value, y = after_stat(density))) +
+  geom_vline(data = df_true, aes(xintercept = value), col = "blue") +
+  facet_wrap(~parameter, scales = "free") +
+  theme_classic() +
+  coord_cartesian(expand = FALSE) +
+  labs(fill = "",
+       x = "parameter value",
+       y = "posterior density",
+       subtitle = "blue lines show true values")
+```
+
+Our estimation of the true values looks unbiased, from this casual single test.
+
+### Estimating unseen data
+
+First take the posterior means of the parameters of the two-dimensional normal we've estimated, and calculate the 50% and 95% quantile contours of that normal.
+(The code below could be simplified; it's re-used from when I wanted to calculate contours many times instead of once.)
+
+```{r}
+quantiles <- c(0.5, 0.95)
+df_normal_contours <- df_fit %>%
+  select(-c("lp__", "sample")) %>%
+  summarise(across(everything(), mean)) %>%
+  expand_grid(tibble(quantile = quantiles)) %>%
+  pmap(function(`mu[1]`, `mu[2]`, `sigma[1]`, `sigma[2]`, rho, quantile) {
+    ellipse(level = quantile,
+            x = matrix(c(1, rho,
+                         rho, 1), ncol = 2),
+            centre = c(`mu[1]`, `mu[2]`),
+            scale = c(`sigma[1]`, `sigma[2]`)) %>%
+      as_tibble() %>%
+      add_column(quantile = quantile)
+  }) %>%
+  bind_rows()
+```
+
+Here's what those contours look like over the censored data:
+
+```{r message = FALSE, warning = FALSE}
+ggplot(tibble(y1 = y[, 1], y2 = y[, 2])) +
+  geom_bin2d(aes(x = y1, y = y2)) +
+  geom_vline(xintercept = y_min[[1]], col = "red") +
+  geom_hline(yintercept = y_min[[2]], col = "red") +
+  geom_path(data = df_normal_contours, aes(x, y, group = quantile), col = "blue") +
+  labs(subtitle = "red lines show censoring thresholds")
+```
+
+and here's what they look like over the *un*censored data:
+
+```{r message = FALSE, warning = FALSE}
+ggplot(tibble(y1 = y_uncens[, 1], y2 = y_uncens[, 2])) +
+  geom_bin2d(aes(x = y1, y = y2)) +
+  geom_vline(xintercept = y_min[[1]], col = "red") +
+  geom_hline(yintercept = y_min[[2]], col = "red") +
+  geom_path(data = df_normal_contours, aes(x, y, group = quantile), col = "blue") +
+  labs(subtitle = "red lines show censoring thresholds")
+```
+
+Remembering that the inference was blind to the censored values (outside the upper-right quadrant), it has done impressively well at estimating where they lie!
+That's because, of course, we've used the same likelihood for simulating data and estimating the true parameters.
+
+### Testing model fit to the amount of censoring
+
+In general it's possible to come up with a model that describes your uncensored data well but fails to describe how much of your data is censored.
+i.e. you might understand the data generating process but only when conditioning on it having generated something you can observe.
+To make sure that's not the case here, let's check our model fit to the amount of censoring.
+We'll do that with a posterior retrodictive check (often less accurately called a posterior predictive check).
+
+Recap: a posterior retrodictive check shows how well your model fits the data.
+It is our reconstruction of the probability distribution from which the observed data was drawn.
+We calculate
+$$
+P(\text{new data} | \text{observed data}) = \int_\theta P(\text{new data} | \theta) P(\theta | \text{observed data}) \, d\theta
+$$
+where $\theta$ is the set of parameters of the model.
+This distribution merges our uncertain knowledge of the true values underlying the system---the posterior $P(\theta | \text{observed data})$---and the inherent stochasticity even if we knew the system's parameters perfectly---$P(\text{new data} | \theta)$.
+In sampling from this distribution we imagine drawing new data that has identical predictors to the observed data but with a fresh sampling of whatever inherent stochasticity there is in the system.
+A good model fit is characterised by the observed data seeming to fall as you would expect from random chance within this distribution, P(new data | observed data), i.e. there are no systematic differences for meaningful subsets of the data.
+
+Back to this specific problem.
+For each point in parameter space drawn from the posterior, let's stochastically draw a whole dataset of the same size as our own ($N$ observations of $(y_1, y_2)$) and calculate how many of those observations fall into each of the four categories of censoring: neither censored ("0"), only $y_1$ censored ("1"), only $y_2$ censored ("2"), or neither censored ("3").
+
+```{r}
+df_posterior_retrodictive_censoring <- df_fit %>%
+  mutate(N_cens_ =
+           pmap(list(mu1 = `mu[1]`,
+                     mu2 = `mu[2]`,
+                     sigma1 = `sigma[1]`,
+                     sigma2 = `sigma[2]`,
+                     rho = rho),
+                function(mu1, mu2, sigma1, sigma2, rho) {
+                  Sigma_ <- matrix(c(sigma1^2, rho * sigma1 * sigma2,
+                                     rho * sigma1 * sigma2, sigma2^2), nrow = 2)
+                  y_ <- rmvnorm(n = N, mean = c(mu1, mu2), sigma = Sigma)
+                  N_cens_0 <- sum(y_[,1] >= y_min[1] & y_[,2] >= y_min[2])
+                  N_cens_1 <- sum(y_[,1] <  y_min[1] & y_[,2] >= y_min[2])
+                  N_cens_2 <- sum(y_[,1] >= y_min[1] & y_[,2] <  y_min[2])
+                  N_cens_3 <- sum(y_[,1] <  y_min[1] & y_[,2] <  y_min[2])
+                  return(list(N_cens_0 = N_cens_0,
+                              N_cens_1 = N_cens_1,
+                              N_cens_2 = N_cens_2,
+                              N_cens_3 = N_cens_3))
+                })) %>%
+  unnest_wider(N_cens_)
+```
+
+Now for the check: let's see where the actual data lies within these distributions, i.e. where the observed amount of censoring lies within our distribution modelling it.
+
+```{r message = FALSE, warning = FALSE}
+ggplot(df_posterior_retrodictive_censoring %>%
+         select(starts_with("N_cens_")) %>%
+         pivot_longer(everything())) +
+  geom_histogram(aes(value, y = after_stat(density))) +
+  facet_wrap(~name) +
+  coord_cartesian(expand = FALSE) +
+  labs(y = "posterior retrodictive density",
+       subtitle = "blue lines show observed values") +
+  geom_vline(data = tribble(~name, ~value,
+                            "N_cens_0", N_cens_0,
+                            "N_cens_1", N_cens_1,
+                            "N_cens_2", N_cens_2,
+                            "N_cens_3", N_cens_3),
+             aes(xintercept = value), col = "blue")
+```
+
+The model fits the data well *in this respect*.
+
+The greater the number of ways in which you test your model fits the data, the more confidence you can have in its adequacy for its purpose.
+As I saw someone say on Twitter: You know your model is correct when there is no information in the residuals.
+You know it is good enough if you can't find any information in the residuals.
+
+See other code in my [Stan section](https://github.com/ChrisHIV/teaching) for niceties skipped here in the interest of brevity, such as switching between sampling from the posterior and the prior in order to plot how the two distributions differ (which one should always do), and passing the boundaries of the priors as data to avoid recompilation when you want to change them.  
