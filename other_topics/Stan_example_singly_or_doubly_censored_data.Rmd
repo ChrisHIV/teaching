@@ -107,109 +107,109 @@ ggplot(tibble(y1 = y[, 1], y2 = y[, 2])) +
 // It is not implemented in Stan at time of writing.
 // Credit: Ben Goodrich https://github.com/stan-dev/stan/issues/2356
 functions {
-real binormal_cdf(real z1, real z2, real rho) {
-if (z1 != 0 || z2 != 0) {
-if (rho == 1) {
-return min([Phi(z1), Phi(z2)]);
-}
-if (rho == -1) {
-return Phi(z1) + Phi(z2) - 1;
-}
-real denom = fabs(rho) < 1.0 ? sqrt((1 + rho) * (1 - rho)) : not_a_number();
-real a1 = (z2 / z1 - rho) / denom;
-real a2 = (z1 / z2 - rho) / denom;
-real product = z1 * z2;
-real delta = product < 0 || (product == 0 && (z1 + z2) < 0);
-return 0.5 * (Phi(z1) + Phi(z2) - delta) - owens_t(z1, a1) - owens_t(z2, a2);
-}
-return 0.25 + asin(rho) / (2 * pi());
-}
+  real binormal_cdf(real z1, real z2, real rho) {
+    if (z1 != 0 || z2 != 0) {
+      if (rho == 1) {
+        return min([Phi(z1), Phi(z2)]);
+      }
+      if (rho == -1) {
+        return Phi(z1) + Phi(z2) - 1;
+      }
+      real denom = fabs(rho) < 1.0 ? sqrt((1 + rho) * (1 - rho)) : not_a_number();
+      real a1 = (z2 / z1 - rho) / denom;
+      real a2 = (z1 / z2 - rho) / denom;
+      real product = z1 * z2;
+      real delta = product < 0 || (product == 0 && (z1 + z2) < 0);
+      return 0.5 * (Phi(z1) + Phi(z2) - delta) - owens_t(z1, a1) - owens_t(z2, a2);
+    }
+    return 0.25 + asin(rho) / (2 * pi());
+  }
 }
 
 // The input required for inference
 data {
-int<lower = 0> N_cens_0; // number of observations with neither cens
-int<lower = 0> N_cens_1; // number of observations with only element 1 cens
-int<lower = 0> N_cens_2; // number of observations with only element 2 cens
-int<lower = 0> N_cens_3; // number of observations with both cens
-array[N_cens_0] vector[2] y_cens_0; // observations with neither cens
-vector[N_cens_1] y_cens_1; // observations with only element 1 cens
-vector[N_cens_2] y_cens_2; // observations with only element 2 cens
-vector[2] y_min; // cens thresholds: values below which y is cens
+  int<lower = 0> N_cens_0; // number of observations with neither cens
+  int<lower = 0> N_cens_1; // number of observations with only element 1 cens
+  int<lower = 0> N_cens_2; // number of observations with only element 2 cens
+  int<lower = 0> N_cens_3; // number of observations with both cens
+  array[N_cens_0] vector[2] y_cens_0; // observations with neither cens
+  vector[N_cens_1] y_cens_1; // observations with only element 1 cens
+  vector[N_cens_2] y_cens_2; // observations with only element 2 cens
+  vector[2] y_min; // cens thresholds: values below which y is cens
 }
 
 // Convenient transformations of that input (executed once only)
 transformed data {
-int<lower = 0, upper = 1> exists_cens_3 = N_cens_3 > 0;
+  int<lower = 0, upper = 1> exists_cens_3 = N_cens_3 > 0;
 }
 
-// The parameters whose values Stan should explore, and their ranges 
+// The parameters whose values Stan should explore, and their ranges
 parameters {
-vector<lower = -10, upper = 10>[2] mu;
-vector<lower = 0,   upper = 10>[2] sigma;
-real<lower=-1, upper=1> rho;
+  vector<lower = -10, upper = 10>[2] mu;
+  vector<lower = 0,   upper = 10>[2] sigma;
+  real<lower=-1, upper=1> rho;
 }
 
 // Convenient transformations of those parameters 
 // (executed once per point in parameter space)
 transformed parameters {
-
-cov_matrix[2] Sigma;
-Sigma[1, 1] = sigma[1]^2;
-Sigma[2, 2] = sigma[2]^2;
-Sigma[1, 2] = rho * sigma[1] * sigma[2];
-Sigma[2, 1] = Sigma[1, 2];
-
-// prob_cens_3_log is the log probability that both values are cens.
-// If it is too small, calculating its value can cause problems 
-// even if it's not used! We therefore calculate it only if needed, by giving 
-// it a 0 or 1 index if N_cens_3 is 0 or not respectively.
-real prob_cens_3_log[exists_cens_3];
-if (exists_cens_3) {
-prob_cens_3_log[1] = log(binormal_cdf((y_min[1] - mu[1]) / sigma[1],
-(y_min[2] - mu[2]) / sigma[2], rho));
-}
-
-// Pre-calculate some quantities that get used inside loops, for efficiency
-real rho_factor = 1 / sqrt(1 - rho^2);
-real scale_1_by_2 = rho * sigma[1] / sigma[2];
-real scale_2_by_1 = rho * sigma[2] / sigma[1];
-real rho_factor_scaled_1_by_2 = rho_factor * scale_1_by_2;
-real rho_factor_scaled_2_by_1 = rho_factor * scale_2_by_1;
-real term_in_Phi_arg_1 = rho_factor * (y_min[1] - mu[1] + scale_1_by_2 * mu[2]);
-real term_in_Phi_arg_2 = rho_factor * (y_min[2] - mu[2] + scale_2_by_1 * mu[1]);
+  
+  cov_matrix[2] Sigma;
+  Sigma[1, 1] = sigma[1]^2;
+  Sigma[2, 2] = sigma[2]^2;
+  Sigma[1, 2] = rho * sigma[1] * sigma[2];
+  Sigma[2, 1] = Sigma[1, 2];
+  
+  // prob_cens_3_log is the log probability that both values are cens.
+  // If it is too small, calculating its value can cause problems 
+  // even if it's not used! We therefore calculate it only if needed, by giving 
+  // it a 0 or 1 index if N_cens_3 is 0 or not respectively.
+  real prob_cens_3_log[exists_cens_3];
+  if (exists_cens_3) {
+    prob_cens_3_log[1] = log(binormal_cdf((y_min[1] - mu[1]) / sigma[1],
+    (y_min[2] - mu[2]) / sigma[2], rho));
+  }
+  
+  // Pre-calculate some quantities that get used inside loops, for efficiency
+  real rho_factor = 1 / sqrt(1 - rho^2);
+  real scale_1_by_2 = rho * sigma[1] / sigma[2];
+  real scale_2_by_1 = rho * sigma[2] / sigma[1];
+  real rho_factor_scaled_1_by_2 = rho_factor * scale_1_by_2;
+  real rho_factor_scaled_2_by_1 = rho_factor * scale_2_by_1;
+  real term_in_Phi_arg_1 = rho_factor * (y_min[1] - mu[1] + scale_1_by_2 * mu[2]);
+  real term_in_Phi_arg_2 = rho_factor * (y_min[2] - mu[2] + scale_2_by_1 * mu[1]);
 }
 
 // The model defining the probability density for each point in parameter space
 model {
-
-// Here for simplicity we do not include probabilities for the parameter
-// values, such that their priors are taken to be uniform with the previously
-// specified ranges.
-
-if (N_cens_0 > 0) {
-y_cens_0 ~ multi_normal(mu, Sigma);
-}
-
-if (N_cens_1 > 0) {
-for (i in 1:N_cens_1) {
-target += std_normal_lcdf(
-term_in_Phi_arg_1 - rho_factor_scaled_1_by_2 * y_cens_1[i]); 
-}
-y_cens_1 ~ normal(mu[2], sigma[2]);
-}
-
-if (N_cens_2 > 0) {
-for (i in 1:N_cens_2) {
-target += std_normal_lcdf(
-term_in_Phi_arg_2 - rho_factor_scaled_2_by_1 * y_cens_2[i]);
-}
-y_cens_2 ~ normal(mu[1], sigma[1]);
-}
-
-if (N_cens_3 > 0) {
-target += N_cens_3 * prob_cens_3_log[1];
-}
+  
+  // Here for simplicity we do not include probabilities for the parameter
+  // values, such that their priors are taken to be uniform with the previously
+  // specified ranges.
+  
+  if (N_cens_0 > 0) {
+    y_cens_0 ~ multi_normal(mu, Sigma);
+  }
+  
+  if (N_cens_1 > 0) {
+    for (i in 1:N_cens_1) {
+      target += std_normal_lcdf(
+        term_in_Phi_arg_1 - rho_factor_scaled_1_by_2 * y_cens_1[i]); 
+    }
+    y_cens_1 ~ normal(mu[2], sigma[2]);
+  }
+  
+  if (N_cens_2 > 0) {
+    for (i in 1:N_cens_2) {
+      target += std_normal_lcdf(
+        term_in_Phi_arg_2 - rho_factor_scaled_2_by_1 * y_cens_2[i]);
+    }
+    y_cens_2 ~ normal(mu[1], sigma[1]);
+  }
+  
+  if (N_cens_3 > 0) {
+    target += N_cens_3 * prob_cens_3_log[1];
+  }
 }
 ```
 
