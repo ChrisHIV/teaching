@@ -78,6 +78,8 @@ A [glossary](other_topics/Glossary_HIV.csv) of HIV terms (mainly at the molecula
 
 Here are some [bash commands](https://www.dropbox.com/s/65eyimir8aukxe6/CommonBashCommands.sh?dl=0)</a> (i.e. working with the terminal / command line) that I find helpful.
 
+A simple example of changing an R-code for loop into parallelised command-line executions (e.g. for sending to a computational cluster), with a short discussion of the benefits of parallelising only partially instead of fully, is [here](other_topics/parellelising_an_R_code_loop_for_a_cluster.md).
+
 A simple tip for handling responses to reviewers during peer review: as soon as you receive your reviews copy them all into a Google doc, put a differently formatted TODO between each separate point, then share this document with your coauthors. Replace the TODOs with your actual responses once you've addressed that comment. This is a handy way of tracking progress, noting things to remember, and discussing with coauthors how best to respond (use Google doc's comment feature and "@" people at specific places). Using this document even to read your your reviews for the first time (as opposed to reading the email they came in) means you can make a note of whatever first thoughts pop into your head. Example [here](https://docs.google.com/document/d/1lbm3UDjS3ne6WVl8h5sACTQMefunkV-VBx0Y_FqLGKc/edit?usp=sharing).
 
 Some explanations of things on twitter:
