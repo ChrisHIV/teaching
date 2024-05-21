@@ -100,5 +100,16 @@ If the time needed for the core task is comparable to or less than the overhead,
 You probably don't want to execute completely sequentially or you would have used your original for loop instead of reading this post.
 So what you want in such cases is in between completely serial processing and completely sequential processing: instead of assigning each value of `SLURM_ARRAY_TASK_ID` to _one_ task to process, assign it to _several_ tasks to process, which will collectively pay the price of the overhead only once together instead of once each.
 See the diagram below.
+
+![](partially_serial_partially_sequential_parallelisation_diagram.png)
+
 Note that if the number of elements in your array exceeds the number of computational nodes you can use at once, the situation doesn't automatically adjust from the left-most case below to the middle one, because the elements are run independently and so each one always pays the overhead price even when one runs after another.
 To share the overhead for multiple core tasks, you have to manually implement the middle case - executing multiple core tasks within each element of the array.
+
+What you're optimising here is difficult to define exactly, because you're balancing your use of computational resources with how long you're prepared to wait for it to finish.
+As a rule of thumb, if you know the overhead is much less than the core task, don't worry about this at all; otherwise, if you can use at most N computational nodes at once, divide up all your tasks into at most N separate jobs (an array of size N).
+That will ensure you avoid the extreme scenario where your core task is much faster than the overhead and you have many tasks.
+In that scenario, partially parallelising could reduce your use of compuational resources by orders of magnitudes _and_ make the total waiting smaller, by preventing the overhead price being repeatedly paid on the same computational node by different elements of the array run sequentially, due to a limited availability of nodes.
+That's shown in the diagram below with N = 2.
+
+![](partially_serial_partially_sequential_parallelisation_diagram_2.png)
