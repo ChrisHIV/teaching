@@ -117,9 +117,9 @@ To share the overhead for multiple core tasks, you have to manually implement th
 
 What you're optimising here is difficult to define exactly, because you're balancing your use of computational resources with how long you're prepared to wait for it to finish.
 As a rule of thumb, if you know the overhead is much less than the core task, don't worry about this at all; otherwise, if you can use at most N computational nodes at once, divide up all your tasks into at most N separate jobs (an array of size N).
-That will ensure you avoid the extreme scenario where your core task is much faster than the overhead and you have many tasks.
-In that scenario, partially parallelising could reduce your use of compuational resources by orders of magnitudes _and_ make the total waiting smaller, by preventing the overhead price being repeatedly paid on the same computational node by different elements of the array run sequentially, due to a limited availability of nodes.
-That's shown in the diagram below with N = 2.
+That will ensure you avoid the extreme scenario where your core task is much faster than the overhead, you have many tasks, and each one is dominated by the overhead. 
+In that scenario, partially parallelising could reduce your use of compuational resources by orders of magnitudes _and_ make the total waiting smaller.
+e.g. the diagram below where the number of separate jobs that can be run at once is 2, but all tasks are submitted independently.
 Note that this takes even longer than the original fully sequential version, and requires two computational nodes instead of one!
 
 ![](partially_serial_partially_sequential_parallelisation_diagram_2.png)
