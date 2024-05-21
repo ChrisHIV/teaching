@@ -120,5 +120,6 @@ As a rule of thumb, if you know the overhead is much less than the core task, do
 That will ensure you avoid the extreme scenario where your core task is much faster than the overhead and you have many tasks.
 In that scenario, partially parallelising could reduce your use of compuational resources by orders of magnitudes _and_ make the total waiting smaller, by preventing the overhead price being repeatedly paid on the same computational node by different elements of the array run sequentially, due to a limited availability of nodes.
 That's shown in the diagram below with N = 2.
+Note that this takes even longer than the original fully sequential version, and requires two computational nodes instead of one!
 
 ![](partially_serial_partially_sequential_parallelisation_diagram_2.png)
