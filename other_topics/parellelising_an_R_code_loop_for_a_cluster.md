@@ -92,6 +92,13 @@ Then the content of your job script will be executed 9 times with the variable n
 Each of those sub-jobs - 'elements of the array' - will run independently, either serially, sequentially, or a mix of the two according to how many separate computational nodes you can use at once on your cluster.
 Thus if your job script contained `process_one_parameter.R parameters.csv $SLURM_ARRAY_TASK_ID`, each element of the array would process one set of parameters.
 
+Finally, if after running that script to process all your parameter sets you have the results in a set of output files whose paths are like `~/processing_many_parameters_example_output_*`, you can read all of them into a single dataframe like this:
+```r
+files_csv <- Sys.glob("~/processing_many_parameters_example_output_*")
+df <- map(files_csv, ~ read_csv(.x)) %>% 
+  bind_rows()
+```
+
 ### _Partially_ parallelising array jobs
 
 There is always some computational overhead (extra time needed outside of the core task) for each element of the array. 
