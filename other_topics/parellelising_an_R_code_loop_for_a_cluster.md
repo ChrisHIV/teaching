@@ -52,8 +52,10 @@ parser$add_argument("which_line_to_process", type="integer",
                     "should process. Specify as a positive integer"))
 args <- parser$parse_args()
 
+# Read the parameter file
 df_params <- read_csv(args$parameter_file, show_col_types = FALSE)
 
+# Extract the desired line from the parameter file, defining one set of parameters
 stopifnot(args$which_line_to_process > 0)
 stopifnot(args$which_line_to_process <= nrow(df_params))
 params <- df_params[args$which_line_to_process, ]
@@ -67,17 +69,17 @@ file_output <- paste0("~/processing_many_parameters_example_output_",
                       ".csv")
 stopifnot(!file.exists(file_output))
 
+# Process the one set of parameters to be considered here
 process_parameters <- function(list_of_params) {
   list(sum=sum(list_of_params), product=prod(list_of_params))
 }
-
 result <- process_parameters(params)
 
+# Write the results and the input to an output file
 df_input_and_output <- bind_cols(as_tibble(params), as_tibble(result))
-
 write_csv(df_input_and_output, file_output)
 ```
-Assuming that code is stored in a file named `process_one_parameter.R` and the dataframe of parameters was saved to a file named `parameters.csv`, you can process the first set of parameters by running from the command line
+Assuming that code is stored in a file named `process_one_parameter.R`, that this file is in the same directory as your current directory in the command line, that this file has been exectuble e.g. by running `chmod u+x process_one_parameter.R`, and the that dataframe of parameters was saved to a file named `parameters.csv`, you can process the first set of parameters by running from the command line
 ```shell
 process_one_parameter.R parameters.csv 1
 ```
