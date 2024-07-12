@@ -53,6 +53,7 @@ Code for the example is the hierarchical model in the Stan section below.
 ### SARS-CoV-2 / COVID-19:
 * Slides [here](other_topics/Wymant_DigitalContactTracing_2023-03-29_LSHTM_public.pdf) and a recorded webinar [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883) about two of our group's papers on digital contact tracing (our initial [proposal](https://doi.org/10.1126/science.abb6936) and our [evaluation](https://doi.org/10.1038/s41586-021-03606-z)).
 * A recorded webinar [here](https://www.youtube.com/watch?v=wfBiF7rmr7E) about how transmission risk depends on the interplay between proximity and duration of exposure. I wrote a short summary [here](https://045.medsci.ox.ac.uk/risk_measurement) and a thread in our group twitter account [here](https://twitter.com/ChristoPhraser/status/1737513767733272914).
+* A short summary of our paper on high-resolution real-time epidemic monitoring via digital contact tracing systems is [here](https://045.medsci.ox.ac.uk/monitoring/). I wrote a thread in our group twitter account [here](https://x.com/ChristoPhraser/status/1811725269788430543).
 * A [blog post](https://045.medsci.ox.ac.uk/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of index cases.
 
 ### Coding in R:  
