@@ -5,6 +5,8 @@ output:
 ---
 # Plotting survival curves for Kaplain-Meier estimators and Cox proportional hazards 
 
+This code lives [here](https://github.com/ChrisHIV/teaching).
+
 Let's simulate some survival data, with a fixed hazard for censoring (i.e. the time to censoring is exponentially distributed with mean given by 1 / that hazard), and different groups defined based on two categorical variables, which have multiplicative effect on the hazard for death.
 We observe deaths only if they occur before the censoring time.
 ```{r message = FALSE}
@@ -116,7 +118,7 @@ library(gridExtra)
 grid.arrange(plot1, plot2, ncol = 2)
 ```
 
-As usual, model-based estimators perform better than non-parametric methods when the model assumptions are satisfied. In this case, the assumption of proportionality of hazards between groups means that we get slightly narrower confidence intervals for groups when they have few individuals remaining but the dataset as a whole has many individuals (in other groups with lower death hazard), and that we can predict survival probability in a group after the greatest time observed in that group provided other groups still have observations.
+As usual, model-based estimators perform better than non-parametric methods when the model assumptions are satisfied. In this case, the assumption of proportionality of hazards between groups means that (a) we get narrower confidence intervals especially for groups when they have few individuals remaining but the dataset as a whole has many individuals (in other groups with lower death hazard), and (b) we can predict survival probability in a group after the greatest time observed in that group provided other groups still have observations (when the Kaplan-Meier estimator gives no result at all).
 
 The Cox model would also allow us to plot survival curves for groups for which we observed no individuals, based on our assumptions.
 e.g. if we observed no old males, but we did observe the other three groups in the example above, the assumption of independent multiplicative effects on the hazard of age and sex would allow us to predict survival for old males.
