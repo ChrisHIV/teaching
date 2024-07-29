@@ -1,0 +1,125 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+# Plotting survival curves for Kaplain-Meier estimators and Cox proportional hazards 
+
+Let's simulate some survival data, with a fixed hazard for censoring (i.e. the time to censoring is exponentially distributed with mean given by 1 / that hazard), and different groups defined based on two categorical variables, which have multiplicative effect on the hazard for death.
+We observe deaths only if they occur before the censoring time.
+```{r message = FALSE}
+library(tidyverse)
+library(broom)
+library(survival)
+library(survminer)
+theme_set(theme_classic())
+
+set.seed(1234)
+
+hazard_censoring <- 2
+
+hazard_death_baseline <- 1
+hazard_death_multipler_men <- 2
+hazard_death_multipler_old <- 4
+
+df <- expand_grid(age = c("young", "old"),
+                  sex = c("male", "female")) %>%
+  mutate(age = factor(age) %>% relevel(ref = "young"),
+         sex = factor(sex) %>% relevel(ref = "female")) %>%
+  slice(rep(1:n(), each = 100)) %>%
+  mutate(hazard_death = hazard_death_baseline *
+           if_else(sex == "male", hazard_death_multipler_men, 1) *
+           if_else(age == "old",  hazard_death_multipler_old, 1),
+         time_death = rexp(n = nrow(.), rate = hazard_death),
+         time_censoring = rexp(n = nrow(.), rate = hazard_censoring),
+         death_at_observation = time_death < time_censoring,
+         time_observation = if_else(death_at_observation, time_death, time_censoring))
+```
+
+First let's do the easy thing: calculate the Kaplan-Meier estimators for survival _independently for each group_
+
+```{r message = FALSE}
+sur_model_km <- survfit(Surv(time = time_observation,
+                             event = death_at_observation) ~ age + sex,
+                        data = df)
+```
+
+Now plot those estimators for each group.
+(NB here I introduce a bit of faff to manually associate colours to groups, purely so that I can use the same correspondence between colours and groups later, for ease of comparison of two different graphs.)
+
+```{r message = FALSE, fig.width=8, fig.height=6}
+colours_for_groups <- c("red", "green", "blue", "black") 
+names_for_groups <- c("age=young, sex=female", 
+  "age=young, sex=male  ",
+  "age=old, sex=female",
+  "age=old, sex=male  ")
+plot1 <- ggsurvplot(sur_model_km, conf.int = TRUE)$plot +
+  coord_cartesian(expand = F, ylim = c(0, 1)) +
+  scale_color_manual(values = colours_for_groups,
+                     breaks = names_for_groups) +
+  scale_fill_manual(values = colours_for_groups,
+                    breaks = names_for_groups) +
+  labs(col = "", fill = "",
+       title = "Kaplan-Meier")
+plot1
+```
+
+Next fit a Cox proportional hazards model.
+Compare the central estimates & confidence intervals for the hazard multipliers and compare to the true underlying values we chose at the start.
+
+```{r}
+sur_model_cox <- coxph(data = df,
+                       Surv(time = time_observation, event = death_at_observation) ~ age + sex)
+summary(sur_model_cox)
+```
+
+We plot predicted survival in each group based on the Cox model as follows.
+Note that unlike the Kaplain-Meier method we are not calculating estimates for each group independently, but using the values estimated from the whole dataset (based on the model assumption of proportional hazards).
+
+```{r, fig.width=8, fig.height=6}
+df_cox_groups <- df %>%
+  select(age, sex) %>%
+  distinct() %>%
+  mutate(group = as.character(row_number()))
+
+df_sur_plot <- survfit(sur_model_cox, newdata = df_cox_groups) %>%
+  tidy() %>% 
+  pivot_longer(-c("time", "n.risk", "n.event", "n.censor")) %>%
+  tidyr::extract(name, 
+                 into = c("name", "group"), 
+                 regex = "(.*)\\.([0-9]+)$") %>%
+  left_join(df_cox_groups, 'group') %>%
+  pivot_wider()
+
+plot2 <- ggplot(df_sur_plot %>%
+         mutate(group_name = paste0("age=", age, ", sex=", sex,
+                                    if_else(sex == "male", "  ", ""))),
+       aes(x = time, y = estimate, ymin = conf.low, ymax = conf.high,
+           col = group_name, fill = group_name)) +
+  geom_line(linewidth = 1) +
+  geom_ribbon(alpha = 0.5, col = NA) +
+  coord_cartesian(expand = F, ylim = c(0, 1)) +
+  labs(y = "Survival probability",
+       col = "", fill = "",
+       title = "Cox proportional hazards model") +
+  scale_color_manual(values = colours_for_groups,
+                     breaks = names_for_groups) +
+  scale_fill_manual(values = colours_for_groups,
+                    breaks = names_for_groups) +
+  theme(legend.position = c(0.85, 0.8)) 
+plot2
+```
+
+Here are the plots side by side for easier comparison
+```{r, fig.width=16, fig.height=6, message = FALSE}
+library(gridExtra)
+grid.arrange(plot1, plot2, ncol = 2)
+```
+
+As usual, model-based estimators perform better than non-parametric methods when the model assumptions are satisfied. In this case, the assumption of proportionality of hazards between groups means that we get slightly narrower confidence intervals for groups when they have few individuals remaining but the dataset as a whole has many individuals (in other groups with lower death hazard), and that we can predict survival probability in a group after the greatest time observed in that group provided other groups still have observations.
+
+The Cox model would also allow us to plot survival curves for groups for which we observed no individuals, based on our assumptions.
+e.g. if we observed no old males, but we did observe the other three groups in the example above, the assumption of independent multiplicative effects on the hazard of age and sex would allow us to predict survival for old males.
+
+Similarly, the Cox model would allow us to plot survival curves if we used a continuous predictor variable instead of only categorical ones.
+Where we defined `df_cox_groups` above to be the `newdata` argument for `survfit()`, we could pick any desired value of that predictor (even if no observations had exactly that value, which they never would if it is continuous).
