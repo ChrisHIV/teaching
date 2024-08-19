@@ -117,9 +117,13 @@ transformed parameters {
 
 model {
   
-  // Priors not implicitly defined by the ranges stated at parameter declaration 
-  // should be defined here. 
-  
+  // Priors should be defined here. 
+  // Uniform priors whose boundaries are fixed do not need to be stated becasuse
+  // they are implicitly understood.
+  // Uniform priors whose boundaries depend on other parameters, like mu_noise 
+  // here, must be stated explicitly, as discussed at 
+  // https://htmlpreview.github.io/?https://github.com/ChrisHIV/teaching/blob/main/other_topics/Stan_example_dependent_uniform_priors.html
+  mu_noise ~ uniform(prior_mu_noise_min, fmin(prior_mu_noise_max, mu_signal));
 
   // Calculate the likelihood if we're sampling from the posterior.
   // The hypotheses of signal and noise are mutually exclusive, so we should add
