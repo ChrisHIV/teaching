@@ -1,0 +1,113 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Specifying uniform/range priors in Stan when the boundary for one parameter depends on another
+
+This code lives [here](https://github.com/ChrisHIV/teaching).
+
+
+Consider the following Stan code (stored as a string in R) which simply samples variables $x$ and $y$ from their priors
+
+```{r message = FALSE, warning = FALSE}
+model_1 <- "
+parameters {
+  real<lower = 0, upper = 1> x;
+  real<lower = 0, upper = x> y;
+}
+model {}
+"
+```
+
+My intention here is that $x$ should have a uniform distribution from 0 to 1, and $y$ given $x$ should have a uniform distribution from 0 to $x$.
+However this is not how Stan will interpret this code, as we can see by sampling from this model:
+
+
+```{r message = FALSE, warning = FALSE, results = FALSE}
+library(tidyverse)
+library(rstan)
+options(mc.cores = parallel::detectCores()) # parallelise
+rstan_options(auto_write = TRUE)            # avoid re-compiling stan code
+theme_set(theme_classic())
+
+model_compiled <- stan_model(model_code = model_1)
+
+fit <- sampling(model_compiled,
+                iter = 100000,
+                chains = 1)
+```
+
+Gather all the samples from the posterior into a long dataframe and plot:
+
+```{r message = FALSE, warning = FALSE}
+df_fit <- fit %>%
+  as.data.frame() %>%
+  as_tibble() %>%
+  mutate(sample = row_number()) %>%
+  pivot_longer(-sample, names_to = "parameter")
+
+ggplot(df_fit %>% filter(parameter != "lp__")) +
+  geom_histogram(aes(value, ..density..)) +
+  facet_wrap(~parameter, scales = "free", nrow = 1) +
+  labs(x = "parameter value",
+       y = "posterior density") +
+  coord_cartesian(expand = F) 
+```
+
+$x$ does not have a uniform distribution as intended.
+Also, the unconditional distribution $P(y)$ is not what was intended (see the note at the bottom).
+The easiest way to get what we intended is to explicitly specify the uniform prior desired for $y$ given $x$ in the model block, which we don't normally need to do when the boundaries of the uniform distribution are constant, because it's implicit.
+
+```{r message = FALSE, warning = FALSE, results = FALSE}
+model_2 <- "
+parameters {
+  real<lower = 0, upper = 1> x;
+  real<lower = 0, upper = x> y;
+}
+model {
+  y ~ uniform(0, x);
+}
+"
+
+model_compiled <- stan_model(model_code = model_2)
+
+fit <- sampling(model_compiled,
+                iter = 100000,
+                chains = 1)
+
+df_fit <- fit %>%
+  as.data.frame() %>%
+  as_tibble() %>%
+  mutate(sample = row_number()) %>%
+  pivot_longer(-sample, names_to = "parameter")
+
+ggplot(df_fit %>% filter(parameter != "lp__")) +
+  geom_histogram(aes(value, ..density..)) +
+  facet_wrap(~parameter, scales = "free", nrow = 1) +
+  labs(x = "parameter value",
+       y = "posterior density") +
+  coord_cartesian(expand = F) 
+```
+
+Now we have what was intended.  
+Equivalently we could have coded that model like this:
+
+```{r message = FALSE, warning = FALSE}
+model_3 <- "
+parameters {
+  real<lower = 0, upper = 1> x;
+  real<lower = 0, upper = 1> y_unscaled;
+}
+transformed parameters {
+  real y = y_unscaled * x;
+}
+model {}
+"
+```
+
+**Note on the unconditional $P(y)$ distribution**: with the model above, i.e. $x\sim \text{Uniform}(0,1)$ and $y|x\sim \text{Uniform}(0,x)$, the unconditional distribution for y is $P(y) = \int_{x=0}^1 P(y|x)P(x)dx = -\log_ey$, which diverges as $y \rightarrow 0$.
+However, its definite integrals are finite, $\int_{y=0}^1 P(y)dy = 1$, so this is a valid probability density function.
+The divergence of the density function is because we chose the same lower limit for $y$ as for $x$.
+If we were to choose a lower limit for y that is less than the lower limit for $x$, $P(y)$ would not diverge.
