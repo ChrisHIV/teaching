@@ -113,13 +113,14 @@ The latter is certainly drier but easier to parse.
 Recall that coercing data into [tidy format](https://vita.had.co.nz/papers/tidy-data.pdf) (rectangular, one row per observation, one column per aspect of the observation i.e. per variable) makes the data clearer as well as easier to operate on (though obviously some data is naturally of a different structure, such as trees).
 In the same way, coercing two or more similar sentences (or clauses within a sentence) into a common structure helps to clarify both their similarities and their differences for lower mental effort.
 
-**Past tense is typically best for Methods (what you _did_) and Results (what you _found_).**
-Statements in present or future tense (which hypotheses you think _is_ true, predictions) are likely to fit best in Discussion.
+**Past tense is typically best throughout Methods (what you _did_) and Results (what you _found_).**
+Present and future tense is best reserved for Introduction or Discussion.
 Paraphrasing an explanation I was given: mathematicians and physicists favour the present tense for results because there is a feel of timelessness to the findings (x _equals_ y and always will).
-However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.  
+However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.
+Introduction: x and y have been studied, but the relationship *is* unclear.
 Methods: We *regressed* y against x.  
 Results: We *found* a correlation.  
-Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absence of confounders.  
+Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absence of confounders. We *think* that an intervention to reduce x *will* reduce y.  
 
 **Use the active tense for what you did: *We did X*.**
 Recommendations to use the passive tense (*X was done*) to sound more neutral are so last century.
