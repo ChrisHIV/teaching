@@ -84,8 +84,7 @@ The Introduction section should have a roughly funnel structure from broad to sp
 
 ### Other considerations
 
-CLARITY CLARITY CLARITY.
-Write to be understood as clearly as possible.
+**Write to be understood as clearly as possible.**
 Do not use your writing style to try to make the work sound more impressive.
 If impressing people is your aim, have something impressive to say (in which case being as clear as possible helps your aim); if you don't, using an impressive-sounding style makes you a salesperson for a crappy car - it's not a good look.
 _Use_ methods and _analyse_ data: don't leverage them or harness them.
@@ -93,18 +92,19 @@ _A methodology_ is a class of methods - are you sure that's what you mean rather
 A single method can still have aspects of it that can be adjusted in different applications; this doesn't mean we should promote it to being a class of methods.
 _Methodologies_ can almost always be replaced by _methods_.
 
-Writing the Methods section is the easiest thing to do: it’s just describing the relevant parts of what you did in a way that others can understand.
-I’ve heard it recommended as a starting point for that reason - start with something easy to get your foot into in the writing process.
+**Think about what you will write at a high-level - the big picture - before writing details.**
+I’ve heard a recommendation to start by writing the methods section first, because writing what you did and how is relatively easy, and this helps get your foot into in the writing process.
 However, grappling with the construction of a narrative for your work may make you realise that part of what you’ve done is unnecessary, or that something you haven’t done is necessary, or that it would be better to split into several papers.
-So I think it’s better to work on the big picture before diving into easy details.
+Such realisations or decisions might mean you'll then want to describe the details differently.
 
-What I look for in every presentation or paper is what should people do differently as a result of what you’ve found. For a methods paper, it’s normally to use that method instead of the best previous alternative for this particular application. For applied results papers, it might be that doctors/society should consider using more X to get more of desirable outcome Y, or at least that further study should establish your X-Y link more concretely and explore feasibility, cost-effectiveness etc. For theoretical results papers, it might be that other researchers should investigate your new idea because it has the potential to help us understand something which is manifestly important. For a convincing negative result - enough data for statistical power, appropriate kind of data & method for accuracy and generalisability - the implication might be that people should stop pursuing an avenue previously thought to be promising. There are lots of possibilities for how your finding might influence some people, but if you struggle to think concretely of who and how, it’s worth having a frank conversation with yourself about whether your paper was a good use of your time. No use crying over spilt milk of course, but one can strive to not keep spilling milk forever. (This was a big factor in why I stopped working on theoretical particle physics.)
+**Think about what people should do differently as a result of what you’ve found.**
+I look for this in every presentation or paper. For a methods paper, it’s normally to use that method instead of the best previous alternative for this particular application. For applied results papers, it might be that doctors/society should consider using more X to get more of desirable outcome Y, or at least that further study should establish your X-Y link more concretely and explore feasibility, cost-effectiveness etc. For theoretical results papers, it might be that other researchers should investigate your new idea because it has the potential to help us understand something which is manifestly important. For a convincing negative result - enough data for statistical power, appropriate kind of data & method for accuracy and generalisability - the implication might be that people should stop pursuing an avenue previously thought to be promising. There are lots of possibilities for how your finding might influence some people. If you struggle to think concretely of who and how, it’s worth having a frank conversation with yourself about whether your paper was a good use of your time. There is no use in crying over spilt milk of course, but one can strive to not continue spilling milk forever. (This was a big factor in why I stopped working on theoretical particle physics.)
 
-Clearly establish and then stick to a one-to-one mapping between [things] and [the names we use to refer to those things].
-i.e. avoid using different terms to refer to the same thing, and avoid using the same term to mean different things.
+**Clearly establish and then stick to a one-to-one mapping between [things] and [the names we use to refer to those things].**
 A one-to-one map makes it as clear as possible for the reader and frees up their concentration for more important things.
-Expanding on this, repetition - in the sense of repeating your decision _how_ to write a particular thing, not repeating the same point - helps the reader to see the connections between different places in your writing.
-This goes for structure as well as choice of names (see [Strunk and White](http://www.jlakes.org/ch/web/The-elements-of-style.pdf) rule 19: Express coordinate ideas in similar form).
+Using different terms to refer to the same thing may leave the reader thinking they're different; using the same term to mean different things may leave the reader thinking they're the same.
+
+**Express coordinate ideas in similar form** - rule 19 of [Strunk and White](http://www.jlakes.org/ch/web/The-elements-of-style.pdf). The previous point was about the benefit of repeating names; repeating your decision for how to write similar sentences helps the reader to see both the similarities and the differences.
 Compare:  
 _Authors A used method a and found result X [A]. Result Y was obtained [b] leveraging methodology b. Employing c, C et al [C] demonstrated Z._  
 with something like  
@@ -113,18 +113,22 @@ The latter is certainly drier but easier to parse.
 Recall that coercing data into [tidy format](https://vita.had.co.nz/papers/tidy-data.pdf) (rectangular, one row per observation, one column per aspect of the observation i.e. per variable) makes the data clearer as well as easier to operate on (though obviously some data is naturally of a different structure, such as trees).
 In the same way, coercing two or more similar sentences (or clauses within a sentence) into a common structure helps to clarify both their similarities and their differences for lower mental effort.
 
-Tenses: I like past tense for Methods and Results, present (or future) tense for Discussion.
-Paraphrasing an explanation I was given: mathematicians and physicists favour the present tense for results because there is a feel of timelessness to the findings.
+**Past tense is typically best for Methods (what you _did_) and Results (what you _found_).**
+Statements in present or future tense (which hypotheses you think _is_ true, predictions) are likely to fit best in Discussion.
+Paraphrasing an explanation I was given: mathematicians and physicists favour the present tense for results because there is a feel of timelessness to the findings (x _equals_ y and always will).
 However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.  
 Methods: We *regressed* y against x.  
 Results: We *found* a correlation.  
 Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absence of confounders.  
-And use the active tense for what you did (*We did X*); recommendations to use the passive tense (*X was done*) to sound more neutral are so last century.
+
+**Use the active tense for what you did: (*We did X*).**
+Recommendations to use the passive tense (*X was done*) to sound more neutral are so last century.
 I read somewhere that the active tense reminds the reader that the steps taken were made by fallible humans, not by some idealised notion of the scientific process.
 I agree.
 There can also be genuine ambiguity about who did the thing that was done if you're also talking about previous work.
+The passive tense is fine for describing previous work that you cite -- the citation makes clear who did it (X has been studied [1]) without burdening the reader with many names that are irrelevant for your argument (Smith et al. studied X [1]).
 
-Report results to the appropriate level of precision.
+**Report results to the appropriate level of precision.**
 For numerical values, that's a choice for the number of significant figures.
 (If you're unfamiliar with the concept, you should google it, though a basic example may suffice: 36, 36000, 3.6 x 10^5, and 0.00036 are all quoted to 2 significant figures.)
 Two factors are relevant: the precision with which you know the value, and the maximum precision that any of your readers might care about (remembering that the most interested readers will want to dive into the underlying data and not just copy-paste your derived values).
@@ -132,20 +136,51 @@ You should use the smaller of these two.
 A first example: if my friend asks me when I'm going on holiday, I would not reply 09:39 on August 3rd even though I know my departure time to that level of precision: that would be more precision than they care about.
 A second example: if I observe 100 successes out of 300 trials, it would be silly to report the success probability as 0.33333333 not only because no-one cares about the later digits but because I am extremely uncertain what their values should be.
 For simplicity let us say I report Frequentist confidence intervals as a quantification of uncertainty (a common [abuse](https://doi.org/10.3758/s13423-015-0947-8) of the concept of uncertainty), obtaining the interval 0.2808136 - 0.3901981 from running `prop.test(100, 300)` in R.
-This range is adequately summarised as 0.28 - 0.39, because using a third significant figure would be negligibly small compared to the size of the range itself.
+This range is adequately summarised as 0.28 - 0.39, because including a third significant figure would be a negligibly small change compared to the size of the range itself.
 Then for consistency we should quote our central estimate to two significant figures too: we report our estimate of the success probability as 0.33 (95% CI: 0.28 - 0.39).
 If reporting p-values (read elsewhere, e.g. [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing), for issues with that), one significant figure is usually best, occasionally two, never more.
 No-one's conclusion will be different if you report p = 0.0589 instead of p = 0.06.
 An exception to these considerations is tables of numerical values: where these are automatically generated and contain many values, it would take a lot of work (and perhaps look a little untidy) to adjust the number of significant figures for every cell in the table independently.
 In this case it is forgivable for the author to make one choice of the most appropriate number of significant figures (or decimal places) and apply this to the whole table (or to each row or to each column, where these have values with very different sizes).
 
-Finally, a point of grammar which comes up all the time in technical writing: hyphenation of modifiers.
+**When explaining why what you've done is valuable, be specific.**
+Phrases like "our work sheds light on", "our work has implications for" leave unsaid what you actually learned or what the implications are.
+If you don't tell the reader concretely what the benefits of your work are, they may be left suspcicious that there are none.
+A related point is discussed in the book Freakonomics: adverts for expensive houses tend to use specific words (titanium) whereas adverts for cheap houses tend to use vague words (lovely).
+
+### Commonly needed points of grammar
+
+**Hyphenate modifiers correctly.**
+This is just a point of grammar, but it comes up all the time in technical writing.
 When we write A B C where C is a noun and A and B are modifiers, the rule is to hyphenate A-B if and only if A and B work together to form a single composite modifier (the most common example being that A modifies B), not hyphenating if and only if A and B separately modify C.
-e.g. a strange smelling cheese is a cheese that is strange and possesses the ability to smell, whereas a strange-smelling cheese is a cheese that smells strange.
+e.g. a strange smelling cheese is a cheese that is strange and which has the ability (or purpose) of smelling.
+A strange-smelling cheese is a cheese that smells strange.
 I like the recommendation of the Chicago Manual of Style to break this rule when A is an adverb that ends in "ly", because ending in "ly" means it's obviously an adverb and adverbs only modify adjectives or verbs, never nouns, so there's no ambiguity about what A is modifying.
 e.g. a "significantly improved method" is just as clear and more stylish than a "significantly-improved method".
 Hyphenation is for when the modifiers precede the noun, not when they follow it.
-e.g. that cheese is strange smelling, not strange-smelling.
+e.g. the aforementioned cheese is strange smelling, not strange-smelling.
+Excessive hyphenation can be avoided by moving modfiers to after the noun.
+For example, in our research group we might say that our data was obtained using veSEQ-HIV [cite]: a whole-genome deep-sequencing Illumina-platform high-throughput quantitative method. Alternatively we could say we did whole-genome deep sequencing on the Illumina platform with veSEQ-HIV -- a quantitative high-throughput method using bait capture.
+
+Don’t put a comma between a verb and its subject, even if the subject is a long composite noun, unless you have two commas with parenthetical functioning. This is correct: _the approach used to solve this problem was tested..._ So is this: _this approach, used to solve this problem, was tested..._ This is not: _the approach used to solve this problem, was tested..._
+
+For describing what you did and what you found, use the simple past tense (e.g. we did this).
+The present perfect tense (e.g. we have done this) communicates whether we are currently in state of this thing ever having been done previously, yes or no.
+Examples where this makes sense: _It has not been shown whether X affects Y_ (Introduction); _We have shown that X affects Y_ (Discussion, implying a definiteness to the result).
+The present perfect tense does not make sense for describing what you did and what you found, which is a serious of steps in order.
+
+### Placeholders for points I hope to explain properly later
+
+Ask your coauthors if anything should be cut: less is sometimes more, and the author sometimes feels unduly attached to things they've written ('kill your darlings' may be hard advice to follow).
+Also ask them if the narrative would make more sense if points are reordered: they may be able to see more clearly than you, having not been as closely involved in the process.
+
+Avoid making statements that are true trivially, e.g. true by definition (1=1) or just very obvious. 
+
+Describe materials and methods in chronological order, following the data on a journey from its original setting to how it was obtained and processed from raw to simplified/abstracted. For example in infectious disease epidemilogy we might start with the affected population (describe the epidemic), the cohort (with its inclusion criteria / sampling process), how we obtained repeat visits from each person, how you obtained biological samples from each visit, what experiment we ran on each sample, how we simplified each experimental result from complex data into simple data, what inclusion criteria / imputation you applied to the simple data, and finally what steps we ran on simple data for the main analysis.
+
+Only define acronyms/abbreviations for things you use many times, to avoid putting unnecessary strain on the reader’s memory.
+
+If you need to mention something before you can explain it properly, be defensive against readers misinterpreting it and only catching their error later. At a minimum something like “(see later clarification)” can signpost the reader that they might be better off waiting before thinking about this much. In papers where the Results section comes before Methods, you don’t need to put “(see Methods)” after every mention of something methodological - it’s implicit.
 
 $^\dagger$ I suspect that focussing too narrowly on 'testing' a hypothesis probably comes from a frequentist statistics tradition of rejecting or failing to reject a null hypothesis.
 As Andrew Gelman pithily [summarises](https://statmodeling.stat.columbia.edu/2018/06/17/bayesians-are-frequentists/): "I do model checking to test the model that I am fitting, usually not to test a straw-man null hypothesis.
