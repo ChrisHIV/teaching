@@ -172,6 +172,8 @@ The present perfect tense does not make sense for describing what you did and wh
 
 ### Placeholders for points I hope to explain properly later
 
+Aim to write shorter sentences, per Verlyn Klinkenborg's _Several Short Sentences About Writing_: they're harder to get wrong and easier to fix.
+
 A little bit of present tense may sometimes be helpful in the Results section.
 If the meaning of something you've found is not clear, a short statement of what this suggests about the world (present tense) may benefit readers. The full discussion about how your findings can be interpreted is best placed in Discussion. 
 
