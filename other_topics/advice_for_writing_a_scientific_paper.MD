@@ -172,6 +172,9 @@ The present perfect tense does not make sense for describing what you did and wh
 
 ### Placeholders for points I hope to explain properly later
 
+A little bit of present tense may sometimes be helpful in the Results section.
+If the meaning of something you've found is not clear, a short statement of what this suggests about the world (present tense) may benefit readers. The full discussion about how your findings can be interpreted is best placed in Discussion. 
+
 Ask your coauthors if anything should be cut: less is sometimes more, and the author sometimes feels unduly attached to things they've written ('kill your darlings' may be hard advice to follow).
 Also ask them if the narrative would make more sense if points are reordered: they may be able to see more clearly than you, having not been as closely involved in the process.
 
