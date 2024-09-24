@@ -168,7 +168,7 @@ For describing what you did and what you found, use the simple past tense (e.g. 
 The present perfect tense (e.g. we have done this) communicates whether we are currently in state of this thing ever having been done previously, yes or no.
 Examples where this makes sense: _It has not been shown whether X affects Y_ in Introduction, and _We have shown that X affects Y_ in Discussion.
 The latter is virtually the same as _We showed that_, but conveys a sense of definitiveness: we have shown this, it has now been shown, so people need not wonder about this any more.
-The present perfect tense does not make sense for describing what you did and what you found, which is a serious of steps in order.
+The present perfect tense does not make sense for describing what you did and what you found, which is best understood as a series of steps in order.
 
 ### Placeholders for points I hope to explain properly later
 
