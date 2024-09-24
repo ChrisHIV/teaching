@@ -145,7 +145,7 @@ In this case it is forgivable for the author to make one choice of the most appr
 
 **When explaining why what you've done is valuable, be specific.**
 Phrases like "our work sheds light on", "our work has implications for" leave unsaid what you actually learned or what the implications are.
-If you don't tell the reader concretely what the benefits of your work are, they may be left suspcicious that there are none.
+If you don't tell the reader concretely what the benefits of your work are, they may be left suspicious that there are none.
 A related point is discussed in the book Freakonomics: adverts for expensive houses tend to use specific words (titanium) whereas adverts for cheap houses tend to use vague words (lovely).
 
 ### Commonly needed points of grammar
