@@ -151,7 +151,6 @@ A related point is discussed in the book Freakonomics: adverts for expensive hou
 ### Commonly needed points of grammar
 
 **Hyphenate modifiers correctly.**
-This is just a point of grammar, but it comes up all the time in technical writing.
 When we write A B C where C is a noun and A and B are modifiers, the rule is to hyphenate A-B if and only if A and B work together to form a single composite modifier (the most common example being that A modifies B), not hyphenating if and only if A and B separately modify C.
 e.g. a strange smelling cheese is a cheese that is strange and which has the ability (or purpose) of smelling.
 A strange-smelling cheese is a cheese that smells strange.
