@@ -121,11 +121,11 @@ Methods: We *regressed* y against x.
 Results: We *found* a correlation.  
 Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absence of confounders.  
 
-**Use the active tense for what you did: (*We did X*).**
+**Use the active tense for what you did: *We did X*.**
 Recommendations to use the passive tense (*X was done*) to sound more neutral are so last century.
 I read somewhere that the active tense reminds the reader that the steps taken were made by fallible humans, not by some idealised notion of the scientific process.
 I agree.
-There can also be genuine ambiguity about who did the thing that was done if you're also talking about previous work.
+There can also be genuine ambiguity about who did the thing that was done if you're also talking about previous work, and it's important to distinguish work done here from everything that came before.
 The passive tense is fine for describing previous work that you cite -- the citation makes clear who did it (X has been studied [1]) without burdening the reader with many names that are irrelevant for your argument (Smith et al. studied X [1]).
 
 **Report results to the appropriate level of precision.**
