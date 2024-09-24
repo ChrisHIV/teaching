@@ -158,8 +158,8 @@ I like the recommendation of the Chicago Manual of Style to break this rule when
 e.g. a "significantly improved method" is just as clear and more stylish than a "significantly-improved method".
 Hyphenation is for when the modifiers precede the noun, not when they follow it.
 e.g. the aforementioned cheese is strange smelling, not strange-smelling.
-Excessive hyphenation can be avoided by moving modfiers to after the noun.
-For example, in our research group we might say that our data was obtained using veSEQ-HIV [cite]: a whole-genome deep-sequencing Illumina-platform high-throughput quantitative method. Alternatively we could say we did whole-genome deep sequencing on the Illumina platform with veSEQ-HIV -- a quantitative high-throughput method using bait capture.
+Excessive hyphenation can be avoided by moving modfiers to after the noun or other restructuring of the sentence.
+For example, in our research group we might say that our data was obtained using [veSEQ-HIV](https://pubmed.ncbi.nlm.nih.gov/32669382/): a whole-genome deep-sequencing Illumina-platform high-throughput quantitative method. Alternatively we could say we did whole-genome deep sequencing on the Illumina platform with veSEQ-HIV -- a quantitative high-throughput method using bait capture.
 
 Don’t put a comma between a verb and its subject, even if the subject is a long composite noun, unless you have two commas with parenthetical functioning. This is correct: _the approach used to solve this problem was tested..._ So is this: _this approach, used to solve this problem, was tested..._ This is not: _the approach used to solve this problem, was tested..._
 
