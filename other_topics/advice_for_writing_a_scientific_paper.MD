@@ -116,8 +116,8 @@ In the same way, coercing two or more similar sentences (or clauses within a sen
 **Past tense is typically best throughout Methods (what you _did_) and Results (what you _found_).**
 Present and future tense is best reserved for Introduction or Discussion.
 Paraphrasing an explanation I was given: mathematicians and physicists favour the present tense for results because there is a feel of timelessness to the findings (x _equals_ y and always will).
-However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.
-Introduction: x and y have been studied, but the relationship *is* unclear.
+However, in biomedical research, different findings are fairly often in some tension with each other; a single finding is just a higher level of a single observation within a study.  
+Introduction: x and y have been studied, but the relationship *is* unclear.  
 Methods: We *regressed* y against x.  
 Results: We *found* a correlation.  
 Discussion: We *interpret* this as evidence that x *causes* y, given the assumed absence of confounders. We *think* that an intervention to reduce x *will* reduce y.  
