@@ -1,0 +1,317 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Estimating group-level differences using a multi-level Bayesian model
+### Chris Wymant
+
+This code lives [here](https://github.com/ChrisHIV/teaching).
+
+Consider a variable $y$ that is normally distributed about a mean value that is itself normally distributed between groups, and that we want to estimate this group-level variation.
+This case study demonstrates two approaches to that: first a Bayesian joint model for all the data, and secondly a Frequentist sequential model, sequentially comparing each group to all the others without correcting for multiple testing.
+I've compared a more complicated Bayesian model to a simpler Frequentist model not to score an unfair point in the battle between sects of statistics, but because colleagues have used the simpler model and I wanted to explain its shortcomings and provide one example of something better.
+
+First set up our coding session.
+
+```{r message = FALSE, warning = FALSE, results = FALSE}
+library(tidyverse)
+library(rstan)
+library(ggforce)
+options(mc.cores = parallel::detectCores()) # parallelise
+rstan_options(auto_write = TRUE)            # avoid re-compiling stan code
+theme_set(theme_classic())
+set.seed(265734)
+```
+
+Define parameters of the data-generating process.
+
+```{r}
+# Parameters that we condition on, i.e. take as given rather than estimating:
+num_groups <- 25
+num_y_per_group_poisson_mean <- 4
+
+# Parameters that we estimate and that are 'top level' (they do not have
+# distributions controlled by other parameters to be estimated)
+y_mean_pop <- 5
+y_sd <- 5
+y_sd_group <- 1
+
+# Parameters that we estimate and that are lower level (and hence are drawn from
+# a distribution parameterised by the previous parameters)
+y_by_group <- rnorm(n = num_groups,
+                    mean = y_mean_pop,
+                    sd = y_sd_group)
+
+```
+
+Simulate data.
+For robustness when running this code with small `num_y_per_group_poisson_mean`, exclude any groups with zero observations and redefine which group is which.
+Plot the data.
+(The violin only looks good with many observations per group, but still helps distinguish which points come from which group.)
+
+```{r}
+df <- tibble(group = 1:num_groups,
+             num_y = rpois(n = num_groups,
+                           lambda = num_y_per_group_poisson_mean))
+
+which_groups_included <- df$num_y > 0
+df <- df %>%
+  filter(num_y > 0) %>%
+  mutate(group = row_number())
+y_by_group <- y_by_group[which_groups_included]
+num_groups <- nrow(df)
+df$y_mean <- y_by_group
+
+# Lengthen from one row per group to one row per observation 
+df <- df %>%
+  uncount(num_y) %>%
+  mutate(y = rnorm(n = nrow(.),
+                   mean = y_mean,
+                   sd = y_sd))
+```
+
+Plot the data
+
+```{r, warning = FALSE}
+ggplot(df, aes(as.factor(group), y)) +
+  geom_violin() +
+  geom_sina() +
+  labs(x = "group")
+```
+
+The following Stan code (stored as a string in R) estimates those parameters of the data-generating process that we don't condition on.
+The likelihood it uses matches the one we used to generate the data.
+
+```{r message = FALSE, warning = FALSE}
+model <- "
+data {
+  int<lower = 1> num_groups;
+  int<lower = num_groups> num_y;
+  int<lower = 1, upper = num_groups> group[num_y];
+  real y[num_y];
+}
+
+parameters {
+  // Top-level parameters
+  real<lower = -10, upper = 10> y_mean_pop;
+  real<lower = 0,   upper = 10> y_sd;
+  real<lower = 0,   upper = 10> y_sd_group;
+  // Lower-level parameters (with a non-centred parameterisation for numerical
+  // efficiency, see e.g.
+  // https://mc-stan.org/docs/2_18/stan-users-guide/reparameterization-section.html
+  vector[num_groups] group_effects_unscaled;
+}
+
+transformed parameters {
+  vector[num_groups] y_by_group = y_mean_pop + 
+  group_effects_unscaled * y_sd_group;
+  real y_mean[num_y];
+  for (i in 1:num_y) {
+    y_mean[i] = y_by_group[group[i]];
+  }
+}
+
+model {
+  group_effects_unscaled ~ normal(0, 1);
+  y ~ normal(y_mean, y_sd);
+}
+"
+```
+
+Compile and run the Stan code
+
+```{r message = FALSE, warning = FALSE, results = FALSE}
+model_compiled <- stan_model(model_code = model)
+
+fit <- sampling(model_compiled,
+                data = list(
+                  num_groups = num_groups,
+                  num_y = nrow(df),
+                  group = df$group,
+                  y = df$y),
+                iter = 500,
+                chains = 4)
+```
+Get posterior samples into a long dataframe
+
+```{r}
+df_fit <- fit %>%
+  as.data.frame() %>% 
+  as_tibble() %>%
+  mutate(sample = row_number()) %>%
+  pivot_longer(-sample, names_to = "param")
+```
+
+For each parameter, plot its marginal posterior and the true value
+
+```{r}
+list_parameters_truth <- list(y_mean_pop = y_mean_pop,
+                              y_sd = y_sd,
+                              y_sd_group = y_sd_group)
+df_parameters_truth <- tibble(param = names(list_parameters_truth),
+                              value = unlist(list_parameters_truth)) %>%
+  bind_rows(tibble(param = paste0("y_by_group[", 1:num_groups, "]"),
+                   value = y_by_group))
+ggplot(df_fit %>% 
+         filter(param != "lp__",
+                ! str_starts(param, "group_effects_unscaled"),
+                ! str_starts(param, "y_mean\\["))) +
+  geom_histogram(aes(value, y = after_stat(density)), bins = 30) +
+  geom_vline(data = df_parameters_truth, aes(xintercept = value)) +
+  facet_wrap(~param, scales = "free") +
+  coord_cartesian(expand = FALSE) +
+  labs(fill = "",
+       x = "parameter value",
+       y = "posterior density")
+```
+
+I think plots of posterior distributions such as those above should always show the prior distribution as well, to show how much information came from the data and how much from the prior: we always want to know this.
+I'm only skipping that here to save myself some time as it's tangential to the point of this case study.
+
+For each group, calculate the two-tailed Bayesian p value that it is different from the population-level mean, i.e. twice the posterior mass for the group effect being less than zero (for positive effects) or greater than zero (for negative effects).
+Note that this is not an appropriate measure of how much the data tell us an effect is different from zero if one uses a prior that is asymmetric about zero; our prior here is symmetric about zero, which means that calculating the p value this way under the prior rather than the posterior would give a value of 1.
+Note that the precision with which we can calculate this p value is limited by the number of samples we extracted from the posterior (i.e. the number of iterations/steps we used for the monte carlo).
+
+```{r}
+df_p <- df_fit %>%
+  filter(startsWith(param, "group_effects_unscaled")) %>%
+  summarise(.by = param,
+            p = 2 * min(sum(value > 0), sum(value < 0)) / n()) %>%
+  mutate(group = str_match(param, "group_effects_unscaled\\[([0-9]+)\\]")[,2])
+```
+
+Calculate the estimated group effects - median and 95% credible intervals
+
+```{r}
+quantiles <- c(0.025, 0.5, 0.975)
+df_estimate <- df_fit %>%
+  filter(startsWith(param, "y_by_group")) %>%
+  group_by(param) %>% 
+  reframe(quantile = quantiles,
+          value = quantile(value, quantiles)) %>%
+  pivot_wider(values_from = value, names_from = quantile, names_prefix = "quantile_") %>%
+  mutate(group = str_match(param, "y_by_group\\[([0-9]+)\\]")[,2]) %>%
+  inner_join(tibble(y_true = y_by_group,
+                    group = 1:num_groups %>% as.character()),
+             by = "group")
+```
+
+Now plot the estimated group effects in blue, their true values as black Xs, and data as black circles, ordered by the Bayesian p value for the group.
+
+```{r}
+plot <- ggplot(data = df_estimate %>%
+                 inner_join(df_p %>% select(group, p), by = "group") %>%
+                 mutate(group = fct_reorder(group, p))) +
+  geom_sina(data = df %>%
+              mutate(group = as.character(group)) %>%
+              left_join(df_p %>% select(group, p), by = "group") %>%
+              mutate(group = fct_reorder(group, p)),
+            aes(group, y)) +
+  geom_errorbar(aes(x = group, ymin = quantile_0.025, ymax = quantile_0.975),
+                col = "blue") +
+  geom_point(aes(x = group, y = quantile_0.5), col = "blue") +
+  geom_point(aes(group, y_true), shape = 4, size = 4) +
+  labs(x = "group")
+plot
+```
+
+In the plot above note that the estimate is always a compromise between the true value and a naive average of the data points specific to that group, because the model knows that one group's values can differ from the population average either because of a group effect or because random variability allows most or even all values in the same group to deviate from their true average in the same direction (greater or lower).
+
+Next let's estimate the set of group effects using a simpler Frequentist sequential model in which each group in turn is tested for being different from all other groups considered jointly, modelling both as normally distributed different means.
+For each test we approximate the 'everything else' category as representing the whole population with negligible error, which holds in the limit that the number of groups is large and each group contains only a small fraction of all observations.
+This approximation means we can sum (the estimated intercept) and (the estimated group deviation from the intercept) to get the overall group effect, with error coming only from the deviation.
+
+```{r}
+fit_pairwise_lm <- function(group_) {
+  lm_ <- lm(data = df, y ~ group == group_)
+  summary_ <- summary(lm_)
+  confint_ <- confint(lm_)
+  list(freq_estimate = summary_$coefficients[1,1] + summary_$coefficients[2,1],
+       freq_p = summary_$coefficients[2,4],
+       freq_lower = summary_$coefficients[1,1] + confint_[2,1],
+       freq_upper = summary_$coefficients[1,1] + confint_[2,2])
+}
+
+df_compare <- tibble(group = 1:num_groups %>% as.character) %>%
+  mutate(result = map(group, fit_pairwise_lm)) %>%
+  unnest_wider(result) %>%
+  inner_join(df_estimate, by = "group") %>%
+  inner_join(df_p %>%
+               select(group, p) %>%
+               rename(bayes_p = p), by = "group")
+```
+
+Add these Frequentist sequential estimates to our previous plot, in red.
+
+```{r}
+plot +
+  geom_errorbar(data = df_compare,
+                aes(x = group, ymin = freq_lower, ymax = freq_upper),
+                col = "red") +
+  geom_point(data = df_compare, aes(x = group, y = freq_estimate), col = "red")
+```
+
+The blue dots tend to be closer to the black crosses than the red dots are
+
+As a different visualisation of the error in the two methods, plot a point for each group with the Bayesian joint estimate as the x value and the Frequentist sequential estimate as the y value, with a line connecting the point the true value.
+The lines tend to be much closer to vertical than horizontal, reflecting larger error from the Frequentist sequential method.
+
+```{r}
+limits <- range(with(df_compare, c(quantile_0.5, freq_estimate)))
+ggplot(df_compare) +
+  geom_segment(aes(x = y_true, y = y_true, xend = quantile_0.5, yend = freq_estimate)) +
+  geom_point(aes(x = quantile_0.5, y = freq_estimate)) +
+  geom_abline(linetype = "dashed") +
+  xlim(limits) +
+  ylim(limits) +
+  coord_fixed() +
+  labs(x = "y central estimate from Bayesian joint model",
+       y = "y central estimate from Frequentist sequential model")
+```
+
+Compare the p values from the two methods:
+
+```{r}
+ggplot(df_compare) +
+  geom_point(aes(x = bayes_p, y = freq_p)) +
+  geom_abline(linetype = "dashed") +
+  xlim(0, 1) +
+  ylim(0, 1) +
+  coord_fixed() +
+  labs(x = "p value from Bayesian joint model",
+       y = "p value from Frequentist sequential model")
+```
+
+p values from the Bayesian joint model are larger.
+It's less certain about any individual group effect existing, because by analysing the differences between all groups simultaneously it can see that these are typically small, which means that for groups with unusually high or low values, more weight is assigned to this being random chance instead of an unusual mean for that group.
+This is closely related to the Frequentist sequential method overfitting to noise in the data, giving estimates further from the true value, seen in the earlier plot.
+Also closely related is that the Frequentist sequential method suffers from failure to correct for [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem); the Bayesian joint model does not suffer because of the modelling assumption of a shared probability distribution for the many group effects.
+
+It's a general principle that estimates drawn from a statistical model are limited in their validity by how well the model fits the data.
+Here for the Bayesian joint model we modelled the difference between all groups as following the same normal distribution.
+If one or a small number of groups have values very different from the rest (i.e. implausibly far into the tails of a normal), and this is supported by enough observations to be unlikely due to chance, then our model would be a poor fit to the data.
+This would be apparent in the usual check of model fit for Bayesian models, namely a posterior retrodictive/predictive check.
+Specifically, when redrawing many whole datasets, one for each draw from the posterior of the top level parameters (from which a fresh draw of the lower-level parameters follows), we would see that very few such simulated datasets reflect the real dataset in this aspect of outlier groups.
+In this case the model for group-level variability should be improved to allow higher probability of outliers.
+For example a single distribution with heavier tails than the normal could be used, or a finite mixture model with a small-variance normal mixed with a large-variance normal.
+In the latter case, the generative process would be modified something like thus:
+
+```{r}
+y_sd_group_small <- 0.5
+y_sd_group_large <- 5
+y_sd_group_proportion_large <- 0.1
+
+y_by_group <- if_else(runif(n = num_groups, min = 0, max = 1) <
+                        y_sd_group_proportion_large,
+                      rnorm(n = num_groups,
+                            mean = y_mean_pop,
+                            sd = y_sd_group_large),
+                      rnorm(n = num_groups,
+                            mean = y_mean_pop,
+                            sd = y_sd_group_small))
+```
+
+and the way in which the inference code would need to be changed using finite mixture models in Stan (see the [docs](https://mc-stan.org/docs/stan-users-guide/finite-mixtures.html) or my 'Probabilistic classification' case study [here](https://github.com/ChrisHIV/teaching)) is left as an exercise to the reader.
+
