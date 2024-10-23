@@ -22,7 +22,7 @@ library(ggforce)
 options(mc.cores = parallel::detectCores()) # parallelise
 rstan_options(auto_write = TRUE)            # avoid re-compiling stan code
 theme_set(theme_classic())
-set.seed(265734)
+set.seed(123946)
 ```
 
 Define parameters of the data-generating process.
@@ -36,7 +36,7 @@ num_y_per_group_poisson_mean <- 4
 # distributions controlled by other parameters to be estimated)
 y_mean_pop <- 5
 y_sd <- 5
-y_sd_group <- 1
+y_sd_group <- 0.5
 
 # Parameters that we estimate and that are lower level (and hence are drawn from
 # a distribution parameterised by the previous parameters)
@@ -288,6 +288,14 @@ p values from the Bayesian joint model are larger.
 It's less certain about any individual group effect existing, because by analysing the differences between all groups simultaneously it can see that these are typically small, which means that for groups with unusually high or low values, more weight is assigned to this being random chance instead of an unusual mean for that group.
 This is closely related to the Frequentist sequential method overfitting to noise in the data, giving estimates further from the true value, seen in the earlier plot.
 Also closely related is that the Frequentist sequential method suffers from failure to correct for [multiple testing](https://en.wikipedia.org/wiki/Multiple_comparisons_problem); the Bayesian joint model does not suffer because of the modelling assumption of a shared probability distribution for the many group effects.
+
+Note the importance of the ratio `y_sd_group^2 / (y_sd_group^2 + y_sd^2)` - the proportion of variance explained by the group.
+Under this generative model, if this ratio is zero, groups have exactly zero effect; then all resulting estimates of group effects existing are false positives, and the false discovery rate is 100%.
+If the ratio is anything greater than zero, every group has some effect even if tiny compared to within-group/stochastic variability; then all resulting estimates of group effects existing are true positives, and the false discovery rate is 0.
+You can see this isn't very helpful!
+This is related to the unhelpful dichotomisation of effects existing or not.
+Its better to think about how good is the estimation of group effects (or conversely how bad is the overfitting to noise, both continuous) as a function of where this ratio is between 0 and 1.
+The closer it is to 0, the worse the Frequentist sequential model will overfit to noise (I picked a small value to illustrate this).
 
 It's a general principle that estimates drawn from a statistical model are limited in their validity by how well the model fits the data.
 Here for the Bayesian joint model we modelled the difference between all groups as following the same normal distribution.
