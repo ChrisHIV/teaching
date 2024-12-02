@@ -1,15 +1,23 @@
 # teaching
 
 Here you can find educational/explanatory material written by me (Chris Wymant), pitched at various levels from student to researcher.
-My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
+My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally post on Bluesky [here](https://bsky.app/profile/chriswymant.bsky.social).
 
-There's lots of material below organised by topic. One thing to highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science. I think that improvement there is low-hanging fruit: communication of results is an important and undervalued part of what we do. And here are recorded talks I've given on various topics:
+There's lots of material below organised by topic.
+One thing to highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science.
+I think that improvement there is low-hanging fruit: communicating our work is an important and undervalued part of our work.
+
+Here are video recordings of talks I've given on various topics:
 * pathogen sequence analysis [here](https://www.youtube.com/watch?v=TR2a46vBwGY),
 * our discovery of a highly virulent variant of HIV [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM) (or with an introduction in French [here](https://www.youtube.com/watch?v=kpgNaiXCxfA)),
 * our proposal and evaluation of digital contact tracing for SARS-CoV-2 [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883),
 * the interplay of proximity and duration of exposure for SARS-CoV-2 transmission [here](https://www.youtube.com/watch?v=wfBiF7rmr7E).
 
-Materials by topic:
+Here are audio recordings:
+* discussing our discovery of a highly virulent variant of HIV with BBC World Service [here](https://www.bbc.co.uk/programmes/w3ct1l4z), starting 1 min 11 secs into the programme 
+* discussing infectious disease epidemiology and statistical modelling on the Learn Bayesian Statistics podcast, in a live edition recorded at StanCon 24, [here](https://player.captivate.fm/episode/8f372809-3905-4110-8e1b-2f5ca1f95b33) (see other podcast listening options [here](https://learnbayesstats.com/))
+
+Below, materials are organised by topic.
 
 ### Basic maths, with public health and epidemiology examples:
 * A [quiz](basic_maths/InductionQuiz.pdf) testing the topics covered, and the [answers](basic_maths/QuizAnswers.pdf)
