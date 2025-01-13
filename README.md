@@ -1,15 +1,23 @@
 # teaching
 
 Here you can find educational/explanatory material written by me (Chris Wymant), pitched at various levels from student to researcher.
-My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally tweet [here](https://twitter.com/ChrisWymant).
+My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally post on Bluesky [here](https://bsky.app/profile/chriswymant.bsky.social).
 
-There's lots of material below organised by topic. One thing to highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science. I think that improvement there is low-hanging fruit: communication of results is an important and undervalued part of what we do. And here are recorded talks I've given on various topics:
+There's lots of material below organised by topic.
+One thing to highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science.
+I think that improvement there is low-hanging fruit: communicating our work is an important and undervalued part of our work.
+
+Here are video recordings of talks I've given on various topics:
 * pathogen sequence analysis [here](https://www.youtube.com/watch?v=TR2a46vBwGY),
 * our discovery of a highly virulent variant of HIV [here](https://www.youtube.com/watch?v=hQ-M1MyXtHM) (or with an introduction in French [here](https://www.youtube.com/watch?v=kpgNaiXCxfA)),
 * our proposal and evaluation of digital contact tracing for SARS-CoV-2 [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883),
 * the interplay of proximity and duration of exposure for SARS-CoV-2 transmission [here](https://www.youtube.com/watch?v=wfBiF7rmr7E).
 
-Materials by topic:
+Here are audio recordings:
+* discussing our discovery of a highly virulent variant of HIV with BBC World Service [here](https://www.bbc.co.uk/programmes/w3ct1l4z), starting 1 min 11 secs into the programme 
+* discussing infectious disease epidemiology and statistical modelling on the Learn Bayesian Statistics podcast, in a live edition recorded at StanCon 24, [here](https://player.captivate.fm/episode/8f372809-3905-4110-8e1b-2f5ca1f95b33) (see other podcast listening options [here](https://learnbayesstats.com/))
+
+Below, materials are organised by topic.
 
 ### Basic maths, with public health and epidemiology examples:
 * A [quiz](basic_maths/InductionQuiz.pdf) testing the topics covered, and the [answers](basic_maths/QuizAnswers.pdf)
@@ -24,7 +32,7 @@ I wrote the above (for a Bachelors course, a masters course and 'the short cours
 
 ### Inference / data analysis:
 * Statistical Modelling (A very short introduction), [here](https://docs.google.com/document/d/1V2igitQVFnQRIWGupmmbA3GqvX8DgAeLI0taH36oJNI/edit?usp=sharing). A 2023 lecture for the University of Oxford Centre for Doctoral Training in Health Data Sciences. Code as a worked solution to the two parts of the practical is [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R)
-* For my 2024 lecture on that same course I focussed on what mathematical modelling and statistical modelling are at a high level, the basic laws of probability, a little about counterfactuals, and using random-effects (hierarchical/multi-level) models to describe CD4 cell decline during HIV infection. Lecture slides [here](other_topics/health_data_science_cdt_stats_2024.pdf), practical [here](https://docs.google.com/document/d/1buYJB5s9NMz8XkN03mmGziGp598Mo90X1hdXa40qgxE/edit?usp=sharing), worked solutions to practical exercises are [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R) for 1, [here](other_topics/Wymant_practical_CFR.R) and [here](other_topics/Wymant_practical_CFR.stan) for 2 using [this](other_topics/Wymant_practical_CFR_WHO-COVID-19-global-data.csv) WHO data, [here](other_topics/Wymant_practical_CD4decline_lineage.R) and [here](other_topics/Wymant_practical_CD4decline_lineage.stan) for 3.
+* For my 2025 lecture on that same course I focussed on what mathematical modelling and statistical modelling are at a high level, the basic laws of probability, a little about counterfactuals, and using random-effects (hierarchical/multi-level) models to describe CD4 cell decline during HIV infection. Lecture slides [here](other_topics/health_data_science_cdt_stats_2024.pdf), practical [here](https://docs.google.com/document/d/1buYJB5s9NMz8XkN03mmGziGp598Mo90X1hdXa40qgxE/edit?usp=sharing), worked solutions to practical exercises are [here](other_topics/practical_poisson.R) and [here](other_topics/practical_normal.R) for 1, [here](other_topics/Wymant_practical_CFR.R) and [here](other_topics/Wymant_practical_CFR.stan) for 2 using [this](other_topics/Wymant_practical_CFR_WHO-COVID-19-global-data.csv) WHO data, [here](other_topics/Wymant_practical_CD4decline_lineage.R) and [here](other_topics/Wymant_practical_CD4decline_lineage.stan) for 3.
 * Inferring things from quantitative data, or why it's better to think less about _doing things to data_, [here](other_topics/2021-09-29_Chris_InferenceOnly.pdf)
 * The need for hierarchical models to infer things from naturally grouped data: [here](other_topics/2022-04-06_TrainingSession_Chris_HierarchicalModellingGroupedData.pdf).
 Code for the example is the hierarchical model in the Stan section below.
