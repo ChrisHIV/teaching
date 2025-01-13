@@ -24,9 +24,9 @@ library(tidyverse)
 
 seed <- 12345 # seed for random number generation, to allow reproducibility
 m_true <- 1
-c_true <- 3
+c_true <- 5
 sigma_true <- 2
-x_vector <- 1:5000
+x_vector <- 1:30
 
 # SIMULATE DATA ----------------------------------------------------------------
 
@@ -67,9 +67,9 @@ ll_2 <- function(m, c, sigma) {
 # consider for m, c, and sigma. cross_df makes all possible combinations of 
 # values from the list of vectors supplied as arguments. Inspect the resulting
 # df_ll if you're not clear what we've done.
-df_ll <- cross_df(list(m = seq(from = 0.1, to = 2, by = 0.1),
-                       c = seq(from = 0, to = 5, by = 0.2),
-                       sigma = seq(from = 0.2, to = 4, by = 0.2)))
+df_ll <- expand_grid(m = seq(from = 0.1, to = 2, by = 0.1),
+                     c = seq(from = 0, to = 10, by = 0.5),
+                     sigma = seq(from = 0.2, to = 4, by = 0.2))
 
 # Calculate the ll for each point in our parameter space, using both methods 
 df_ll <- df_ll %>%
@@ -77,7 +77,7 @@ df_ll <- df_ll %>%
          ll_2 = pmap_dbl(list(m = m, c = c, sigma = sigma), ll_2),
          diff_1_2 = ll_1 - ll_2)
 
-# Inspect the differences in the answers given by the three methods - it's 
+# Inspect the differences in the answers given by the two methods - it's 
 # always the same (i.e. independent of the parameters) to within a very small
 # value (numerical imperfection) that's not worrisome.
 max(df_ll$diff_1_2) - min(df_ll$diff_1_2)
