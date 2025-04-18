@@ -8,8 +8,19 @@ It's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf).
 It's a good argument for clarity and simplicity, drawing attention to common silly things people to do make their writing sound impressive.
 It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/).
 A few of my favourite bits are [here](politics_and_the_english_language_highlights.md).
-* *Several short sentences about writing* is an enjoyable and useful read for those with greater interest in writing, though isn't the place to start from.
+* [*Several short sentences about writing*](https://www.amazon.co.uk/Several-Short-Sentences-about-Writing/dp/0307279413) is an enjoyable and useful read for those with greater interest in writing.
 I think its advice is aimed more at creative writing, though a good amount of it applies to academic writing, including my favourite passages [here](https://docs.google.com/document/d/1XK51VXUtFraqo193646RYMoGMyHa9dIn-Fwy9maC_TA/edit?usp=sharing).
+These points could be summarised as
+   * write shorter sentences
+   * write whole sentences in your mind before writing them on paper
+   * don't accept sentences as they appear in your mind: repeatedly revise them
+   * writing may seem to flow upon reading it, but the process of writing should not flow (see last point)
+   * know the fundamental rules of language: breaking them will distract or confuse your readers
+   * fixing may require rewriting, not just rearranging
+   * common transitional words and phrases - 'one the one hand', 'whereas', 'thus' - should not be needed if the writing is clear enough
+
+   
+
 
 ### Use a question-driven approach
 
@@ -154,6 +165,11 @@ In this case it is forgivable for the author to make one choice of the most appr
 Phrases like "our work sheds light on", "our work has implications for" leave unsaid what you actually learned or what the implications are.
 If you don't tell the reader concretely what the benefits of your work are, they may be left suspicious that there are none.
 A related point is discussed in the book Freakonomics: adverts for expensive houses tend to use specific words (titanium) whereas adverts for cheap houses tend to use vague words (lovely).
+
+**Learn and follow the basic rules of language.**
+Becoming proficient with those tools we use commonly makes us do our job better. 
+The rules of language control how our thoughts become words onto the page, but also how those words become thoughts in our audience.
+We should stick to the same rules, much as the same algorithm must be used to compress and then decompress data.
 
 ### Commonly needed points of grammar
 
