@@ -1,9 +1,15 @@
 ## Advice on writing a scientific paper (in academia)
 
-I recommend reading Strunk and White before writing anything: it's very concise and has good general guidelines.
+Other recommended resources:
+
+* *Strunk and White* is helpful for writing anything: it's very concise and has good general guidelines.
 It's online [here](http://www.jlakes.org/ch/web/The-elements-of-style.pdf).
-I recommend reading Politics and the English Language before writing to make a point: it's a good argument for clarity and simplicity, drawing attention to common silly things people to do make their writing sound impressive.
-It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/) and a few of my favourite bits are [here](politics_and_the_english_language_highlights.md).
+* *Politics and the English Language* is helpful for writing to make a point.
+It's a good argument for clarity and simplicity, drawing attention to common silly things people to do make their writing sound impressive.
+It's online [here](https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/).
+A few of my favourite bits are [here](politics_and_the_english_language_highlights.md).
+* *Several short sentences about writing* is an enjoyable and useful read for those with greater interest in writing, though isn't the place to start from.
+I think its advice is aimed more at creative writing, though a good amount of it applies to academic writing, including my favourite passages [here](https://docs.google.com/document/d/1XK51VXUtFraqo193646RYMoGMyHa9dIn-Fwy9maC_TA/edit?usp=sharing).
 
 ### Use a question-driven approach
 
@@ -172,7 +178,8 @@ The present perfect tense does not make sense for describing what you did and wh
 
 ### Placeholders for points I hope to explain properly later
 
-Aim to write shorter sentences, per Verlyn Klinkenborg's _Several Short Sentences About Writing_: they're harder to get wrong and easier to fix.
+Aim to write shorter sentences: they're harder to get wrong and easier to fix.
+More detail [here](https://docs.google.com/document/d/1XK51VXUtFraqo193646RYMoGMyHa9dIn-Fwy9maC_TA/edit?usp=sharing).
 
 A little bit of present tense may sometimes be helpful in the Results section.
 If the meaning of something you've found is not clear, a short statement of what this suggests about the world (present tense) may benefit readers. The full discussion about how your findings can be interpreted is best placed in Discussion. 
