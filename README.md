@@ -64,8 +64,7 @@ Code for the example is the hierarchical model in the Stan section below.
 ### SARS-CoV-2 / COVID-19:
 * Slides [here](other_topics/Wymant_DigitalContactTracing_2023-03-29_LSHTM_public.pdf) and a recorded webinar [here](https://lshtm.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6859462a-ff69-4877-8c01-afe100dfe883) about two of our group's papers on digital contact tracing (our initial [proposal](https://doi.org/10.1126/science.abb6936) and our [evaluation](https://doi.org/10.1038/s41586-021-03606-z)).
 * A recorded webinar [here](https://www.youtube.com/watch?v=wfBiF7rmr7E) about how transmission risk depends on the interplay between proximity and duration of exposure. I wrote a short summary [here](https://045.medsci.ox.ac.uk/risk_measurement) and a thread in our group twitter account [here](https://twitter.com/ChristoPhraser/status/1737513767733272914).
-* A short summary of our paper on high-resolution real-time epidemic monitoring via digital contact tracing systems is [here](https://045.medsci.ox.ac.uk/monitoring/). I wrote a thread in our group twitter account [here](https://x.com/ChristoPhraser/status/1811725269788430543).
-* A [blog post](https://045.medsci.ox.ac.uk/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of index cases.
+* A [blog post](https://www.bdi.ox.ac.uk/research/pathogen-dynamics/blog#8august2021) explaining our group's paper modelling the effectiveness of daily lateral flow testing as an alternative strategy for reducing transmission from the traced close contacts of index cases.
 
 ### Coding in R:  
 * A quick introduction to the tidyverse (basically just to the dplyr package and the pipe operator) [here](other_topics/tidyverse_quick_intro.md)
@@ -97,6 +96,7 @@ A simple tip for handling responses to reviewers during peer review: as soon as 
 Some explanations of things on twitter:
 * On the harmful oversimplification of focussing only on the _fraction_ of SARS-CoV-2 infections that become severe, [here](https://twitter.com/ChrisWymant/status/1412436234845175812)
 * Lockdown pros and cons [here](https://twitter.com/ChrisWymant/status/1321543816298614784)
+* I wrote a thread in our group twitter account about our paper on high-resolution real-time epidemic monitoring via digital contact tracing systems [here](https://x.com/ChristoPhraser/status/1811725269788430543).
 * Our group's agent-based model of SARS-CoV-2 epidemics and interventions [here](https://twitter.com/ChrisWymant/status/1308751845997903881)
 * A summary of results obtained from that model [here](https://twitter.com/ChrisWymant/status/1250842199086059523) (summarising our report provided to NHSX [here](https://github.com/BDI-pathogens/covid-19_instant_tracing/blob/master/Report%20-%20Effective%20Configurations%20of%20a%20Digital%20Contact%20Tracing%20App.pdf))
 * Why science is easier than politics [here](https://twitter.com/ChrisWymant/status/1154710730526117889)
