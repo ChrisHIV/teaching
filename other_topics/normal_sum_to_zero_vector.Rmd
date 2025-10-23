@@ -1,0 +1,222 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Distinguishing between groups using normal random effects that sum to zero: why and how
+### Chris Wymant
+
+This code lives [here](https://github.com/ChrisHIV/teaching).
+
+Summary: I provide some context for using normally distributed random effects to distinguish groups, explain why it's helpful to have them sum to zero, and expand upon the [explanations of normal sum-to-zero vectors in the Stan reference manual](https://mc-stan.org/docs/reference-manual/transforms.html#sum-to-zero-transforms) by showing with code what happens when you use them.
+
+#### Introduction
+
+*The problem.* Say we have a dataset that is divided into groups that may have different values for some parameter.
+One common approach for this is to define one group as the reference group, with a reference value for the parameter, and then for all the other groups defining their difference in the value of that parameter.
+In a Bayesian setting, this means all the non-reference groups must have greater uncertainty than the reference group even before we consider the data, because their value of the parameter is the sum of the reference value plus the difference, which is more uncertain that the reference value alone.
+With data that is equally informative about all the groups, we will still have greater uncertainty for all the non-reference groups in the posterior, carried through from the prior.
+That undesirable aspect motivates another common approach: to define a sort of 'baseline' value of the parameter, not associated to any group, and then every group has its own parameter added to this.
+The benefit of this approach is that it treats all the groups the same.
+The cost is that it uses one more degree of freedom than is needed: if there are $N$ groups, we have $N$ group-specific parameters plus one baseline parameter.
+If we add any constant onto the baseline parameter and subtract that same constant from every group-specific parameter, the likelihood is unchanged.
+That means this direction in the likelihood space is completely unidentifiable by data.
+If we split our dataset into groups in multiple different ways simultaneously - in epidemiology for example we may split a population by age group, by location, and by occupation - then each way of splitting introduces one more unidentifiable direction in the likelihood.
+
+*Random effects as a partial solution.* In both of the above approaches, random effects are typically a good choice for the group-specific parameters.
+Random effects interpolate between the extremes of modelling all groups as identical to each other, and modelling each group as completely independent of all the others such that their parameters do not inform each other at all.
+Random effects are commonly modelled as having a normal distribution for their prior (perhaps with a link function for those parameters that are defined on some constrained scale, e.g. a logit link function for parameters between 0 and 1), for various reasons including maximum entropy, everyone else does it, and computational convenience.
+In the second approach above, the group-specific parameters would be modelled with a zero-mean normal, because they are already added onto the baseline parameter.
+The direction in parameter space for which the likelihood is constant (a 'flat' direction) will therefore not be a flat direction for the posterior, because shifting all the group-specific parameters together to balance an opposite shift in the baseline parameter incurs a penalty from the normal prior for the group-specific parameters, which pulls them towards zero with a strength controlled by the variance of the normal, which is estimated from the variability between the groups.
+Even though this direction in parameter space is not flat for the posterior, it's still a redundant degree of freedom in our parameter space, and the penalty from the normal prior is locally zero around the maximum (recall that all functions have vanishing first derivative at a maximum).
+This means that when exploring the parameter space our sampler can move all the group-specific parameters together a small amount and move the baseline parameter a small amount in the opposite direction with negligible penalty.
+This introduces unnecessary uncertainty and is likely to make efficient sampling harder.
+And again, if adding multiple random effects for multiple ways of splitting into groups, the problem is larger.
+
+*Sum-to-zero random effects as an improved solution.* A variation of the second approach mentioned above is to remove one degree of freedom from the group-specific parameters with a hard constraint that they sum to zero. 
+But then we will certainly have to change the prior we previously - an *independent* one-dimensional normal for each group-specific parameter - which does not sum to zero.
+The [sum-to-zero vectors section of the Stan reference manual](https://mc-stan.org/docs/reference-manual/transforms.html#sum-to-zero-transforms), explains the following points.
+Stan has a type `sum_to_zero_vector` which, behind the scenes, works in an unconstrained ($N-1$)-dimensional subspace of the $N$-dimensional space ($N$ being the length of the vector), a subspace in which the constraint is balanced equally across all the dimensions.
+I think this subspace is what the manual refers to as the non-centered parameterisation, the centered parameterisation being the original $N$-dimensional space.
+(This is not to be confused with a possible further, more familiar non-centering of the parameterisation: defining unit-normally distributed variables and multiplying them by their variance, instead of using the variance directly in the prior for such variables.)
+Say that a vector in the subspace has a normal distribution, independent for each of the $N-1$ dimensions with variance $\sigma^2$.
+Then the induced covariance matrix of the sum-to-zero vector in the $N$-dimensional space has $(1-\tfrac{1}{N})\sigma^2$ on the diagonal and $-\tfrac{1}{N}\sigma^2$ on all the off-diagonals.
+The marginal distribution for each element of this vector is $(1-\tfrac{1}{N})\sigma^2$ (which is less than the $\sigma^2$ we have for elements of the vector in the unconstrained subspace, because the constraint introduces anticorrelation between each pair of elements, pulling them closer to zero).
+If we want to interpret $\sigma$ instead in the more familiar way as being the marginal variance of each element of our sum-to-zero vector, we need only scale the covariance matrix, dividing it by $1-\tfrac{1}{N}$.
+
+
+#### Illustrating normally distributed sum-to-zero vectors with code
+
+First set up our session in R:
+
+```{r setup}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(rstan))
+suppressPackageStartupMessages(library(mvtnorm))
+theme_set(theme_classic())
+options(mc.cores = parallel::detectCores())
+```
+
+Here is some Stan code, stored as a string in R, for sampling sum-to-zero vectors given $sigma$ and the dimension $N$:
+
+```{r model_code_1}
+model_code <- "
+data {
+  int<lower=0> N;
+  real<lower=0> sigma;
+}
+
+parameters {
+  sum_to_zero_vector[N] y;
+}
+
+model {
+  y ~ normal(0, sigma);
+}
+"
+```
+
+We compile the model, give it some input, and sample from it:
+
+```{r message = FALSE, warning = FALSE, sample_from_stan_1 }
+N <- 3
+sigma <- 2
+input_stan <- list(
+  N = N,
+  sigma = sigma
+)
+
+model_compiled <- rstan::stan_model(model_code = model_code)
+
+samples <- sampling(model_compiled,
+                data = input_stan,
+                iter = 2000,
+                chains = 4)
+```
+
+Plot a 2D histogram of two of the elements of the sampled sum-to-zero vector, showing the anticorrelation:
+
+```{r}
+df_samples <- as.data.frame(samples)
+
+ggplot(df_samples) +
+  geom_bin_2d(aes(`y[1]`, `y[2]`))
+```
+
+Plot a histogram of one of the elements, showing that it follows a normal with variance $(1-\tfrac{1}{N})\sigma^2$ as promised:
+
+```{r}
+ggplot(df_samples) +
+  geom_histogram(aes(`y[1]`, y = after_stat(density)),
+                 bins = 60) +
+  geom_line(data = tibble(x = seq(-8, 8, by = 0.01),
+                   y = dnorm(x, sd = sigma * sqrt(1 - 1/N))),
+            aes(x,y))
+```
+
+Next we do something different.
+We sample some sum-to-zero vectors in R using the induced covariance matrix mentioned earlier, then ask Stan to estimate $sigma$.
+First the sampling:
+
+```{r}
+N <- 3
+sigma <- 2
+num_vectors <- 1e4
+
+# Define the covariance matrix as specified in the Stan reference manual:
+Sigma <- matrix(-1, nrow = N, ncol = N)
+diag(Sigma) <- N-1
+Sigma <- Sigma * sigma^2/N
+
+# Scale it so that sigma^2 is the marginal variance of each element in the
+# N-dimensional constrained space, rather than the (N-1)-dimensional
+# unconstrained space:
+Sigma <- Sigma * N / (N-1)
+
+# Sample
+y <- rmvnorm(num_vectors, mean = rep(0, N), sigma = Sigma)
+
+# Showing that the marginal distribution of each element of y is N(0, sigma)
+ggplot() +
+  geom_histogram(data = tibble(y = y[,1]),
+                 aes(y, y = after_stat(density)),
+                 bins = 60) +
+  geom_line(data = tibble(x = seq(-8, 8, by = 0.01),
+                          y = dnorm(x, sd = sigma)),
+            aes(x,y))
+```
+
+The sum-to-zero vectors we've sampled using rmvnorm do not actually sum to zero to within machine precision.
+We make a small adjustment so that they do, otherwise Stan will complain.
+
+```{r}
+max(rowSums(y)) # print the problem before...
+for (i in 1:nrow(y)) y[i,] <- y[i,] - mean(y[i,])
+max(rowSums(y)) # ...and after
+```
+
+Here is Stan code to estimate $sigma$ as we've defined it. 
+Note the addition of $\log \sigma$ (once per vector), explained in the Stan reference manual.
+
+```{r}
+model_code <- "
+data {
+  int<lower=2> N; 
+  int<lower=0> num_vectors;
+  array[num_vectors] sum_to_zero_vector[N] y;
+}
+
+transformed data {
+  real sqrt_n_by_n_min_1 = sqrt(N * inv(N - 1)); // NB careful float division
+}
+
+parameters {
+  real<lower=0, upper = 10> sigma;
+}
+
+transformed parameters {
+  real sigma_scaled = sigma * sqrt_n_by_n_min_1;
+}
+
+model {
+  for (i in 1:num_vectors) {
+    y[i] ~ normal(0, sigma_scaled);
+  }
+  target += num_vectors * log(sigma);
+}
+"
+```
+
+We draw samples from the posterior for sigma:
+
+```{r message = FALSE, warning = FALSE, sample_from_stan_2}
+list_stan <- list(
+  N = N,
+  num_vectors = num_vectors,
+  y = y
+)
+
+model_compiled <- rstan::stan_model(model_code = model_code)
+
+samples <- sampling(model_compiled,
+                data = list_stan,
+                iter = 500,
+                chains = 4)
+```
+
+And plot the posterior
+
+```{r}
+df_samples <- as.data.frame(samples)
+
+ggplot(df_samples) +
+  geom_histogram(aes(sigma), bins = 30)
+```
+
+which we see provides a good estimate of the true value of $\sigma$ we set earlier.
+
+#### Using normally distributed sum-to-zero vectors as random effects
+
+Now that we're clear how normally distributed sum-to-zero vectors work, we can use them as random effects.
+Use them the way you would normally use an unconstrained normally distributed vector (here is my [R](HierarchicalSchools.R) and [Stan](https://github.com/ChrisHIV/teaching/blob/main/other_topics/HierarchicalSchools.stan) code for a simple example; doutbless there are many examples elsewhere) except with $\log\sigma$ added for each such vector to get the prior right, and with a scaling of $\sigma^2$ by $N/(N-1)$ if you want this to refer to the marginal variance of each element of the full $N$-dimensional vector.
