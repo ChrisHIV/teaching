@@ -39,7 +39,7 @@ But then we will certainly have to change the prior we previously - an *independ
 The [sum-to-zero vectors section of the Stan reference manual](https://mc-stan.org/docs/reference-manual/transforms.html#sum-to-zero-transforms), explains the following points.
 Stan has a type `sum_to_zero_vector` which, behind the scenes, works in an unconstrained ($N-1$)-dimensional subspace of the $N$-dimensional space ($N$ being the length of the vector), a subspace in which the constraint is balanced equally across all the dimensions.
 I think this subspace is what the manual refers to as the non-centered parameterisation, the centered parameterisation being the original $N$-dimensional space.
-(This is not to be confused with a possible further, more familiar non-centering of the parameterisation: defining unit-normally distributed variables and multiplying them by their variance, instead of using the variance directly in the prior for such variables.)
+(This is not to be confused with a possible further, more familiar non-centering of the parameterisation: defining unit-normally distributed variables and multiplying them by their standard deviation, instead of using the standard deviation directly in the prior for such variables.)
 Say that a vector in the subspace has a normal distribution, independent for each of the $N-1$ dimensions with variance $\sigma^2$.
 Then the induced covariance matrix of the sum-to-zero vector in the $N$-dimensional space has $(1-\tfrac{1}{N})\sigma^2$ on the diagonal and $-\tfrac{1}{N}\sigma^2$ on all the off-diagonals.
 The marginal distribution for each element of this vector is $(1-\tfrac{1}{N})\sigma^2$ (which is less than the $\sigma^2$ we have for elements of the vector in the unconstrained subspace, because the constraint introduces anticorrelation between each pair of elements, pulling them closer to zero).
@@ -56,9 +56,10 @@ suppressPackageStartupMessages(library(rstan))
 suppressPackageStartupMessages(library(mvtnorm))
 theme_set(theme_classic())
 options(mc.cores = parallel::detectCores())
+set.seed(12345)
 ```
 
-Here is some Stan code, stored as a string in R, for sampling sum-to-zero vectors given $sigma$ and the dimension $N$:
+Here is some Stan code, stored as a string in R, for sampling sum-to-zero vectors given $\sigma$ and the dimension $N$:
 
 ```{r model_code_1}
 model_code <- "
@@ -116,7 +117,7 @@ ggplot(df_samples) +
 ```
 
 Next we do something different.
-We sample some sum-to-zero vectors in R using the induced covariance matrix mentioned earlier, then ask Stan to estimate $sigma$.
+We sample some sum-to-zero vectors in R using the induced covariance matrix mentioned earlier, then ask Stan to estimate $\sigma$.
 First the sampling:
 
 ```{r}
@@ -156,7 +157,7 @@ for (i in 1:nrow(y)) y[i,] <- y[i,] - mean(y[i,])
 max(rowSums(y)) # ...and after
 ```
 
-Here is Stan code to estimate $sigma$ as we've defined it. 
+Here is Stan code to estimate $\sigma$ as we've defined it. 
 Note the addition of $\log \sigma$ (once per vector), explained in the Stan reference manual.
 
 ```{r}
