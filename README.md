@@ -4,8 +4,10 @@ Here you can find educational/explanatory material written by me (Chris Wymant),
 My publications are [here](https://scholar.google.co.uk/citations?user=OJ6t2UwAAAAJ), my home page is [here](https://www.bdi.ox.ac.uk/Team/c-wymant), I occassionally post on Bluesky [here](https://bsky.app/profile/chriswymant.bsky.social).
 
 There's lots of material below organised by topic.
-One thing to highlight is my [advice](other_topics/advice_for_writing_a_scientific_paper.MD) for writing papers in academic science.
-I think that improvement there is low-hanging fruit: communicating our work is an important and undervalued part of our work.
+The main thing I'd like to highlight is my advice for writing papers in academic science.
+Here is some [prose](other_topics/advice_for_writing_a_scientific_paper.MD) about writing papers; here are some [slides](other_topics/2025-05-29_Chris_writing_ForSharing.pdf) from a talk about writing papers and writing more generally.
+I think that improvement here is low-hanging fruit: communicating our work is an important and undervalued part of our work.
+
 
 Here are video recordings of talks I've given on various topics:
 * pathogen sequence analysis [here](https://www.youtube.com/watch?v=TR2a46vBwGY),
