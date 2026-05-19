@@ -88,6 +88,8 @@ Code for the example is the hierarchical model in the Stan section below.
 
 Advice on writing a scientific paper in academia [here](other_topics/advice_for_writing_a_scientific_paper.MD).
 
+An answer to the question _How can data science be used for "good" causes?_ [here](https://datascience.stackexchange.com/a/137923).
+
 A [glossary](other_topics/Glossary_HIV.csv) of HIV terms (mainly at the molecular and cellular level) from when I first started working on HIV.
 
 Here are some [bash commands](https://www.dropbox.com/s/65eyimir8aukxe6/CommonBashCommands.sh?dl=0)</a> (i.e. working with the terminal / command line) that I find helpful.
