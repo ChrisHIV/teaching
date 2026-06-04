@@ -16,8 +16,8 @@ Here are video recordings of talks I've given on various topics:
 * the interplay of proximity and duration of exposure for SARS-CoV-2 transmission [here](https://www.youtube.com/watch?v=wfBiF7rmr7E).
 
 Here are audio recordings:
-* discussing our discovery of a highly virulent variant of HIV with BBC World Service [here](https://www.bbc.co.uk/programmes/w3ct1l4z), starting 1 min 11 secs into the programme 
-* discussing infectious disease epidemiology and statistical modelling on the Learn Bayesian Statistics podcast, in a live edition recorded at StanCon 24, [here](https://player.captivate.fm/episode/8f372809-3905-4110-8e1b-2f5ca1f95b33) (see other podcast listening options [here](https://learnbayesstats.com/))
+* discussing our discovery of a highly virulent variant of HIV with BBC World Service [here](https://www.bbc.co.uk/programmes/w3ct1l4z), starting 1 min 11 secs into the programme. 
+* discussing infectious disease epidemiology and statistical modelling on the Learn Bayesian Statistics podcast, in a live edition recorded at StanCon 24, [here](https://learnbayesstats.com/episode/120-innovations-in-infectious-disease-modeling-with-liza-semenova-chris-wymant).
 
 Below, materials are organised by topic.
 
